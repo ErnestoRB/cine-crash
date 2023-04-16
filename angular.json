@@ -23,9 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "sass",
-            "stylePreprocessorOptions": {
-              "includePaths": ["node_modules/bootstrap/scss"]
-            },
+            "stylePreprocessorOptions": {},
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.sass",
