@@ -7,9 +7,10 @@ import { ExampleComponent } from './example/example.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { TMDBAtributtionComponent } from './tmdb-atributtion/tmdb-atributtion.component';
 
 @NgModule({
-  declarations: [AppComponent, ExampleComponent],
+  declarations: [AppComponent, ExampleComponent, TMDBAtributtionComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
