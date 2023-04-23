@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,9 +14,21 @@ import { BuyComponent } from './routes/buy/buy.component';
 import { HistoryComponent } from './routes/history/history.component';
 import { MovieComponent } from './routes/movie/movie.component';
 import { MasonryComponent } from './masonry/masonry.component';
+import { SelectDateComponent } from './select-date/select-date.component';
 
 @NgModule({
-  declarations: [AppComponent, ExampleComponent, HomeComponent, AboutUsComponent, SignUpComponent, BuyComponent, HistoryComponent, MovieComponent, MasonryComponent],
+  declarations: [
+    AppComponent,
+    ExampleComponent,
+    HomeComponent,
+    AboutUsComponent,
+    SignUpComponent,
+    BuyComponent,
+    HistoryComponent,
+    MovieComponent,
+    MasonryComponent,
+    SelectDateComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -24,6 +36,7 @@ import { MasonryComponent } from './masonry/masonry.component';
     FormsModule,
     CalendarModule,
     SweetAlert2Module.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

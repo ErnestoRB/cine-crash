@@ -1,1 +1,5 @@
-<p>buy works!</p>
+<app-select-date
+  (fechaSeleccionada)="onFechaReceived($event)"
+  [showDate]="false"
+></app-select-date>
+<div *ngIf="fecha">Ya seleccionaste fecha: {{ fecha | date }}</div>

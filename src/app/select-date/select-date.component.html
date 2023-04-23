@@ -1,0 +1,34 @@
+<div class="card p-4">
+  <h1>Selecciona la fecha de tu función</h1>
+  <p-calendar
+    [minDate]="hoy"
+    [formControl]="fecha"
+    [showIcon]="true"
+    [stepMinute]="30"
+  ></p-calendar>
+
+  <ng-template [ngIf]="fecha.valueChanges | async">
+    <h2>
+      Selecciona la hora de tu función ({{ fecha.value | date : "fullDate" }})
+    </h2>
+    <div class="d-flex flex-wrap gap-2">
+      <div
+        class="p-2 btn btn-primary text-white"
+        [ngClass]="{ active: funcion.fecha.getTime() === selected?.getTime() }"
+        [attr.aria-pressed]="funcion.fecha.getTime() === selected?.getTime()"
+        *ngFor="let funcion of funciones"
+        (click)="
+          selected = funcion.fecha; fechaSeleccionada.emit(funcion.fecha)
+        "
+      >
+        {{ funcion.fecha | date : "hh:mm aa" }}
+      </div>
+      <span class="badge text-bg-danger" *ngIf="funciones.length === 0">
+        No hay funciones disponibles para esa fecha, ¡intenta para otro día!
+      </span>
+    </div>
+    <p *ngIf="showDate && selected">
+      Has escogido la función del día: {{ selected | date : "medium" }}
+    </p>
+  </ng-template>
+</div>
