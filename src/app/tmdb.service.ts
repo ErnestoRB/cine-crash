@@ -9,20 +9,24 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class TMDBService {
   constructor(private http: HttpClient) {}
 
-  getMovie(id: number): Observable<Movie> | void {
-    const url = 'https://dev.ernestorb.com/movies/API/Movies/' + id;
+  getMovie(id: string): Observable<Movie> | void {
+    const url = 'https://dev.ernestorb.com/tmdb/find/' + id;
+    let params = {"external_source": "imdb_id", "page": "1"};
+    let query = new HttpParams({ fromObject: params });
     return this.http.get<Movie>(url);
   }
 
   searchMovie(search: string): Observable<Movie> | void {
-    const url = 'https://dev.ernestorb.com/movies/API/Movies';
-    let params = {"search": search, "page": "2"};
+    const url = 'https://dev.ernestorb.com/tmdb/search/movie';
+    let params = {"query": search, "page": "1"};
     let query = new HttpParams({ fromObject: params });
     return this.http.get<Movie>(url, {params: query});
   }
 
   nowMovies(): Observable<Movie[]> | void {
-    const url = 'https://dev.ernestorb.com/movies/API/Movies';
-    return this.http.get<Movie[]>(url);
+    const url = 'https://dev.ernestorb.com/tmdb/movie/now_playing';
+    let params = {"page": "1"};
+    let query = new HttpParams({ fromObject: params });
+    return this.http.get<Movie[]>(url, {params: query});
   }
 }
