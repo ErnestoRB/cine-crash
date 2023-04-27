@@ -16,16 +16,16 @@ export class TMDBService {
     return this.http.get<Movie>(url);
   }
 
-  searchMovie(search: string): Observable<Movie> | void {
+  searchMovie(search: string, page: number = 1): Observable<Movie> | void {
     const url = 'https://dev.ernestorb.com/tmdb/search/movie';
-    let params = {"query": search, "page": "1"};
+    let params = {"query": search, "page": page};
     let query = new HttpParams({ fromObject: params });
     return this.http.get<Movie>(url, {params: query});
   }
 
-  nowMovies(): Observable<Movie[]> | void {
+  nowMovies(page: number = 1): Observable<Movie[]> | void {
     const url = 'https://dev.ernestorb.com/tmdb/movie/now_playing';
-    let params = {"page": "1"};
+    let params = {"page": page};
     let query = new HttpParams({ fromObject: params });
     return this.http.get<Movie[]>(url, {params: query});
   }
