@@ -10,21 +10,21 @@ import { PaginationResponse } from './pagination-response';
 export class TMDBService {
   constructor(private http: HttpClient) {}
 
-  getMovie(id: string): Observable<Movie> {
-    const url = 'https://dev.ernestorb.com/tmdb/find/' + id;
-    let params = { external_source: 'imdb_id', page: '1' };
-    let query = new HttpParams({ fromObject: params });
-    return this.http.get<Movie>(url, { params: query });
+  getMovie(id: number): Observable<PaginationResponse<Movie>> { 
+    const url = 'https://dev.ernestorb.com/tmdb/movie/' + id;
+    return this.http.get<PaginationResponse<Movie>>(url);
   }
 
-  searchMovies(
-    search: string,
-    page: number = 1
-  ): Observable<PaginationResponse<Movie>> {
+  searchMovies(search: string, page: number = 1): Observable<Movie[]> {
     const url = 'https://dev.ernestorb.com/tmdb/search/movie';
     let params = { query: search, page: page };
     let query = new HttpParams({ fromObject: params });
-    return this.http.get<PaginationResponse<Movie>>(url, { params: query });
+    const transformResponse = pipe(
+      map((movie: PaginationResponse<Movie>) => movie.results)
+    );
+    return transformResponse(
+      this.http.get<PaginationResponse<Movie>>(url, { params: query })
+    );
   }
 
   nowMovies(page: number = 1): Observable<Movie[]> {
