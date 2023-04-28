@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TMDBService } from './tmdb.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,6 @@ import { TMDBService } from './tmdb.service';
 export class AppComponent {
   title = 'cine-crash';
 
-  constructor(private movies: TMDBService){
-    this.movies.nowMovies(1).subscribe(data => console.log(data));
+  constructor(){
   }
 }
