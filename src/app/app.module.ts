@@ -7,6 +7,7 @@ import { ExampleComponent } from './example/example.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { TMDBAtributtionComponent } from './tmdb-atributtion/tmdb-atributtion.component';
 import { HomeComponent } from './routes/home/home.component';
 import { AboutUsComponent } from './routes/about-us/about-us.component';
 import { SignUpComponent } from './routes/sign-up/sign-up.component';
@@ -16,7 +17,7 @@ import { MovieComponent } from './routes/movie/movie.component';
 import { MasonryComponent } from './masonry/masonry.component';
 
 @NgModule({
-  declarations: [AppComponent, ExampleComponent, HomeComponent, AboutUsComponent, SignUpComponent, BuyComponent, HistoryComponent, MovieComponent, MasonryComponent],
+  declarations: [AppComponent, ExampleComponent, HomeComponent, AboutUsComponent, SignUpComponent, BuyComponent, HistoryComponent, MovieComponent, MasonryComponent, TMDBAtributtionComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
