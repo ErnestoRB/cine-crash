@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ReservacionesService } from './reservaciones.service';
 import { LocalStorageService } from './local-storage.service';
-import { Reservacion } from './reservacion';
+import { Reservacion } from './models/reservacion';
 
 describe('ReservacionesService', () => {
   let service: ReservacionesService;
