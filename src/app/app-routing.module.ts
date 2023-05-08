@@ -7,12 +7,13 @@ import {
   BuyComponent,
   HistoryComponent,
   MovieComponent,
-  MasonryComponent
+  MasonryComponent,
+  SignInComponent
 } from '@views';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
   },
   {
@@ -24,7 +25,15 @@ const routes: Routes = [
     component: SignUpComponent,
   },
   {
+    path: 'signin',
+    component: SignInComponent,
+  },
+  {
     path: 'movie/:id',
+    component: MovieComponent,
+  },
+  {
+    path: 'movie',
     component: MovieComponent,
   },
   {
@@ -41,7 +50,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/',
+    redirectTo: '/home',
   },
 ];
 

@@ -6,7 +6,13 @@ import { AppComponent } from './app.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { TMDBAtributtionComponent, ExampleComponent, SelectDateComponent } from '@components';
+import { 
+  TMDBAtributtionComponent,
+  ExampleComponent,
+  SelectDateComponent,
+  SideNavComponent,
+  HeaderComponent
+} from '@components';
 import {
   HomeComponent,
   AboutUsComponent,
@@ -14,7 +20,8 @@ import {
   BuyComponent,
   HistoryComponent,
   MovieComponent,
-  MasonryComponent
+  MasonryComponent,
+  SignInComponent
 } from '@views';
 
 @NgModule({
@@ -30,6 +37,9 @@ import {
     MasonryComponent,
     TMDBAtributtionComponent,
     SelectDateComponent,
+    SideNavComponent,
+    HeaderComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
