@@ -8,7 +8,8 @@ import {
   HistoryComponent,
   MovieComponent,
   MasonryComponent,
-  SignInComponent
+  SignInComponent,
+  CandyStoreComponent
 } from '@views';
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'masonry',
     component: MasonryComponent,
+  },
+  {
+    path: 'candy-store',
+    component: CandyStoreComponent,
   },
   {
     path: '**',

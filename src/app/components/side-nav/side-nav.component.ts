@@ -24,6 +24,11 @@ export class SideNavComponent implements OnInit {
       icon: 'shopping_cart'
     },
     {
+      label: 'Dulceria',
+      path: '/candy-store',
+      icon: 'icecream'
+    },
+    {
       label: 'Historial',
       path: '/history',
       icon: 'history'

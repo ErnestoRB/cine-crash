@@ -23,6 +23,7 @@ import {
   MasonryComponent,
   SignInComponent
 } from '@views';
+import { CandyStoreComponent } from './views/candy-store/candy-store.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {
     SideNavComponent,
     HeaderComponent,
     SignInComponent,
+    CandyStoreComponent,
   ],
   imports: [
     BrowserModule,
