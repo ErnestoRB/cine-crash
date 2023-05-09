@@ -1,6 +1,11 @@
 <aside class="sidebar">
-  <a class="link" *ngFor="let i of pages" [routerLink]="i.path" routerLinkActive="active-link">
-    <span class="material-symbols-outlined"> 
+  <a
+    class="link"
+    *ngFor="let i of pages"
+    [routerLink]="i.path"
+    routerLinkActive="active-link"
+  >
+    <span class="material-symbols-outlined">
       {{ i.icon }}
     </span>
     <span class="label">{{ i.label }}</span>
