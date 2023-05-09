@@ -1,13 +1,33 @@
 <nav class="navbar navbar-expand-lg">
-  <img class="logo navbar-brand" src="../../../assets/logo/CC_Logo_Large_1080.png" alt="">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div class="my-2 my-lg-0 actions">
-      <button routerLink="/signup">Sign Up</button>
-      <button routerLink="/signin" class="ms-2">Sign In</button>
+  <div class="container-fluid">
+    <img
+      class="logo navbar-brand"
+      src="../../../assets/logo/CC_Logo_Large_1080.png"
+      alt=""
+    />
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarItems"
+      aria-controls="navbarItems"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse app-navbar" id="navbarItems">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
