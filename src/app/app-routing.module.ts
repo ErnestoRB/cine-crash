@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './routes/home/home.component';
-import { AboutUsComponent } from './routes/about-us/about-us.component';
-import { SignUpComponent } from './routes/sign-up/sign-up.component';
-import { MovieComponent } from './routes/movie/movie.component';
-import { BuyComponent } from './routes/buy/buy.component';
-import { HistoryComponent } from './routes/history/history.component';
-import { MasonryComponent } from './masonry/masonry.component';
+import {
+  HomeComponent,
+  AboutUsComponent,
+  SignUpComponent,
+  BuyComponent,
+  HistoryComponent,
+  MovieComponent,
+  MasonryComponent,
+  SignInComponent,
+  CandyStoreComponent
+} from '@views';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
   },
   {
@@ -22,7 +26,15 @@ const routes: Routes = [
     component: SignUpComponent,
   },
   {
+    path: 'signin',
+    component: SignInComponent,
+  },
+  {
     path: 'movie/:id',
+    component: MovieComponent,
+  },
+  {
+    path: 'movie',
     component: MovieComponent,
   },
   {
@@ -38,8 +50,12 @@ const routes: Routes = [
     component: MasonryComponent,
   },
   {
+    path: 'candy-store',
+    component: CandyStoreComponent,
+  },
+  {
     path: '**',
-    redirectTo: '/',
+    redirectTo: '/home',
   },
 ];
 

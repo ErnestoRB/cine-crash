@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Movie } from './movie';
+import { Movie, PaginationResponse } from '@models';
 import { Observable, map, pipe } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { PaginationResponse } from './pagination-response';
 
 @Injectable({
   providedIn: 'root',

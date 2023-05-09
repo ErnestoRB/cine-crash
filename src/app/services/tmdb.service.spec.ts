@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { TMDBService } from './tmdb.service';
 import { HttpClient } from '@angular/common/http';
 import { from, of } from 'rxjs';
-import { PaginationResponse } from './pagination-response';
-import { Movie } from './movie';
+import { PaginationResponse } from './models/pagination-response';
+import { Movie } from './models/movie';
 
 describe('TMDBService', () => {
   let service: TMDBService;

@@ -1,5 +1,12 @@
-<router-outlet></router-outlet>
-<footer>
-  Cliente creado por BashCrashers 2023
-  <app-tmdb-atributtion></app-tmdb-atributtion>
-</footer>
+<main>
+  <app-header></app-header>
+  <section class="body">
+    <app-side-nav></app-side-nav>
+    <div class="dashboard">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+  <footer>
+    <app-tmdb-atributtion></app-tmdb-atributtion>
+  </footer>
+</main>
