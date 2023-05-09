@@ -24,6 +24,8 @@ import {
   SignInComponent
 } from '@views';
 import { CandyStoreComponent } from './views/candy-store/candy-store.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { CandyStoreComponent } from './views/candy-store/candy-store.component';
     HeaderComponent,
     SignInComponent,
     CandyStoreComponent,
+    FooterComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
