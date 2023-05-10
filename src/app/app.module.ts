@@ -17,6 +17,9 @@ import { MovieComponent } from './routes/movie/movie.component';
 import { MasonryComponent } from './masonry/masonry.component';
 import { SelectDateComponent } from './select-date/select-date.component';
 
+import { MoviesCardComponent } from './movies-card/movies-card.component';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +33,8 @@ import { SelectDateComponent } from './select-date/select-date.component';
     MasonryComponent,
     TMDBAtributtionComponent,
     SelectDateComponent,
+    
+    MoviesCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,7 @@ import { SelectDateComponent } from './select-date/select-date.component';
     CalendarModule,
     SweetAlert2Module.forRoot(),
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
