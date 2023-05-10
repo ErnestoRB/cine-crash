@@ -3,7 +3,7 @@ export interface Movie {
   title: string;
   overview: string;
   originalTitle: string;
-  posterPath: string;
+  poster_path: string;
   status: string;
   popularity: number;
 }

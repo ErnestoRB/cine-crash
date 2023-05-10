@@ -4,190 +4,19 @@
     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 g-md-5"
     data-masonry='{"percentPosition": true,  "itemSelector": ".col" }'
   >
-    <div class="col">
+    <div class="col" *ngFor="let movie of movies">
       <div class="card">
         <img
-          src="../../assets/masonry/arctic.jpg"
+          [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
           class="card-img-top"
-          alt="..."
+          [alt]="'Poster de película ' + movie.title"
         />
         <div class="card-body">
-          <h5 class="card-title">Arctic Monkeys</h5>
-          <p class="card-text">
-            Arctic Monkeys es una banda británica de rock, formada en Sheffield,
-            Reino Unido.​ El grupo está compuesto por el guitarrista principal y
-            vocalista Alex Turner, el guitarrista Jamie Cook, el baterista Matt
-            Helders y el bajista Nick O'Malley
-          </p>
-        </div>
-      </div>
-    </div>
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text">Sinopsis: {{ movie.overview }}</p>
 
-    <div class="col">
-      <div class="card">
-        <img
-          src="../../assets/masonry/olivia.jpeg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">Olivia Rodrigo</h5>
-          <p class="card-text">
-            Olivia Isabel Rodrigo es una cantautora y actriz estadounidense.
-            Obtuvo reconocimiento a fines de la década de 2010 con sus papeles
-            principales en los programas de televisión de Disney Bizaardvark y
-            High School Musical: The Musical: The Series.
-          </p>
+          <p class="card-text">Popularidad: {{ movie.popularity }}</p>
         </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img
-          src="../../assets/masonry/strokes.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">The Strokes</h5>
-          <p class="card-text">
-            The Strokes es una banda de rock estadounidense de la ciudad de
-            Nueva York. Formada en 1998, la banda está compuesta por el cantante
-            Julian Casablancas, los guitarristas Nick Valensi y Albert Hammond,
-            Jr., el bajista Nikolai Fraiture y el baterista Fabrizio Moretti.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card p-3">
-        <blockquote class="blockquote mb-0 card-body">
-          <p>'Cause who am I, if not exploited?</p>
-          <footer class="blockquote-footer">
-            <small class="text-muted">
-              Olivia Rodrigo en <cite title="Source Title">Brutal</cite>
-            </small>
-          </footer>
-        </blockquote>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="../../assets/masonry/tame.jpg" class="card-img" alt="..." />
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img
-          src="../../assets/masonry/foster.jpeg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">Foster the People</h5>
-          <p class="card-text">
-            Foster the People es una banda estadounidense de indie rock formada
-            en Los Ángeles, California, en 2009.​​ El grupo está compuesto por
-            Mark Foster, Isom Innis y Sean Cimino. La música del grupo ha sido
-            descrita como 'una infusión de danza melódica con pop y rock',
-            abarcando muchos géneros
-          </p>
-          <p class="card-text">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="../../assets/masonry/drums.jpg" class="card-img" alt="..." />
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img
-          src="../../assets/masonry/tyler.png"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">Tyler, The Creator</h5>
-          <p class="card-text">
-            Tyler Gregory Okonma, conocido artísticamente como Tyler, the
-            Creator, es un rapero, compositor, productor, actor, escritor,
-            director y diseñador estadounidense de origen canadiense
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img
-          src="../../assets/masonry/killers.jpg"
-          class="card-img"
-          alt="..."
-        />
-      </div>
-    </div>
-    <div class="col">
-      <div class="card bg-secondary text-white text-center p-3">
-        <blockquote class="blockquote mb-0">
-          <p>
-            I know I said "change" But please don't change I know I said "do it"
-            But don't do it, don't do it
-          </p>
-          <footer class="blockquote-footer text-white">
-            <small>
-              The Drums en
-              <cite title="Source Title">Blood Under My Belt</cite>
-            </small>
-          </footer>
-        </blockquote>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title">Someday</h5>
-          <p class="card-text">
-            Es una canción clásica de The Strokes que transmite una vibra de
-            melancolía y añoro por tiempos pasados
-          </p>
-          <p class="card-text">
-            <small class="text-muted">Publicado justo ahora</small>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img
-          src="../../assets/masonry/clairo.jpeg"
-          class="card-img"
-          alt="..."
-        />
-      </div>
-    </div>
-    <div class="col">
-      <div class="card p-3 text-right">
-        <blockquote class="blockquote mb-0">
-          <p>The information is here, here but not on your TV</p>
-          <footer class="blockquote-footer">
-            <small class="text-muted">
-              Julian Casablancas en
-              <cite title="Source Title">Corona Capital Guadalajara 2022</cite>
-            </small>
-          </footer>
-        </blockquote>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img
-          src="../../assets/masonry/gorillaz.jpg"
-          class="card-img"
-          alt="..."
-        />
       </div>
     </div>
   </div>
