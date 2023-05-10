@@ -1,28 +1,23 @@
 <div class="container">
   <div
     #masonry
-    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 g-md-5" 
+    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 g-md-5"
     data-masonry='{"percentPosition": true,  "itemSelector": ".col" }'
   >
-  <div class="col" *ngFor="let movie of movies">
-    <div class="card">
-      <img
-        src=".jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ movie.title}}</h5>
-        <p class="card-text">Resumen:{{movie.overview}}</p>
-        
-        <p class="card-text">Popularidad :{{movie.popularity}}</p>
-  
+    <div class="col" *ngFor="let movie of movies">
+      <div class="card">
+        <img
+          [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
+          class="card-img-top"
+          [alt]="'Poster de película ' + movie.title"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text">Sinopsis: {{ movie.overview }}</p>
+
+          <p class="card-text">Popularidad: {{ movie.popularity }}</p>
+        </div>
       </div>
     </div>
-  </div>
-
-
-
-    
   </div>
 </div>
