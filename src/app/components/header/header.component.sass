@@ -7,12 +7,16 @@ nav
   display: flex
   justify-content: space-between
   padding: 0 16px 0 16px
-  background: linear-gradient(180deg, $base-red, $dark-red)
+  background: $base-red
+
+.nav-item
+  color: $white
 
 
 .logo
   height: 64px
   width: auto
+  pointer-events: none
 
 .actions
   display: flex
@@ -27,7 +31,8 @@ button
   height: 40px
   line-height: .8
   background-color: $white
+  margin: 5px
 
   &:hover
-    background-color: $light-gray
+    background-color: $dark-gray
     color: #fff
