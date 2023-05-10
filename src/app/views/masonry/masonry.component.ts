@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Movie } from '../movie';
+import { Movie } from '../../models';
 
 declare var Masonry: any;
 
@@ -17,7 +17,7 @@ declare var Masonry: any;
 })
 export class MasonryComponent implements OnInit, AfterViewInit {
   @ViewChild('masonry') masonryRef?: ElementRef<HTMLDivElement>;
-  @Input() movies!: Movie[]
+  @Input() movies!: Movie[];
 
   constructor() {}
   ngAfterViewInit(): void {
