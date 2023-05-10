@@ -1,3 +1,5 @@
+import { AvatarModule } from 'primeng/avatar';
+import { FieldsetModule } from 'primeng/fieldset';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -57,6 +59,9 @@ import { HttpClientModule } from '@angular/common/http';
     SweetAlert2Module.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    AvatarModule,
+    FieldsetModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
