@@ -29,17 +29,11 @@ html, body
         color: white
         border: 2px solid $light-gray
 
-.sidebar
-    flex-direction: row
+.body
+    flex-direction: column
 
 @include media-breakpoint-up(md)
-    .sidebar
-        flex-direction: column
-        height: 100%
-        max-width: 150px
+    .body
+        flex-direction: row
     .link
         width: 100%
-
-@include media-breakpoint-up(lg)
-    .sidebar
-        max-width: 200px

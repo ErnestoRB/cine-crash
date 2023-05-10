@@ -2,8 +2,16 @@
 
 .search-container
     display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    max-width: 300px
+
+@media screen and (min-width: 768px)
+    .search-container
+        flex-direction: column
 
 .text
+    flex: 1
     margin-top: 8px
     border: none
     outline: none

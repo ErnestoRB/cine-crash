@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { 
+import {
   TMDBAtributtionComponent,
   ExampleComponent,
   SelectDateComponent,
   SideNavComponent,
-  HeaderComponent
+  HeaderComponent,
 } from '@components';
 import {
   HomeComponent,
@@ -21,12 +21,15 @@ import {
   HistoryComponent,
   MovieComponent,
   MasonryComponent,
-  SignInComponent
+  SignInComponent,
 } from '@views';
 import { CandyStoreComponent } from './views/candy-store/candy-store.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchComponent } from './components/search/search.component';
 import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
+import { MenuModule } from 'primeng/menu';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -57,8 +60,10 @@ import { ShowMoviesComponent } from './components/show-movies/show-movies.compon
     CalendarModule,
     SweetAlert2Module.forRoot(),
     ReactiveFormsModule,
+    MenuModule,
+    ToastModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
