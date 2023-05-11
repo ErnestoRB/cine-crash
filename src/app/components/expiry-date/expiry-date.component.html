@@ -1,0 +1,11 @@
+<input
+  type="text"
+  class="form-control"
+  id="cc-expiration"
+  placeholder=""
+  maxlength="5"
+  required=""
+  [value]="value"
+  [ngClass]="{ 'is-invalid': !valid }"
+  (input)="onInputChange($event)"
+/>

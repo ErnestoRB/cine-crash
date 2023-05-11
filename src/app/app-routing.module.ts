@@ -9,7 +9,7 @@ import {
   MovieComponent,
   MasonryComponent,
   SignInComponent,
-  CandyStoreComponent
+  CandyStoreComponent,
 } from '@views';
 
 const routes: Routes = [
@@ -34,20 +34,12 @@ const routes: Routes = [
     component: MovieComponent,
   },
   {
-    path: 'movie',
-    component: MovieComponent,
-  },
-  {
-    path: 'buy',
+    path: 'buy/:id',
     component: BuyComponent,
   },
   {
     path: 'history',
     component: HistoryComponent,
-  },
-  {
-    path: 'masonry',
-    component: MasonryComponent,
   },
   {
     path: 'candy-store',

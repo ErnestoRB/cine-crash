@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { CardModule } from 'primeng/card';
+
 import {
   TMDBAtributtionComponent,
   ExampleComponent,
@@ -23,11 +25,16 @@ import {
   MasonryComponent,
   SignInComponent,
 } from '@views';
-import { CandyStoreComponent } from './views/candy-store/candy-store.component';
+import { DividerModule } from 'primeng/divider';
 
+import { CandyStoreComponent } from './views/candy-store/candy-store.component';
+import { MessageModule } from 'primeng/message';
 import { MoviesCardComponent } from './movies-card/movies-card.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { PaymentComponent } from './components/payment/payment.component';
+import { StepsModule } from 'primeng/steps';
+import { BoletosComponent } from './boletos/boletos.component';
+import { ExpiryDateComponent } from './components/expiry-date/expiry-date.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +54,9 @@ import { HttpClientModule } from '@angular/common/http';
     CandyStoreComponent,
 
     MoviesCardComponent,
+    PaymentComponent,
+    BoletosComponent,
+    ExpiryDateComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +67,10 @@ import { HttpClientModule } from '@angular/common/http';
     SweetAlert2Module.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    CardModule,
+    StepsModule,
+    MessageModule,
+    DividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

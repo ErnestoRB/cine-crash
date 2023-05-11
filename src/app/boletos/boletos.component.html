@@ -1,0 +1,24 @@
+<h2>Selecciona tus boletos!</h2>
+
+<label for="exampleFormControlInput1" class="form-label"
+  >Boletos a comprar</label
+>
+<input
+  type="number"
+  class="form-control"
+  min="1"
+  max="10"
+  [formControl]="_boletos"
+/>
+
+<p-message
+  *ngIf="_boletos.errors?.['min']"
+  severity="error"
+  text="El mínimo de boletos son 1"
+></p-message>
+
+<p-message
+  *ngIf="_boletos.errors?.['max']"
+  severity="error"
+  text="El máximo de boletos es 10"
+></p-message>

@@ -1,0 +1,88 @@
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch" />
+    <label for="tab-1" class="tab-label">Tarjeta de Debito / Crédito</label>
+    <form class="tab-content" [formGroup]="debtForm">
+      <div class="row gy-3">
+        <div class="col-md-6">
+          <label for="cc-name" class="form-label">Nombre en la tarjeta</label>
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control"
+            id="cc-name"
+            placeholder=""
+            required=""
+            [ngClass]="{ 'is-invalid': debtForm.get('name')?.invalid }"
+          />
+          <small class="text-muted"
+            >Nombre completo como se muestra en la tarjeta</small
+          >
+          <p-message
+            *ngIf="debtForm.get('name')?.errors?.['required']"
+            severity="error"
+            text="Nombre del titular requerido"
+          ></p-message>
+        </div>
+        <div class="col-md-6">
+          <label for="cc-number" class="form-label"
+            >Número de tarjeta de crédito</label
+          >
+          <input
+            formControlName="cardNumber"
+            type="text"
+            class="form-control"
+            id="cc-number"
+            placeholder=""
+            [maxlength]="16"
+            required=""
+            [ngClass]="{ 'is-invalid': debtForm.get('cardNumber')?.invalid }"
+          />
+          <p-message
+            *ngIf="debtForm.get('cardNumber')?.errors"
+            severity="error"
+            text="El número de tarjeta debe ser de 16 digitos"
+          ></p-message>
+        </div>
+        <div class="col-md-3">
+          <label for="cc-expiration" class="form-label">Vencimiento</label>
+          <small class="text-muted"> (En formato MM/YY)</small>
+          <app-expiry-date (date)="onDateChange($event)"></app-expiry-date>
+          <p-message
+            *ngIf="expiryDateStatus === 'required'"
+            severity="error"
+            text="Fecha de vencimiento requerida "
+          ></p-message>
+          <p-message
+            *ngIf="expiryDateStatus === 'invalid'"
+            severity="error"
+            text="Fecha de vencimiento invalida "
+          ></p-message>
+        </div>
+        <div class="col-md-3">
+          <label for="cc-cvv" class="form-label">CVV</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cc-cvv"
+            placeholder=""
+            required=""
+            maxlength="3"
+            formControlName="cvv"
+            [ngClass]="{ 'is-invalid': debtForm.get('cvv')?.invalid }"
+          />
+          <p-message
+            *ngIf="debtForm.get('cvv')?.errors?.['required']"
+            severity="error"
+            text="CVV requerido"
+          ></p-message>
+          <p-message
+            *ngIf="debtForm.get('cvv')?.errors?.['minLength'] || debtForm.get('cvv')?.errors?.['maxlength']"
+            severity="error"
+            text="CVV debe ser de 3 dígitos"
+          ></p-message>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

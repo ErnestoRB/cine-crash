@@ -1,1 +1,11 @@
-<p>movie works!</p>
+<p-card *ngIf="movie" [header]="movie.title">
+  <ng-template pTemplate="header">
+    <img
+      [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
+      [alt]="'Poster de película ' + movie.title"
+    />
+  </ng-template>
+  <p class="m-0">
+    {{ movie.overview }}
+  </p>
+</p-card>
