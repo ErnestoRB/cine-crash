@@ -16,6 +16,12 @@
           <p class="card-text">Sinopsis: {{ movie.overview }}</p>
 
           <p class="card-text">Popularidad: {{ movie.popularity }}</p>
+          <a class="btn btn-primary" [routerLink]="'/buy/' + movie.id"
+            >Comprar boletos</a
+          >
+          <a class="btn btn-secondary" [routerLink]="'/movie/' + movie.id"
+            >Ver info</a
+          >
         </div>
       </div>
     </div>
