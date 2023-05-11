@@ -11,6 +11,7 @@ import {
   SignInComponent,
   CandyStoreComponent
 } from '@views';
+import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'candy-store',
     component: CandyStoreComponent,
+  },
+  {
+    path: 'show-movies/:movieSearch',
+    component: ShowMoviesComponent,
   },
   {
     path: '**',

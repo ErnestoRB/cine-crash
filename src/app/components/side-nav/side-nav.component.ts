@@ -1,47 +1,42 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+type SideNavMenuItem = MenuItem & { materialIcon?: string };
 
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.sass']
+  styleUrls: ['./side-nav.component.sass'],
 })
 export class SideNavComponent implements OnInit {
-
-  pages = [
+  pages: SideNavMenuItem[] = [
     {
       label: 'Inicio',
-      path: '/home',
-      icon: 'home'
+      routerLink: '/home',
+      icon: 'pi pi-home',
     },
     {
       label: 'Peliculas',
-      path: '/movie',
-      icon: 'movie'
+      routerLink: '/movie',
+      icon: 'pi pi-play',
     },
-    {
-      label: 'Comprar',
-      path: '/buy',
-      icon: 'shopping_cart'
-    },
+
     {
       label: 'Dulceria',
-      path: '/candy-store',
-      icon: 'icecream'
+      routerLink: '/candy-store',
+      icon: 'pi pi-shopping-cart',
     },
     {
       label: 'Historial',
-      path: '/history',
-      icon: 'history'
+      routerLink: '/history',
+      icon: 'pi pi-history',
     },
     {
       label: 'Nosotros',
-      path: '/about',
-      icon: 'groups'
+      routerLink: '/about',
+      icon: 'pi pi-users',
     },
-  ]
-  constructor() { }
+  ];
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

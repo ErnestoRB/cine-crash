@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { CardModule } from 'primeng/card';
 import {
   TMDBAtributtionComponent,
   ExampleComponent,
@@ -24,6 +25,13 @@ import {
   SignInComponent,
 } from '@views';
 import { CandyStoreComponent } from './views/candy-store/candy-store.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SearchComponent } from './components/search/search.component';
+import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
+import { MenuModule } from 'primeng/menu';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MoviesCardComponent } from './movies-card/movies-card.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -45,7 +53,9 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     SignInComponent,
     CandyStoreComponent,
-
+    FooterComponent,
+    SearchComponent,
+    ShowMoviesComponent,
     MoviesCardComponent,
   ],
   imports: [
@@ -56,9 +66,13 @@ import { HttpClientModule } from '@angular/common/http';
     CalendarModule,
     SweetAlert2Module.forRoot(),
     ReactiveFormsModule,
+    MenuModule,
+    ToastModule,
+    HttpClientModule,
+    CardModule
     HttpClientModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
