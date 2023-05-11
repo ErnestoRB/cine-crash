@@ -1,7 +1,7 @@
 <div class="search-container">
-  <input type="text" name="" class="text" placeholder="Buscar pelicula" />
+  <input type="text" name="" class="text" placeholder="Buscar pelicula" [(ngModel)]='movieToSearch'/>
   <div class="search">
     <span class="material-symbols-outlined">search</span>
-        <a routerLink="/show-movies">Buscar</a>
+        <a [routerLink]="['/show-movies', movieToSearch]">Buscar</a>
   </div>
 </div>

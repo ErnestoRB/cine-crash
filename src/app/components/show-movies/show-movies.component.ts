@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Movie } from '@models';
+import { TMDBService } from '@services';
+
 
 @Component({
   selector: 'app-show-movies',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowMoviesComponent implements OnInit {
 
-  constructor() { }
+  movies: Movie[] = [];
+  movieToSearch !: string;
+
+  constructor(private route: ActivatedRoute, private tmdbService: TMDBService) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params =>{
+      this.movieToSearch = params['movieSearch'];
+      console.log(this.movieToSearch);
+      this.updateMovie();
+    })
+
   }
 
+  updateMovie(): void{
+    this.tmdbService.searchMovies(this.movieToSearch).subscribe((movies) => {
+      this.movies = movies;
+      console.log(this.movies);
+    });
+  }
 }

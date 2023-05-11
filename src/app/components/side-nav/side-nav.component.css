@@ -1,0 +1,32 @@
+.sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0px 3px 2px 1px rgba(0, 0, 0, 0.2);
+  padding: 12px 4px 12px 4px;
+  background-color: #000;
+}
+
+.link {
+  width: 100%;
+  height: 40px;
+  padding: 0 8px 0 8px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 8px;
+  text-decoration: none;
+  color: white;
+}
+.link:hover {
+  border: 2px solid #fff;
+  background-color: #3f3f3f;
+}
+
+.label {
+  margin-left: 4px;
+}
+
+.active-link {
+  background-color: #d80000;
+}/*# sourceMappingURL=side-nav.component.css.map */

@@ -1,0 +1,33 @@
+.search-container {
+  display: flex;
+}
+
+.text {
+  margin-top: 8px;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 2.5px 5px;
+}
+
+.search a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.search {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  background-color: #6c0000;
+  padding: 7px;
+  margin-top: 5px;
+}
+.search:hover {
+  background-color: #d80000;
+  cursor: pointer;
+}
+
+.text, .search {
+  border-radius: 2.5px;
+}/*# sourceMappingURL=search.component.css.map */

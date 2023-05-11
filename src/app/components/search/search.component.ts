@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Movie } from '@models';
+import { TMDBService } from '@services';
+
+
 
 @Component({
   selector: 'app-search',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
+  movieToSearch !: string;
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

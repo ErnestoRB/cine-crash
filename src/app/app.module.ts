@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { CardModule } from 'primeng/card';
+
 import {
   TMDBAtributtionComponent,
   ExampleComponent,
@@ -30,6 +32,7 @@ import { ShowMoviesComponent } from './components/show-movies/show-movies.compon
 import { MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,8 @@ import { MessageService } from 'primeng/api';
     ReactiveFormsModule,
     MenuModule,
     ToastModule,
+    HttpClientModule,
+    CardModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

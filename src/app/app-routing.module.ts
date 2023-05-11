@@ -55,7 +55,7 @@ const routes: Routes = [
     component: CandyStoreComponent,
   },
   {
-    path: 'show-movies',
+    path: 'show-movies/:movieSearch',
     component: ShowMoviesComponent,
   },
   {
