@@ -1,10 +1,13 @@
 <div class="container">
-    <div *ngFor="let movie of movies" class="card">
-        <p-card [header]="movie.title">
-            <ng-template pTemplate="header">
-                <img alt="Card" [src]="'https://image.tmdb.org/t/p/original/' + movie.posterPath" />
-            </ng-template>
-            <p>{{movie.overview}}</p>
-        </p-card>
-    </div>    
+  <div *ngFor="let movie of movies" class="card">
+    <p-card [header]="movie.title">
+      <ng-template pTemplate="header">
+        <img
+          alt="Card"
+          [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
+        />
+      </ng-template>
+      <p>{{ movie.overview }}</p>
+    </p-card>
+  </div>
 </div>

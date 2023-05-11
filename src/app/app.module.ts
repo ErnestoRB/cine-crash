@@ -31,8 +31,6 @@ import { ShowMoviesComponent } from './components/show-movies/show-movies.compon
 import { MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { HttpClientModule } from '@angular/common/http';
-
 import { MoviesCardComponent } from './movies-card/movies-card.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -69,8 +67,7 @@ import { HttpClientModule } from '@angular/common/http';
     MenuModule,
     ToastModule,
     HttpClientModule,
-    CardModule
-    HttpClientModule,
+    CardModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
