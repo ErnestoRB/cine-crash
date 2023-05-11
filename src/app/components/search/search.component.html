@@ -1,7 +1,15 @@
 <div class="search-container">
-  <input type="text" name="" class="text" placeholder="Buscar pelicula" [(ngModel)]='movieToSearch'/>
-  <div class="search">
-    <span class="material-symbols-outlined">search</span>
-        <a [routerLink]="['/show-movies', movieToSearch]">Buscar</a>
-  </div>
+  <input
+    type="text"
+    name=""
+    class="text"
+    placeholder="Buscar pelicula"
+    [(ngModel)]="movieToSearch"
+  />
+  <a [routerLink]="['/show-movies', movieToSearch ?? '']">
+    <div class="search">
+      <span class="material-symbols-outlined">search</span>
+      Buscar
+    </div>
+  </a>
 </div>
