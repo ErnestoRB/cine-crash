@@ -2,7 +2,11 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '@models';
-import { TMDBService } from '@services';
+import {
+  LocalStorageService,
+  ReservacionesService,
+  TMDBService,
+} from '@services';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -14,7 +18,8 @@ export class BuyComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tmdbService: TMDBService,
-    private location: Location
+    private location: Location,
+    private reservarcionesService: ReservacionesService
   ) {}
   onFechaReceived(fecha: Date) {
     this.fecha = fecha;
@@ -72,6 +77,14 @@ export class BuyComponent implements OnInit {
     } else if (this.status === 'pago' && this.pagoValidado) {
       this.status = 'finalizado';
     } else if (this.status === 'finalizado') {
+      this.reservarcionesService.reservar({
+        idPelicula: this.movie!.id,
+        cliente: 'Ejemplo',
+        fechaGenerado: new Date(),
+        fechaReservacion: this.fecha!,
+        titulo: this.movie!.title,
+      });
+
       window.location.assign('/home');
     }
   }

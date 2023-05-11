@@ -1,6 +1,6 @@
 export interface Reservacion {
   titulo: string;
-  idPelicula: string;
+  idPelicula: number;
   fechaReservacion: Date;
   fechaGenerado: Date;
   cliente: string;

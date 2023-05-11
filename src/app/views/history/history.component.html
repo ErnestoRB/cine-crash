@@ -1,1 +1,17 @@
-<p>history works!</p>
+<div class="container">
+  <div class="row"></div>
+  <h1>Reservaciones</h1>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+      <p-card *ngFor="let reservacion of reservaciones">
+        <h3>{{ reservacion.titulo }}</h3>
+        <p>
+          Reservado por "{{ reservacion.cliente }}"
+          <br />
+          Día de reservación:
+          {{ reservacion.fechaReservacion | date : "medium" }}
+        </p>
+      </p-card>
+    </div>
+  </div>
+</div>
