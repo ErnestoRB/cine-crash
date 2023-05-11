@@ -26,9 +26,15 @@ import {
   SignInComponent,
 } from '@views';
 import { DividerModule } from 'primeng/divider';
-
 import { CandyStoreComponent } from './views/candy-store/candy-store.component';
 import { MessageModule } from 'primeng/message';
+import { CandyStoreComponent } from './views/candy-store/candy-store.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SearchComponent } from './components/search/search.component';
+import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
+import { MenuModule } from 'primeng/menu';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 import { MoviesCardComponent } from './movies-card/movies-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PaymentComponent } from './components/payment/payment.component';
@@ -52,7 +58,9 @@ import { ExpiryDateComponent } from './components/expiry-date/expiry-date.compon
     HeaderComponent,
     SignInComponent,
     CandyStoreComponent,
-
+    FooterComponent,
+    SearchComponent,
+    ShowMoviesComponent,
     MoviesCardComponent,
     PaymentComponent,
     BoletosComponent,
@@ -66,13 +74,15 @@ import { ExpiryDateComponent } from './components/expiry-date/expiry-date.compon
     CalendarModule,
     SweetAlert2Module.forRoot(),
     ReactiveFormsModule,
+    MenuModule,
+    ToastModule,
     HttpClientModule,
     CardModule,
     StepsModule,
     MessageModule,
     DividerModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
