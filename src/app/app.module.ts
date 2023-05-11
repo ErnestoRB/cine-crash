@@ -7,7 +7,6 @@ import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CardModule } from 'primeng/card';
-
 import {
   TMDBAtributtionComponent,
   ExampleComponent,
@@ -34,6 +33,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MoviesCardComponent } from './movies-card/movies-card.component';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +56,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     SearchComponent,
     ShowMoviesComponent,
+    MoviesCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ import { HttpClientModule } from '@angular/common/http';
     ToastModule,
     HttpClientModule,
     CardModule
+    HttpClientModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
