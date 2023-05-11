@@ -28,7 +28,6 @@ import {
 import { DividerModule } from 'primeng/divider';
 import { CandyStoreComponent } from './views/candy-store/candy-store.component';
 import { MessageModule } from 'primeng/message';
-import { CandyStoreComponent } from './views/candy-store/candy-store.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchComponent } from './components/search/search.component';
 import { ShowMoviesComponent } from './components/show-movies/show-movies.component';

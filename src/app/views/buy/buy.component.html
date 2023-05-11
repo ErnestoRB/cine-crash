@@ -1,11 +1,14 @@
 <div *ngIf="movie">
   <h1>Comprar boletos</h1>
   <p-divider></p-divider>
-  <p-steps
-    [model]="items"
-    [readonly]="true"
-    [activeIndex]="STATUS[status] - 1"
-  ></p-steps>
+  <div class="container overflow-x-auto w-100">
+    <p-steps
+      [model]="items"
+      [readonly]="true"
+      [activeIndex]="STATUS[status] - 1"
+    ></p-steps>
+  </div>
+
   <p-card>
     <h3>Resumen</h3>
     <div class="d-flex w-100">
@@ -33,7 +36,7 @@
       <app-boletos (boletos)="boletos = $event"></app-boletos>
     </div>
     <div *ngIf="status === 'pago'">
-      <h3>Metodo de pago</h3>
+      <h3>Método de pago</h3>
       <app-payment (isValid)="pagoValidado = $event"></app-payment>
     </div>
 
