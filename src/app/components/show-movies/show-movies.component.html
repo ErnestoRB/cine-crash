@@ -1,3 +1,11 @@
+<div class="d-flex justify-content-center" *ngIf="movies.length === 0">
+  <p-message
+    severity="info"
+    [text]="
+      'No se encontraron películas con el término \'' + movieToSearch + '\''
+    "
+  ></p-message>
+</div>
 <div class="container">
   <div *ngFor="let movie of movies" class="card">
     <p-card [header]="movie.title">

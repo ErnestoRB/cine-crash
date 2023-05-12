@@ -4,4 +4,5 @@ export interface Reservacion {
   fechaReservacion: Date;
   fechaGenerado: Date;
   cliente: string;
+  boletos: number;
 }

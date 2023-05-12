@@ -1,3 +1,6 @@
+<div class="d-flex justify-content-center" *ngIf="error">
+  <p-message severity="error" text="Película no encontrada"></p-message>
+</div>
 <div *ngIf="movie">
   <h1>Comprar boletos</h1>
   <p-divider></p-divider>
@@ -18,7 +21,9 @@
       <p-divider layout="vertical"></p-divider>
       <div class="flex-grow-1">Fecha: {{ fecha | date : "medium" }}</div>
       <p-divider layout="vertical"></p-divider>
-      <div class="flex-grow-1">Boletos a comprar: {{ boletos }}</div>
+      <div class="flex-grow-1">
+        Boletos a comprar: {{ boletos !== -1 ? boletos : "No válido" }}
+      </div>
     </div>
   </p-card>
 
@@ -45,6 +50,20 @@
     </div>
   </p-card>
   <div class="d-flex justify-content-end py-3">
-    <button class="btn btn-primary" (click)="continuar()">Continuar</button>
+    <button
+      class="btn btn-primary"
+      *ngIf="status !== 'pago'"
+      (click)="continuar()"
+    >
+      Continuar
+    </button>
+    <button
+      *ngIf="status === 'pago'"
+      class="btn btn-primary"
+      [swal]="confirmDialogOptions"
+      (confirm)="continuar()"
+    >
+      Pagar
+    </button>
   </div>
 </div>

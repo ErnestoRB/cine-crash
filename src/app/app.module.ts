@@ -40,6 +40,9 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { StepsModule } from 'primeng/steps';
 import { BoletosComponent } from './boletos/boletos.component';
 import { ExpiryDateComponent } from './components/expiry-date/expiry-date.component';
+import { NextMoviesComponent } from './components/next-movies/next-movies.component';
+import { UnsafeUrlPipe } from './pipes/unsafe-url.pipe';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +67,8 @@ import { ExpiryDateComponent } from './components/expiry-date/expiry-date.compon
     PaymentComponent,
     BoletosComponent,
     ExpiryDateComponent,
+    NextMoviesComponent,
+    UnsafeUrlPipe,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +85,7 @@ import { ExpiryDateComponent } from './components/expiry-date/expiry-date.compon
     StepsModule,
     MessageModule,
     DividerModule,
+    ProgressSpinnerModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
