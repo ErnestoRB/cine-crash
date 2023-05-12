@@ -6,12 +6,17 @@ nav
   border-bottom: 1px solid $light-gray
   display: flex
   justify-content: space-between
+  align-items: center
   padding: 0 16px 0 16px
   background: $base-red
 
 .nav-item
   color: $white
 
+@media screen and (min-width: 996px)
+  .nav-item-center
+    display: grid
+    place-items: center
 
 .logo
   height: 64px
