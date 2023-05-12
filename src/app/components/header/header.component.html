@@ -17,7 +17,7 @@
       <span class="pi pi-bars"></span>
     </button>
     <div class="collapse navbar-collapse app-navbar" id="navbarItems">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!checkLogged(); else logged">
         <li class="nav-item">
           <button routerLink="/signin">Sign In</button>
         </li>
@@ -25,6 +25,18 @@
           <button routerLink="/signup">Sign Up</button>
         </li>
       </ul>
+      <ng-template #logged>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <div class="showName">
+              <p>Hola, {{printName()}}. ¿Qué vamos a ver hoy?</p>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button (click)="signOut()">Sign Out</button>
+          </li>
+        </ul>
+      </ng-template>
     </div>
   </div>
 </nav>
