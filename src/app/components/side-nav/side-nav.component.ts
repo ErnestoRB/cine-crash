@@ -15,11 +15,11 @@ export class SideNavComponent implements OnInit {
       routerLink: '/home',
       icon: 'pi pi-home',
     },
-    {
+    /*     {
       label: 'Peliculas',
-      routerLink: '/movie',
+      routerLink: '/home',
       icon: 'pi pi-play',
-    },
+    }, */
 
     {
       label: 'Dulceria',

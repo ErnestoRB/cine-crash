@@ -1,3 +1,4 @@
+<h2>Resultados para: {{ movieToSearch }}</h2>
 <div class="d-flex justify-content-center" *ngIf="movies.length === 0">
   <p-message
     severity="info"
@@ -6,17 +7,24 @@
     "
   ></p-message>
 </div>
-<h2>Resultados para: {{movieToSearch}}</h2>
 <div class="container">
-  <div *ngFor="let movie of movies" class="card">
-    <p-card [header]="movie.title">
-      <ng-template pTemplate="header">
-        <img
-          alt="Card"
-          [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
-        />
-      </ng-template>
-      <p>{{ movie.overview }}</p>
-    </p-card>
+  <div class="row">
+    <div
+      class="col-12 col-sm-6 col-md-4 col-lg-3 g-4"
+      *ngFor="let movie of movies"
+    >
+      <p-card [header]="movie.title">
+        <ng-template pTemplate="header">
+          <img
+            *ngIf="movie.poster_path"
+            alt="Card"
+            [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
+          />
+        </ng-template>
+        <a class="btn btn-secondary" [routerLink]="'/movie/' + movie.id"
+          >Ver info</a
+        >
+      </p-card>
+    </div>
   </div>
 </div>
