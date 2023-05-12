@@ -18,7 +18,6 @@ export class BoletosComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.boletos.emit(1);
     this._boletos.valueChanges.subscribe((value) => {
       console.log(value);
 
@@ -26,7 +25,10 @@ export class BoletosComponent implements OnInit {
 
       if (this._boletos.valid) {
         this.boletos.emit(value!);
+        return;
       }
+
+      this.boletos.emit(-1);
     });
   }
 }

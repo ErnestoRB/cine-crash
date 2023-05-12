@@ -15,6 +15,7 @@ export class MovieComponent implements OnInit {
   ) {}
 
   movie: Movie | undefined;
+  error: boolean = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -22,9 +23,12 @@ export class MovieComponent implements OnInit {
       if (!id) {
         return;
       }
-      this.tmdbService
-        .getMovie(Number(id))
-        .subscribe((movie) => (this.movie = movie));
+      this.tmdbService.getMovie(Number(id)).subscribe({
+        next: (movie) => (this.movie = movie),
+        error: () => {
+          this.error = true;
+        },
+      });
     });
   }
 }

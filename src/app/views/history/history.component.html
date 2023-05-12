@@ -1,1 +1,25 @@
-<p>history works!</p>
+<div class="container">
+  <div class="row"></div>
+  <h1>Reservaciones</h1>
+  <div class="row" *ngIf="reservaciones.length === 0">
+    <p-message severity="info" text=" No hay reservaciones aún "></p-message>
+  </div>
+  <table class="table table-striped-columns">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">Usuario</th>
+        <th scope="col">Película</th>
+        <th scope="col">Fecha de reservacion</th>
+        <th scope="col"># Boletos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservacion of reservaciones">
+        <th scope="row">{{ reservacion.cliente }}</th>
+        <td>{{ reservacion.titulo }}</td>
+        <td>{{ reservacion.fechaReservacion | date : "medium" }}</td>
+        <td>{{ reservacion.boletos }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

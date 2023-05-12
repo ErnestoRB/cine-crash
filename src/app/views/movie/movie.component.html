@@ -1,11 +1,20 @@
-<p-card *ngIf="movie" [header]="movie.title">
-  <ng-template pTemplate="header">
+<div class="d-flex justify-content-center" *ngIf="error">
+  <p-message severity="error" text="Película no encontrada"></p-message>
+</div>
+<div *ngIf="movie" class="card">
+  <div class="card-body flex-wrap w-100">
+    <h2 class="w-100">{{ movie.title }}</h2>
     <img
+      width="128"
       [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
       [alt]="'Poster de película ' + movie.title"
     />
-  </ng-template>
-  <p class="m-0">
-    {{ movie.overview }}
-  </p>
-</p-card>
+    <p-divider layout="vertical"></p-divider>
+    <div class="text-container">
+      <p>
+        <b>Sinopsis:</b>
+        {{ movie.overview }}
+      </p>
+    </div>
+  </div>
+</div>

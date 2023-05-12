@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from '@models';
-import { TMDBService } from '@services';
+import { ReservacionesService, TMDBService } from '@services';
 import { MenuItem } from 'primeng/api';
+import { SweetAlertOptions } from 'sweetalert2';
 import { LoginOutService } from 'src/app/services/login-out.service';
 
 @Component({
@@ -15,9 +16,18 @@ export class BuyComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tmdbService: TMDBService,
-    private location: Location,
+    private router: Router,
+    private reservarcionesService: ReservacionesService,
     private loginService: LoginOutService
   ) {}
+
+  confirmDialogOptions: SweetAlertOptions = {
+    title: 'Estás seguro?',
+    showDenyButton: true,
+    showCancelButton: true,
+    denyButtonText: 'No',
+  };
+
   onFechaReceived(fecha: Date) {
     this.fecha = fecha;
   }
@@ -51,8 +61,9 @@ export class BuyComponent implements OnInit {
   fecha?: Date;
 
   movie: Movie | undefined;
-  boletos: number | undefined;
+  boletos: number = 1;
   pagoValidado: boolean = false;
+  error: boolean = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -60,21 +71,36 @@ export class BuyComponent implements OnInit {
       if (!id) {
         return;
       }
-      this.tmdbService
-        .getMovie(Number(id))
-        .subscribe((movie) => (this.movie = movie));
+      this.tmdbService.getMovie(Number(id)).subscribe({
+        next: (movie) => (this.movie = movie),
+        error: (err) => {
+          this.error = true;
+        },
+      });
     });
   }
 
   continuar() {
     if (this.status === 'fecha' && this.fecha) {
       this.status = 'boletos';
-    } else if (this.status === 'boletos' && this.boletos) {
+    } else if (this.status === 'boletos' && this.boletos !== -1) {
       this.status = 'pago';
     } else if (this.status === 'pago' && this.pagoValidado) {
+      this.crearCompra();
       this.status = 'finalizado';
     } else if (this.status === 'finalizado') {
-      window.location.assign('/home');
+      this.router.navigateByUrl('/home');
     }
+  }
+
+  crearCompra() {
+    this.reservarcionesService.reservar({
+      idPelicula: this.movie!.id,
+      cliente: 'Ejemplo',
+      fechaGenerado: new Date(),
+      fechaReservacion: this.fecha!,
+      titulo: this.movie!.title,
+      boletos: this.boletos ?? 1,
+    });
   }
 }
