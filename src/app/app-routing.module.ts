@@ -12,6 +12,7 @@ import {
   CandyStoreComponent,
 } from '@views';
 import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
   {
     path: 'buy/:id',
     component: BuyComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'history',

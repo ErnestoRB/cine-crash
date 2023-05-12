@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Movie } from '@models';
 import { TMDBService } from '@services';
 import { MenuItem } from 'primeng/api';
+import { LoginOutService } from 'src/app/services/login-out.service';
 
 @Component({
   selector: 'app-buy',
@@ -14,7 +15,8 @@ export class BuyComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tmdbService: TMDBService,
-    private location: Location
+    private location: Location,
+    private loginService: LoginOutService
   ) {}
   onFechaReceived(fecha: Date) {
     this.fecha = fecha;

@@ -1,40 +1,82 @@
 <div class="d-flex justify-content-center">
-  <form action="" class="form bg-white card col-md-8 p-3 mt-4" method="post">
+  <form [formGroup]="form" (ngSubmit)="signUpUser()" action="" class="form bg-white card col-md-8 p-3 mt-4 needs-validation" method="post" novalidate>
     <div class="mb-3">
       <h3>Sign Up</h3>
+    </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="success">
+      Registro Exitoso
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     <div class="row justify-content-center">
       <div class="col-md-6">
         <label for="usuario" class="form-label">Nombre de usuario</label>
-        <input type="text" class="form-control" id="nombre" name="usuario" required>
+        <input type="text" class="form-control" [ngClass]="{'is-invalid':!form.get('username')?.valid}" formControlName="username">
+        <div *ngIf="form.controls['username'].errors?.['required']" class="invalidfeedback" style="color: red">
+          Completa este campo
+        </div>
+        <div *ngIf="form.controls['username'].errors?.['minlength']" class="invalidfeedback" style="color: red">
+          Minimo 6 caracteres
+        </div>
       </div>
       <div class="col-md-6">
         <label for="nombre" class="form-label">Nombres</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" required>
+        <input type="text" class="form-control" [ngClass]="{'is-invalid':!form.get('name')?.valid}" formControlName="name">
+        <div *ngIf="form.controls['name'].errors?.['required']" class="invalidfeedback" style="color: red">
+          Completa este campo
+        </div>
+        <div *ngIf="form.controls['name'].errors?.['minlength']" class="invalidfeedback" style="color: red">
+          Minimo 3 caracteres
+        </div>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-md-6">
         <label for="apellidos" class="form-label">Apellidos</label>
-        <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+        <input type="text" class="form-control" [ngClass]="{'is-invalid':!form.get('lastname')?.valid}" formControlName="lastname">
+        <div *ngIf="form.controls['lastname'].errors?.['required']" class="invalidfeedback" style="color: red">
+          Completa este campo
+        </div>
+        <div *ngIf="form.controls['lastname'].errors?.['minlength']" class="invalidfeedback" style="color: red">
+          Minimo 3 caracteres
+        </div>
       </div>
       <div class="col-md-6">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <input type="email" class="form-control" [ngClass]="{'is-invalid':!form.get('email')?.valid}" formControlName="email">
+        <div *ngIf="form.controls['email'].errors?.['required']" class="invalidfeedback" style="color: red">
+          Completa este campo
+        </div>
+        <div *ngIf="form.controls['email'].errors?.['email']" class="invalidfeedback" style="color: red">
+          El correo no es valido
+        </div>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-md-6">
         <label for="pass" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="pass" name="pass" required>
+        <input type="password" class="form-control" [ngClass]="{'is-invalid':!form.get('password')?.valid}" formControlName="password">
+        <div *ngIf="form.controls['password'].errors?.['required']" class="invalidfeedback" style="color: red">
+          Completa este campo
+        </div>
+        <div *ngIf="form.controls['password'].errors?.['minlength']" class="invalidfeedback" style="color: red">
+          Minimo 8 caracteres
+        </div>
       </div>
       <div class="col-md-6">
         <label for="pass2" class="form-label">Repetir contraseña</label>
-        <input type="password" class="form-control" id="pass2" name="pass2" required>
+        <input type="password" class="form-control" [ngClass]="{'is-invalid':!form.get('password2')?.valid}" formControlName="password2">
+        <div *ngIf="form.controls['password2'].errors?.['required']" class="invalidfeedback" style="color: red">
+          Completa este campo
+        </div>
+        <div *ngIf="form.controls['password2'].errors?.['passwordMismatch']" class="invalidfeedback" style="color: red">
+          Las contraseñas no coinciden
+        </div>
       </div>
     </div>
     <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary mt-3 col-sm-4">Enviar</button>
+      <button type="submit" class="btn btn-primary mt-3 col-sm-4" [disabled]="form.invalid">Enviar</button>
     </div>
   </form>
 </div>
