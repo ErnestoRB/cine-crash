@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-type SideNavMenuItem = MenuItem & { materialIcon?: string };
+import { LoginOutService } from 'src/app/services/login-out.service';
+type SideNavMenuItem = MenuItem & { materialIcon?: string; needAuth?: boolean };
 
 @Component({
   selector: 'app-side-nav',
@@ -29,6 +30,7 @@ export class SideNavComponent implements OnInit {
       label: 'Historial',
       routerLink: '/history',
       icon: 'pi pi-history',
+      needAuth: true,
     },
     {
       label: 'Nosotros',
@@ -36,7 +38,10 @@ export class SideNavComponent implements OnInit {
       icon: 'pi pi-users',
     },
   ];
-  constructor() {}
+  constructor(private _loginService: LoginOutService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.logged = this._loginService.isLogged();
+  }
+  logged: boolean = false;
 }

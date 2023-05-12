@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Movie } from '../../models';
+import { LoginOutService } from 'src/app/services/login-out.service';
 
 declare var Masonry: any;
 
@@ -19,7 +20,9 @@ export class MasonryComponent implements OnInit, AfterViewInit {
   @ViewChild('masonry') masonryRef?: ElementRef<HTMLDivElement>;
   @Input() movies!: Movie[];
 
-  constructor() {}
+  logged: boolean = false;
+
+  constructor(private _loginService: LoginOutService) {}
   ngAfterViewInit(): void {
     //setTimeout(() => this.updateMasonry(), 3000);
   }
@@ -38,7 +41,9 @@ export class MasonryComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.logged = this._loginService.isLogged();
+  }
 
   loadImages() {
     const promises = this.movies.map((movie) => {

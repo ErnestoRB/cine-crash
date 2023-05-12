@@ -5,6 +5,7 @@ import { Movie } from '@models';
 import { ReservacionesService, TMDBService } from '@services';
 import { MenuItem } from 'primeng/api';
 import { SweetAlertOptions } from 'sweetalert2';
+import { LoginOutService } from 'src/app/services/login-out.service';
 
 @Component({
   selector: 'app-buy',
@@ -16,7 +17,8 @@ export class BuyComponent implements OnInit {
     private route: ActivatedRoute,
     private tmdbService: TMDBService,
     private router: Router,
-    private reservarcionesService: ReservacionesService
+    private reservarcionesService: ReservacionesService,
+    private loginService: LoginOutService
   ) {}
 
   confirmDialogOptions: SweetAlertOptions = {
