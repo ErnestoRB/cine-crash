@@ -1,8 +1,21 @@
 <div class="d-flex justify-content-center" *ngIf="error">
   <p-message severity="error" text="Película no encontrada"></p-message>
 </div>
+<div class="card" *ngIf="loading">
+  <div class="card-body d-flex align-items-center">
+    <p-progressSpinner></p-progressSpinner>
+    <span>Cargando información de la película...</span>
+  </div>
+</div>
 <div *ngIf="movie">
-  <h1>Comprar boletos</h1>
+  <h1>Rentar sala</h1>
+  <p-divider></p-divider>
+  <div class="container-fluid">
+    <p-message
+      severity="info"
+      text="El precio de la sala se cobra por las personas que entren a ella"
+    ></p-message>
+  </div>
   <p-divider></p-divider>
   <div class="container overflow-x-auto w-100">
     <p-steps
@@ -11,7 +24,6 @@
       [activeIndex]="STATUS[status] - 1"
     ></p-steps>
   </div>
-
   <p-card>
     <h3>Resumen</h3>
     <div class="d-flex w-100">
@@ -22,7 +34,12 @@
       <div class="flex-grow-1">Fecha: {{ fecha | date : "medium" }}</div>
       <p-divider layout="vertical"></p-divider>
       <div class="flex-grow-1">
-        Boletos a comprar: {{ boletos !== -1 ? boletos : "No válido" }}
+        Personas en la sala (boletos) a comprar:
+        {{ boletos !== -1 ? boletos : "No válido" }}
+        <br />
+        <b *ngIf="boletos !== -1">
+          Precio total: {{ boletos * precioPorPersona | currency }}
+        </b>
       </div>
     </div>
   </p-card>

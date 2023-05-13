@@ -19,6 +19,10 @@ export class ReservacionesService {
     if (!reservaciones) {
       return;
     }
+    reservaciones.forEach((rsv) => {
+      rsv.fechaGenerado = new Date(rsv.fechaGenerado);
+      rsv.fechaReservacion = new Date(rsv.fechaReservacion);
+    });
     this.reservaciones = reservaciones;
   }
 

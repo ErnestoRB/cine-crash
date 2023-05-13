@@ -1,30 +1,41 @@
-<h5>Selecciona la fecha de tu función</h5>
+<h5>Selecciona el día de renta</h5>
 <p-calendar
   [minDate]="hoy"
   [formControl]="fecha"
   [showIcon]="true"
   [stepMinute]="30"
+  dateFormat="dd/mm/yy"
 ></p-calendar>
 
 <ng-template [ngIf]="fecha.valueChanges | async">
-  <h6>
-    Selecciona la hora de tu función ({{ fecha.value | date : "fullDate" }})
-  </h6>
-  <div class="d-flex flex-wrap gap-2">
-    <div
-      class="p-2 btn btn-primary text-white"
-      [ngClass]="{ active: funcion.fecha.getTime() === selected?.getTime() }"
-      [attr.aria-pressed]="funcion.fecha.getTime() === selected?.getTime()"
-      *ngFor="let funcion of funciones"
-      (click)="selected = funcion.fecha; fechaSeleccionada.emit(funcion.fecha)"
-    >
-      {{ funcion.fecha | date : "hh:mm aa" }}
+  <div class="container">
+    <h6>Selecciona la hora de renta ({{ fecha.value | date : "fullDate" }})</h6>
+    <p-message
+      severity="info"
+      text="Solamente aparecerán funciones próximas y aquellas reservadas no serán seleccionables"
+    ></p-message>
+    <div class="d-flex flex-wrap gap-2">
+      <button
+        class="p-2 btn btn-primary text-white"
+        [ngClass]="{
+          active: funcion.fecha.getTime() === selected?.getTime(),
+          'btn-secondary': funcion.reservada
+        }"
+        [attr.aria-pressed]="funcion.fecha.getTime() === selected?.getTime()"
+        *ngFor="let funcion of funciones"
+        [disabled]="funcion.reservada"
+        (click)="
+          selected = funcion.fecha; fechaSeleccionada.emit(funcion.fecha)
+        "
+      >
+        {{ funcion.fecha | date : "hh:mm aa" }}
+      </button>
+      <span class="badge text-bg-danger" *ngIf="funciones.length === 0">
+        No hay funciones disponibles para esa fecha, ¡intenta para otro día!
+      </span>
     </div>
-    <span class="badge text-bg-danger" *ngIf="funciones.length === 0">
-      No hay funciones disponibles para esa fecha, ¡intenta para otro día!
-    </span>
+    <p *ngIf="showDate && selected">
+      Has escogido la rentar el día: {{ selected | date : "medium" }}
+    </p>
   </div>
-  <p *ngIf="showDate && selected">
-    Has escogido la función del día: {{ selected | date : "medium" }}
-  </p>
 </ng-template>
