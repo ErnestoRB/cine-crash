@@ -1,3 +1,5 @@
+import { AvatarModule } from 'primeng/avatar';
+import { FieldsetModule } from 'primeng/fieldset';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -82,6 +84,8 @@ import { TableModule } from 'primeng/table';
     MenuModule,
     ToastModule,
     HttpClientModule,
+    AvatarModule,
+    FieldsetModule,
     CardModule,
     StepsModule,
     MessageModule,
