@@ -5,29 +5,30 @@ import { LoginOutService } from 'src/app/services/login-out.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.sass']
+  styleUrls: ['./header.component.sass'],
 })
 export class HeaderComponent implements OnInit {
+  name: string = '';
 
-  name: string = "";
-
-  constructor(private loginService: LoginOutService, private router: Router) { 
-  }
+  constructor(private loginService: LoginOutService, private router: Router) {}
 
   ngOnInit(): void {
+    this.checkLogged();
+    console.log(this.isLogged);
   }
 
-  checkLogged(): boolean{
-    return this.loginService.isLogged();
+  isLogged: boolean = false;
+
+  checkLogged() {
+    this.isLogged = this.loginService.isLogged();
   }
 
-  signOut(): void{
+  signOut(): void {
     this.loginService.removeSession();
     this.router.navigate(['/home']);
   }
 
-  printName(): string{
+  printName(): string {
     return this.loginService.getName();
   }
-
 }

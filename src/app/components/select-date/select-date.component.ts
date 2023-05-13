@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ReservacionesService } from '@services';
 
 interface Funcion {
   fecha: Date;
+  reservada?: boolean;
 }
 
 @Component({
@@ -22,9 +24,11 @@ export class SelectDateComponent implements OnInit {
   funciones: Funcion[] = [];
   selected: Date | null = null;
 
-  constructor() {}
+  constructor(private reservacionesService: ReservacionesService) {}
 
   calMaxHours(): void {
+    console.log(this.reservacionesService.reservaciones);
+
     this.fecha.valueChanges.subscribe((fecha) => {
       if (fecha) {
         this.funciones.splice(0);
@@ -42,6 +46,11 @@ export class SelectDateComponent implements OnInit {
           lastFecha = fechaFuncion;
         }
       }
+      this.funciones.forEach((funcion) => {
+        funcion.reservada = this.reservacionesService.reservaciones.some(
+          (rsv) => rsv.fechaReservacion.getTime() == funcion.fecha.getTime()
+        );
+      });
     });
     this.hora.valueChanges.subscribe(console.log);
   }

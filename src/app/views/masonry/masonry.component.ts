@@ -32,10 +32,7 @@ export class MasonryComponent implements OnInit, AfterViewInit {
   ngOnChanges() {
     if (this.movies && this.movies.length > 0) {
       const promise = this.loadImages();
-      console.log(promise);
-
       promise
-        .then(() => console.log('loaded'))
         .then(() => (this.loaded = true))
         .then(() => setTimeout(() => this.updateMasonry(), 5000));
     }
@@ -51,14 +48,10 @@ export class MasonryComponent implements OnInit, AfterViewInit {
         const image = new Image();
         image.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
         image.onload = () => {
-          console.log('Loadeds');
-
           res();
         };
       });
     });
-
-    console.log(promises);
 
     return Promise.all(promises);
   }

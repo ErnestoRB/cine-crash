@@ -65,6 +65,9 @@ export class BuyComponent implements OnInit {
   pagoValidado: boolean = false;
   error: boolean = false;
 
+  loading: boolean = true;
+  precioPorPersona = 150;
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -72,9 +75,13 @@ export class BuyComponent implements OnInit {
         return;
       }
       this.tmdbService.getMovie(Number(id)).subscribe({
-        next: (movie) => (this.movie = movie),
+        next: (movie) => {
+          this.movie = movie;
+          this.loading = false;
+        },
         error: (err) => {
           this.error = true;
+          this.loading = false;
         },
       });
     });
