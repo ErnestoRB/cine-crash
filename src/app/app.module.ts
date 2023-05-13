@@ -43,6 +43,7 @@ import { ExpiryDateComponent } from './components/expiry-date/expiry-date.compon
 import { NextMoviesComponent } from './components/next-movies/next-movies.component';
 import { UnsafeUrlPipe } from './pipes/unsafe-url.pipe';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,6 +87,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     MessageModule,
     DividerModule,
     ProgressSpinnerModule,
+    TableModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
