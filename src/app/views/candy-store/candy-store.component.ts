@@ -3,88 +3,85 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-candy-store',
   templateUrl: './candy-store.component.html',
-  styleUrls: ['./candy-store.component.sass']
+  styleUrls: ['./candy-store.component.sass'],
 })
 export class CandyStoreComponent implements OnInit {
-
-  basePath = '../../../assets/dulces/';
+  basePath = 'assets/dulces/';
   products = [
     [
       {
         desc: 'Pulparindo',
-        img: 'pulparindo.jfif'
+        img: 'pulparindo.jfif',
       },
       {
         desc: 'Churrumais',
-        img: 'churrumais.jpg'
+        img: 'churrumais.jpg',
       },
       {
         desc: 'Doritos',
-        img: 'doritos.jfif'
+        img: 'doritos.jfif',
       },
       {
         desc: 'Takis',
-        img: 'takis.jfif'
-      }
+        img: 'takis.jfif',
+      },
     ],
     [
       {
         desc: 'Pringles',
-        img: 'pringles.jfif'
+        img: 'pringles.jfif',
       },
       {
         desc: 'Freskas',
-        img: 'freskas.jfif'
+        img: 'freskas.jfif',
       },
       {
         desc: 'Skittles',
-        img: 'skittles.jfif'
+        img: 'skittles.jfif',
       },
       {
         desc: 'Chokis',
-        img: 'chokis.jfif'
-      }
+        img: 'chokis.jfif',
+      },
     ],
     [
       {
         desc: 'Oreo',
-        img: 'oreo.png'
+        img: 'oreo.png',
       },
       {
         desc: 'Panditas',
-        img: 'panditas.jfif'
+        img: 'panditas.jfif',
       },
       {
         desc: 'Sour Patch',
-        img: 'sour.jfif'
+        img: 'sour.jfif',
       },
       {
         desc: 'Ring Pop',
-        img: 'ringpop.jfif'
-      }
+        img: 'ringpop.jfif',
+      },
     ],
     [
       {
         desc: 'Kit Kat',
-        img: 'kit kat.jfif'
+        img: 'kit kat.jfif',
       },
       {
         desc: 'Herseys',
-        img: 'herssheys.jfif'
+        img: 'herssheys.jfif',
       },
       {
         desc: 'Ruffles',
-        img: 'rufles.jfif'
+        img: 'rufles.jfif',
       },
       {
         desc: 'Magnum',
-        img: 'magnum.webp'
-      }
+        img: 'magnum.webp',
+      },
     ],
-  ]
-  constructor() { }
+  ];
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

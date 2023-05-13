@@ -9,14 +9,22 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class TMDBService {
   constructor(private http: HttpClient) {}
 
+  baseUrl = 'https://dev.ernestorb.com/tmdb/';
+
+  commonParams = {
+    language: 'es',
+  };
+
   getMovie(id: number): Observable<Movie> {
-    const url = 'https://dev.ernestorb.com/tmdb/movie/' + id;
-    return this.http.get<Movie>(url);
+    const url = this.baseUrl + 'movie/' + id;
+    return this.http.get<Movie>(url, {
+      params: new HttpParams({ fromObject: this.commonParams }),
+    });
   }
 
   searchMovies(search: string, page: number = 1): Observable<Movie[]> {
-    const url = 'https://dev.ernestorb.com/tmdb/search/movie';
-    let params = { query: search, page: page };
+    const url = this.baseUrl + 'search/movie';
+    let params = { query: search, page: page, ...this.commonParams };
     let query = new HttpParams({ fromObject: params });
     const transformResponse = pipe(
       map((movie: PaginationResponse<Movie>) => movie.results)
@@ -27,8 +35,8 @@ export class TMDBService {
   }
 
   nowMovies(page: number = 1): Observable<Movie[]> {
-    const url = 'https://dev.ernestorb.com/tmdb/movie/now_playing';
-    let params = { page: page };
+    const url = this.baseUrl + 'movie/now_playing';
+    let params = { page: page, ...this.commonParams };
     let query = new HttpParams({ fromObject: params });
     const transformResponse = pipe(
       map((movie: PaginationResponse<Movie>) => movie.results)
