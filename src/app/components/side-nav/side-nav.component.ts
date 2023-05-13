@@ -41,7 +41,9 @@ export class SideNavComponent implements OnInit {
   constructor(private _loginService: LoginOutService) {}
 
   ngOnInit() {
-    this.logged = this._loginService.isLogged();
+    this._loginService.isLogged.subscribe(
+      (isLogged) => (this.logged = isLogged)
+    );
   }
   logged: boolean = false;
 }

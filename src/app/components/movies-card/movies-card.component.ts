@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TMDBService } from '../services';
-import { Movie } from '../models';
+import { TMDBService } from '../../services';
+import { Movie } from '../../models';
 
 @Component({
   selector: 'app-movies-card',

@@ -1,14 +1,14 @@
-<h5>Selecciona el día de renta</h5>
-<p-calendar
-  [minDate]="hoy"
-  [formControl]="fecha"
-  [showIcon]="true"
-  [stepMinute]="30"
-  dateFormat="dd/mm/yy"
-></p-calendar>
+<div class="container">
+  <h5>Selecciona el día de renta</h5>
+  <p-calendar
+    [minDate]="hoy"
+    [formControl]="fecha"
+    [showIcon]="true"
+    [stepMinute]="30"
+    dateFormat="dd/mm/yy"
+  ></p-calendar>
 
-<ng-template [ngIf]="fecha.valueChanges | async">
-  <div class="container">
+  <ng-template [ngIf]="fecha.valueChanges | async">
     <h6>Selecciona la hora de renta ({{ fecha.value | date : "fullDate" }})</h6>
     <p-message
       severity="info"
@@ -37,5 +37,5 @@
     <p *ngIf="showDate && selected">
       Has escogido la rentar el día: {{ selected | date : "medium" }}
     </p>
-  </div>
-</ng-template>
+  </ng-template>
+</div>

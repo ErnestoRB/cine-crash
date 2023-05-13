@@ -4,7 +4,7 @@
 <div *ngIf="movie" class="card">
   <div class="card-body flex-wrap w-100">
     <h2 class="w-100">{{ movie.title }}</h2>
-    <ng-template *ngIf="movie.poster_path; else noPoster">
+    <ng-template [ngIf]="movie.poster_path">
       <img
         width="128"
         [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
@@ -12,7 +12,7 @@
       />
       <p-divider layout="vertical"></p-divider>
     </ng-template>
-    <ng-template #noPoster>
+    <ng-template [ngIf]="!movie.poster_path">
       <p-message severity="info" text="Película sin poster"></p-message>
     </ng-template>
     <div class="text-container" *ngIf="movie.overview; else noSino">

@@ -24,8 +24,8 @@ export class BuyComponent implements OnInit {
   confirmDialogOptions: SweetAlertOptions = {
     title: 'Estás seguro?',
     showDenyButton: true,
-    showCancelButton: true,
-    denyButtonText: 'No',
+    confirmButtonText: 'Sí, estoy seguro',
+    denyButtonText: 'No, cancelar compra',
   };
 
   onFechaReceived(fecha: Date) {
@@ -103,7 +103,7 @@ export class BuyComponent implements OnInit {
   crearCompra() {
     this.reservarcionesService.reservar({
       idPelicula: this.movie!.id,
-      cliente: 'Ejemplo',
+      cliente: this.loginService.getName(),
       fechaGenerado: new Date(),
       fechaReservacion: this.fecha!,
       titulo: this.movie!.title,

@@ -7,7 +7,6 @@ import {
   BuyComponent,
   HistoryComponent,
   MovieComponent,
-  MasonryComponent,
   SignInComponent,
   CandyStoreComponent,
 } from '@views';

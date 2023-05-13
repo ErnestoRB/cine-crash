@@ -13,15 +13,13 @@ export class HeaderComponent implements OnInit {
   constructor(private loginService: LoginOutService, private router: Router) {}
 
   ngOnInit(): void {
-    this.checkLogged();
+    this.loginService.isLogged.subscribe(
+      (isLogged) => (this.isLogged = isLogged)
+    );
     console.log(this.isLogged);
   }
 
   isLogged: boolean = false;
-
-  checkLogged() {
-    this.isLogged = this.loginService.isLogged();
-  }
 
   signOut(): void {
     this.loginService.removeSession();

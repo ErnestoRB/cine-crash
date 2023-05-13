@@ -14,6 +14,7 @@ export class AppComponent {
   ngAfterViewInit() {
     this.messageService.add({
       summary: 'Aviso',
+      severity: 'info',
       sticky: true,
       detail: 'Este es un proyecto escolar',
     });

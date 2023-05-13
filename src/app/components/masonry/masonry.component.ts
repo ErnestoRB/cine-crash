@@ -39,7 +39,9 @@ export class MasonryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.logged = this._loginService.isLogged();
+    this._loginService.isLogged.subscribe(
+      (isLogged) => (this.logged = isLogged)
+    );
   }
 
   loadImages() {
