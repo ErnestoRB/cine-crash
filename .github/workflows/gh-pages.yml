@@ -27,6 +27,7 @@ jobs:
           node-version: 18
       - run: npm install
       - run: npm run build:gh
+      - run: cp dist/cine-crash/index.html dist/cine-crash/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
