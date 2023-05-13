@@ -9,9 +9,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class TMDBService {
   constructor(private http: HttpClient) {}
 
-  getMovie(id: number): Observable<PaginationResponse<Movie>> { 
+  getMovie(id: number): Observable<Movie> {
     const url = 'https://dev.ernestorb.com/tmdb/movie/' + id;
-    return this.http.get<PaginationResponse<Movie>>(url);
+    return this.http.get<Movie>(url);
   }
 
   searchMovies(search: string, page: number = 1): Observable<Movie[]> {

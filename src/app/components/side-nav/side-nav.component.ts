@@ -1,47 +1,47 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+import { LoginOutService } from 'src/app/services/login-out.service';
+type SideNavMenuItem = MenuItem & { materialIcon?: string; needAuth?: boolean };
 
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.sass']
+  styleUrls: ['./side-nav.component.sass'],
 })
 export class SideNavComponent implements OnInit {
-
-  pages = [
+  pages: SideNavMenuItem[] = [
     {
       label: 'Inicio',
-      path: '/home',
-      icon: 'home'
+      routerLink: '/home',
+      icon: 'pi pi-home',
     },
-    {
+    /*     {
       label: 'Peliculas',
-      path: '/movie',
-      icon: 'movie'
-    },
-    {
-      label: 'Comprar',
-      path: '/buy',
-      icon: 'shopping_cart'
-    },
+      routerLink: '/home',
+      icon: 'pi pi-play',
+    }, */
+
     {
       label: 'Dulceria',
-      path: '/candy-store',
-      icon: 'icecream'
+      routerLink: '/candy-store',
+      icon: 'pi pi-shopping-cart',
     },
     {
       label: 'Historial',
-      path: '/history',
-      icon: 'history'
+      routerLink: '/history',
+      icon: 'pi pi-history',
+      needAuth: true,
     },
     {
       label: 'Nosotros',
-      path: '/about',
-      icon: 'groups'
+      routerLink: '/about',
+      icon: 'pi pi-users',
     },
-  ]
-  constructor() { }
+  ];
+  constructor(private _loginService: LoginOutService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.logged = this._loginService.isLogged();
   }
-
+  logged: boolean = false;
 }

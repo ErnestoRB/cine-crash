@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Movie } from '../../models';
+import { LoginOutService } from 'src/app/services/login-out.service';
 
 declare var Masonry: any;
 
@@ -19,12 +20,41 @@ export class MasonryComponent implements OnInit, AfterViewInit {
   @ViewChild('masonry') masonryRef?: ElementRef<HTMLDivElement>;
   @Input() movies!: Movie[];
 
-  constructor() {}
+  logged: boolean = false;
+
+  constructor(private _loginService: LoginOutService) {}
   ngAfterViewInit(): void {
-    setTimeout(() => this.updateMasonry(), 3000);
+    //setTimeout(() => this.updateMasonry(), 3000);
   }
 
-  ngOnInit(): void {}
+  loaded: boolean = false;
+
+  ngOnChanges() {
+    if (this.movies && this.movies.length > 0) {
+      const promise = this.loadImages();
+      promise
+        .then(() => (this.loaded = true))
+        .then(() => setTimeout(() => this.updateMasonry(), 5000));
+    }
+  }
+
+  ngOnInit(): void {
+    this.logged = this._loginService.isLogged();
+  }
+
+  loadImages() {
+    const promises = this.movies.map((movie) => {
+      return new Promise<void>((res, rej) => {
+        const image = new Image();
+        image.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+        image.onload = () => {
+          res();
+        };
+      });
+    });
+
+    return Promise.all(promises);
+  }
 
   updateMasonry() {
     new Masonry(this.masonryRef?.nativeElement, {

@@ -1,4 +1,8 @@
 <main>
+  <p-toast
+    class="bg-white"
+    [breakpoints]="{ '576px': { width: '100%', right: '0', left: '0' } }"
+  ></p-toast>
   <app-header></app-header>
   <section class="body">
     <app-side-nav></app-side-nav>
@@ -7,6 +11,6 @@
     </div>
   </section>
   <footer>
-    <app-tmdb-atributtion></app-tmdb-atributtion>
+    <app-footer></app-footer>
   </footer>
 </main>

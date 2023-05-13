@@ -1,2 +1,73 @@
-<h1>Funciones disponibles</h1>
-<app-movies-card></app-movies-card>
+<div class="container">
+  <p-table
+    [value]="promotions"
+    styleClass="p-datatable-gridlines"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    class="mt-3"
+  >
+    <ng-template pTemplate="caption"> Promociones </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>
+          <div class="d-flex justify-content-center">
+            <img
+              [src]="basePath + product[0].img"
+              width="100"
+              class="shadow-4"
+            />
+          </div>
+          <div class="d-flex justify-content-center">
+            <span>
+              {{ product[0].desc }}
+            </span>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex justify-content-center">
+            <img
+              [src]="basePath + product[1].img"
+              width="100"
+              class="shadow-4"
+            />
+          </div>
+          <div class="d-flex justify-content-center">
+            <span>
+              {{ product[1].desc }}
+            </span>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex justify-content-center">
+            <img
+              [src]="basePath + product[2].img"
+              width="100"
+              class="shadow-4"
+            />
+          </div>
+          <div class="d-flex justify-content-center">
+            <span>
+              {{ product[2].desc }}
+            </span>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex justify-content-center">
+            <img
+              [src]="basePath + product[3].img"
+              width="100"
+              class="shadow-4"
+            />
+          </div>
+          <div class="d-flex justify-content-center">
+            <span>
+              {{ product[3].desc }}
+            </span>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <app-movies-card></app-movies-card>
+  <p-divider></p-divider>
+  <app-next-movies></app-next-movies>
+</div>

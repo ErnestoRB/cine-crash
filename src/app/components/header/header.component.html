@@ -1,7 +1,53 @@
-<header>
-  <img class="logo" src="../../../assets/logo/CC_Logo_Large_1080.png" alt="">
-  <div class="actions">
-    <button routerLink="/signup">Sing Up</button>
-    <button routerLink="/signin" class="ms-2">Sing In</button>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <span class="logo">
+      <img
+        class="logo navbar-brand"
+        src="assets/logo/CC_Logo_Large_1080_White.png"
+        alt=""
+      />
+      Creando recuerdos a través de fotogramas
+    </span>
+    <button
+      type="button"
+      class="toggler navbar-toggler"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarItems"
+      aria-controls="navbarItems"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="pi pi-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarItems">
+      <ul class="navbar-nav d-flex gap-2">
+        <ng-template [ngIf]="isLogged">
+          <li class="nav-item nav-item-center">
+            <span class="showName">
+              Hola, {{ printName() }}. ¿Qué vamos a ver hoy?
+            </span>
+          </li>
+          <li class="nav-item">
+            <button (click)="signOut()">
+              <i class="pi pi-sign-out"></i>Sign Out
+            </button>
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="!isLogged">
+          <li class="nav-item">
+            <button routerLink="/signin">
+              <i class="pi pi-sign-in"></i>
+              Sign In
+            </button>
+          </li>
+          <li class="nav-item">
+            <button routerLink="/signup">
+              <i class="pi pi-id-card"></i>
+              Sign Up
+            </button>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
   </div>
-</header>
+</nav>

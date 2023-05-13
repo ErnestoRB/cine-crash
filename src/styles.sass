@@ -19,3 +19,31 @@
 
 html, body
     height: 100%
+
+.link
+    height: 40px
+    padding: 0 8px 0 8px
+    border-radius: 5px
+    display: flex
+    align-items: center
+    cursor: pointer
+    margin-top: 8px
+    text-decoration: none
+    color: white
+
+    &:hover
+        color: white
+        border: 2px solid $light-gray
+
+.body
+    flex-direction: column
+
+@include media-breakpoint-up(md)
+    .body
+        flex-direction: row
+    .link
+        width: 100%
+
+.p-toast
+    background-color: white
+    opacity: 1.0
