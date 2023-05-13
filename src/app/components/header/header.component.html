@@ -1,13 +1,16 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <img
-      class="logo navbar-brand"
-      src="assets/logo/CC_Logo_Large_1080_White.png"
-      alt=""
-    />
+    <span class="logo">
+      <img
+        class="logo navbar-brand"
+        src="assets/logo/CC_Logo_Large_1080_White.png"
+        alt=""
+      />
+      Creando recuerdos a través de fotogramas
+    </span>
     <button
-      class="navbar-toggler"
       type="button"
+      class="toggler navbar-toggler"
       data-bs-toggle="collapse"
       data-bs-target="#navbarItems"
       aria-controls="navbarItems"
@@ -16,30 +19,35 @@
     >
       <span class="pi pi-bars"></span>
     </button>
-    <div class="collapse navbar-collapse app-navbar" id="navbarItems">
-      <ul
-        class="navbar-nav me-auto mb-2 mb-lg-0"
-        *ngIf="!checkLogged(); else logged"
-      >
-        <li class="nav-item">
-          <button routerLink="/signin">Sign In</button>
-        </li>
-        <li class="nav-item">
-          <button routerLink="/signup">Sign Up</button>
-        </li>
-      </ul>
-      <ng-template #logged>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarItems">
+      <ul class="navbar-nav d-flex gap-2">
+        <ng-template [ngIf]="isLogged">
           <li class="nav-item nav-item-center">
             <span class="showName">
               Hola, {{ printName() }}. ¿Qué vamos a ver hoy?
             </span>
           </li>
           <li class="nav-item">
-            <button (click)="signOut()">Sign Out</button>
+            <button (click)="signOut()">
+              <i class="pi pi-sign-out"></i>Sign Out
+            </button>
           </li>
-        </ul>
-      </ng-template>
+        </ng-template>
+        <ng-template [ngIf]="!isLogged">
+          <li class="nav-item">
+            <button routerLink="/signin">
+              <i class="pi pi-sign-in"></i>
+              Sign In
+            </button>
+          </li>
+          <li class="nav-item">
+            <button routerLink="/signup">
+              <i class="pi pi-id-card"></i>
+              Sign Up
+            </button>
+          </li>
+        </ng-template>
+      </ul>
     </div>
   </div>
 </nav>

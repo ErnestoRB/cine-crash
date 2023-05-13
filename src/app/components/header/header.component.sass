@@ -10,22 +10,26 @@ nav
   padding: 0 16px 0 16px
   background: $base-red
 
+span.logo
+  display: inline-flex
+  align-items: center
+  color: $white
+  font-size: small
+
 .nav-item
   color: $white
-
-@media screen and (min-width: 996px)
-  .nav-item-center
-    display: grid
-    place-items: center
 
 .logo
   height: 64px
   width: auto
   pointer-events: none
 
-.actions
-  display: flex
-  align-items: center
+button.toggler
+  background-color: $dark-red
+  color: #fff
+
+  &:hover
+    background-color: $dull-red-dark
 
 button
   border: 1px solid $black
@@ -36,20 +40,7 @@ button
   height: 40px
   line-height: .8
   background-color: $white
-  margin: 5px
+  color: $black
 
   &:hover
-    background-color: $dark-gray
-    color: #fff
-
-.showName
-  font-weight: 600
-  font-size: 15px
-  width: auto
-  height: 40px
-  line-height: .8
-  margin: 5px
-  display: flex
-  flex-direction: column
-  align-items: left
-  justify-content: center
+    background-color: rgb(212, 212, 212)
