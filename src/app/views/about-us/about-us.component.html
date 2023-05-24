@@ -5,81 +5,36 @@
 </div>
 
 <div class="grid-container">
-  <p-fieldset>
+  <p-fieldset *ngFor="let autor of autores">
     <ng-template pTemplate="header">
       <div class="flex align-items-center text-primary">
-        <span class="avatartext">Paulina </span>
+        <span class="avatartext">{{ autor.nombre }}</span>
       </div>
     </ng-template>
     <p-avatar
-      image="assets/avatar/pauavatar.jpg"
+      [image]="back.apiUrl + autor.image"
       styleClass="mr-2"
       size="xlarge"
       shape="circle"
     ></p-avatar>
-    <p class="name">Paulina Lizbeth Esparza Jiménez</p>
+    <p class="name">{{ autor.nombre + autor.apellido }}</p>
     <br />
-    <span class="badge bg-secondary">ID: 217114</span>
-  </p-fieldset>
-  <p-fieldset>
-    <ng-template pTemplate="header">
-      <div class="flex align-items-center text-primary">
-        <span class="avatartext">Iker</span>
-      </div>
-    </ng-template>
-    <p-avatar
-      image="assets/avatar/ikeravatar.jpg"
-      styleClass="mr-2"
-      size="xlarge"
-      shape="circle"
-    ></p-avatar>
-    <p class="name">Iker Jiménez Tovar</p>
-    <br />
-    <span class="badge bg-secondary">ID: 291255</span>
-  </p-fieldset>
-  <p-fieldset>
-    <ng-template pTemplate="header">
-      <div class="flex align-items-center text-primary">
-        <span class="avatartext">Ernesto</span>
-      </div>
-    </ng-template>
-    <p-avatar
-      image="assets/avatar/ernestoAvatar.jpg"
-      styleClass="mr-2"
-      size="xlarge"
-      shape="circle"
-    ></p-avatar>
-    <p class="name">Ernesto Rodrigo Ramirez Briano</p>
-    <br />
-    <span class="badge bg-secondary">ID: 289171</span>
-  </p-fieldset>
-  <p-fieldset>
-    <ng-template pTemplate="header">
-      <div class="flex align-items-center text-primary">
-        <span class="avatartext">Karen</span>
-      </div>
-    </ng-template>
-    <p-avatar
-      image="assets/avatar/itzavatar.jpg"
-      styleClass="mr-2"
-      size="xlarge"
-      shape="circle"
-    ></p-avatar>
-    <p class="name">Karen Itzel Vázquez Reyes</p>
-    <br />
-    <span class="badge bg-secondary">ID: 297822</span>
+    <span class="badge bg-secondary">ID: {{ autor.id }}</span>
   </p-fieldset>
 </div>
 
 <div class="moreAbout">
   <h5>Acerca de esta idea</h5>
-  <p>Se optó por la propuesta de rentar salas de cine completas, a cada persona se le cobra un boleto sin la elección de su asiento, 
-    puesto que ya lo tiene asegurado. Esto facilita la idea de la reservacion sin entrar en demasiada complejidad y 
-    el usuario realiza su pedido de manera eficiente.</p>
+  <p>
+    Se optó por la propuesta de rentar salas de cine completas, a cada persona
+    se le cobra un boleto sin la elección de su asiento, puesto que ya lo tiene
+    asegurado. Esto facilita la idea de la reservacion sin entrar en demasiada
+    complejidad y el usuario realiza su pedido de manera eficiente.
+  </p>
 </div>
 
 <div class="sync">
-  <br>
+  <br />
   <h4>UNIVERSIDAD AUTÓNOMA DE AGUASCALIENTES</h4>
   <h6>TECNOLOGÍAS WEB 6°B</h6>
   <p>PROYECTO CREADO CON FINES EDUCATIVOS</p>
