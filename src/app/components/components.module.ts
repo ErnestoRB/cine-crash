@@ -25,6 +25,8 @@ import { MenuModule } from 'primeng/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
+import { LoginComponent } from './firebase/login/login.component';
+import { RegisterComponent } from './firebase/register/register.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
     ExpiryDateComponent,
     NextMoviesComponent,
     UnsafeUrlPipe,
+    LoginComponent,
+    RegisterComponent,
   ],
   exports: [
     MasonryComponent,

@@ -1,11 +1,11 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from '@models';
-import { ReservacionesService, TMDBService } from '@services';
+import { TMDBService } from '@services';
 import { MenuItem } from 'primeng/api';
 import { SweetAlertOptions } from 'sweetalert2';
 import { LoginOutService } from 'src/app/services/login-out.service';
+import { FireReservacionesService } from 'src/app/services/fire-reservaciones.service';
 
 @Component({
   selector: 'app-buy',
@@ -17,7 +17,7 @@ export class BuyComponent implements OnInit {
     private route: ActivatedRoute,
     private tmdbService: TMDBService,
     private router: Router,
-    private reservarcionesService: ReservacionesService,
+    private fireService: FireReservacionesService,
     private loginService: LoginOutService
   ) {}
 
@@ -101,11 +101,11 @@ export class BuyComponent implements OnInit {
   }
 
   crearCompra() {
-    this.reservarcionesService.reservar({
+    this.fireService.create({
       idPelicula: this.movie!.id,
-      cliente: this.loginService.getName(),
-      fechaGenerado: new Date(),
-      fechaReservacion: this.fecha!,
+      cliente: 'Aún no funciona',
+      fechaGenerado: new Date().toISOString(),
+      fechaReservacion: this.fecha!.toISOString(),
       titulo: this.movie!.title,
       boletos: this.boletos ?? 1,
     });

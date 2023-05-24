@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from 'src/app/services/auth.service';
+import {
+  AuthorizationService,
+  RolState,
+} from 'src/app/services/authorization.service';
 import { LoginOutService } from 'src/app/services/login-out.service';
 type SideNavMenuItem = MenuItem & { materialIcon?: string; needAuth?: boolean };
 
@@ -38,12 +43,22 @@ export class SideNavComponent implements OnInit {
       icon: 'pi pi-users',
     },
   ];
-  constructor(private _loginService: LoginOutService) {}
 
-  ngOnInit() {
-    this._loginService.isLogged.subscribe(
-      (isLogged) => (this.logged = isLogged)
-    );
+  rol?: RolState | null;
+  isLogged: boolean = false;
+
+  constructor(
+    private _auth: AuthService,
+    private _autho: AuthorizationService
+  ) {
+    this._autho.status$.subscribe((status) => {
+      this.rol = status;
+    });
+    this._auth.user$.subscribe((user) => {
+      this.isLogged = !!user;
+    });
   }
+
+  ngOnInit() {}
   logged: boolean = false;
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'firebase/auth';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginOutService } from 'src/app/services/login-out.service';
 
 @Component({
@@ -10,23 +12,23 @@ import { LoginOutService } from 'src/app/services/login-out.service';
 export class HeaderComponent implements OnInit {
   name: string = '';
 
-  constructor(private loginService: LoginOutService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
+
+  user: User | null = null;
 
   ngOnInit(): void {
-    this.loginService.isLogged.subscribe(
-      (isLogged) => (this.isLogged = isLogged)
-    );
-    console.log(this.isLogged);
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
   }
 
-  isLogged: boolean = false;
-
   signOut(): void {
-    this.loginService.removeSession();
-    this.router.navigate(['/home']);
+    this.authService.logOut().then(() => {
+      this.router.navigate(['/home']);
+    });
   }
 
   printName(): string {
-    return this.loginService.getName();
+    return 'Hola';
   }
 }

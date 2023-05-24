@@ -8,15 +8,13 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginOutService } from '../services/login-out.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(
-    private _loginService: LoginOutService,
-    private _router: Router
-  ) {}
+  constructor(private _auth: AuthService, private _router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -25,9 +23,6 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return (
-      this._loginService.isSessionAvailabe() ||
-      this._router.navigateByUrl('/home')
-    );
+    return this._auth.isLoggedInLS() || this._router.navigateByUrl('/home');
   }
 }

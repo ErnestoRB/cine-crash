@@ -29,6 +29,10 @@ import {
   MovieComponent,
   SignInComponent,
 } from '@views';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -61,6 +65,9 @@ import {
     ProgressSpinnerModule,
     TableModule,
     ComponentsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

@@ -1,0 +1,119 @@
+<button
+  pButton
+  type="button"
+  (click)="loginType = 'register'"
+  label="Crear cuenta con email"
+  icon="pi pi-envelope"
+  iconPos="left"
+></button>
+<button
+  pButton
+  type="button"
+  (click)="loginType = 'email'"
+  label="Iniciar sesión con email"
+  icon="pi pi-envelope"
+  iconPos="left"
+></button>
+<button
+  pButton
+  type="button"
+  (click)="loginType = 'phone'"
+  label="Iniciar sesión con teléfono"
+  icon="pi pi-phone"
+  iconPos="left"
+></button>
+<div #captchaContainer></div>
+<ng-template [ngIf]="loginType === 'email' || loginType === 'register'">
+  <div>
+    <form [formGroup]="emailForm">
+      <p-message
+        severity="error"
+        text="Debes insertar un correo! "
+        *ngIf="emailForm.controls['email']?.errors?.['required']"
+      ></p-message>
+      <p-message
+        severity="error"
+        text="El correo no es válido! "
+        *ngIf="emailForm.controls['email']?.errors?.['email']"
+      ></p-message>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="email"
+        placeholder="Email"
+        autocomplete="email"
+      />
+      <p-message
+        severity="error"
+        text="Debes insertar una contraseña de minimo 8 caracteres! "
+        *ngIf="emailForm.controls['password']?.invalid"
+      ></p-message>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="Password"
+        autocomplete="current-password"
+      />
+      <button
+        type="button"
+        class="btn btn-primary"
+        [disabled]="emailForm.invalid"
+        (click)="submitEmailForm()"
+      >
+        {{ loginType === "email" ? "Iniciar sesión" : "Registrarse" }}
+      </button>
+    </form>
+  </div>
+</ng-template>
+<div *ngIf="loginType === 'phone'">
+  <form [formGroup]="phoneForm" *ngIf="!confirmationResult">
+    <p-message
+      severity="error"
+      text="El número telefónico debe ser de 10 dígitos (MX)"
+      *ngIf="phoneForm.invalid"
+    ></p-message>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="number"
+      autocomplete="tel"
+      maxlength="10"
+      placeholder="Teléfono"
+    />
+    <button
+      type="button"
+      [disabled]="phoneForm.invalid"
+      class="btn btn-primary"
+      (click)="submitPhoneForm()"
+    >
+      Enviar
+    </button>
+  </form>
+  <form [formGroup]="otpForm" *ngIf="confirmationResult">
+    <p-message
+      severity="error"
+      text="El código debe ser de 6 dígitos"
+      *ngIf="otpForm.invalid"
+    ></p-message>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="code"
+      maxlength="6"
+      placeholder="SMS code"
+    />
+    <button
+      type="button"
+      [disabled]="phoneForm.invalid"
+      class="btn btn-primary"
+      (click)="submitOTP()"
+    >
+      Confirmar
+    </button>
+  </form>
+</div>
+
+<ng-template [ngIf]="!loginType">
+  <p>Selecciona un método de autenticación</p>
+</ng-template>
