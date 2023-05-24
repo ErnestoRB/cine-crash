@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { Movie } from '../../models';
 import { LoginOutService } from 'src/app/services/login-out.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 declare var Masonry: any;
 
@@ -22,7 +23,7 @@ export class MasonryComponent implements OnInit, AfterViewInit {
 
   logged: boolean = false;
 
-  constructor(private _loginService: LoginOutService) {}
+  constructor(private _auth: AuthService) {}
   ngAfterViewInit(): void {
     //setTimeout(() => this.updateMasonry(), 3000);
   }
@@ -39,9 +40,7 @@ export class MasonryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this._loginService.isLogged.subscribe(
-      (isLogged) => (this.logged = isLogged)
-    );
+    this._auth.user$.subscribe((user) => (this.logged = !!user));
   }
 
   loadImages() {

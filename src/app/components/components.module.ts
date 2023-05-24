@@ -25,6 +25,12 @@ import { MenuModule } from 'primeng/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
+import { LoginComponent } from './firebase/login/login.component';
+import { RegisterComponent } from './firebase/register/register.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { DividerModule } from 'primeng/divider';
+import { PhoneComponent } from './firebase/login/phone/phone.component';
+import { EmailComponent } from './firebase/login/email/email.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +49,11 @@ import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
     ExpiryDateComponent,
     NextMoviesComponent,
     UnsafeUrlPipe,
+    LoginComponent,
+    RegisterComponent,
+    UserListComponent,
+    PhoneComponent,
+    EmailComponent,
   ],
   exports: [
     MasonryComponent,
@@ -60,10 +71,12 @@ import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
     ExpiryDateComponent,
     NextMoviesComponent,
     UnsafeUrlPipe,
+    UserListComponent,
   ],
   imports: [
     CommonModule,
     CardModule,
+    DividerModule,
     TableModule,
     MessageModule,
     CalendarModule,

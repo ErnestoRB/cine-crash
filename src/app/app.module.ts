@@ -16,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { StepsModule } from 'primeng/steps';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
-import { UnsafeUrlPipe } from './pipes/unsafe-url.pipe';
 import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +28,11 @@ import {
   MovieComponent,
   SignInComponent,
 } from '@views';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { AdministrationComponent } from './views/administration/administration.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import {
     BuyComponent,
     HistoryComponent,
     MovieComponent,
+    AdministrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +66,9 @@ import {
     ProgressSpinnerModule,
     TableModule,
     ComponentsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
