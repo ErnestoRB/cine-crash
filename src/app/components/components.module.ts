@@ -25,6 +25,7 @@ import { MenuModule } from 'primeng/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
+import { ChartsComponent } from './charts/charts.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
     ExpiryDateComponent,
     NextMoviesComponent,
     UnsafeUrlPipe,
+    ChartsComponent,
   ],
   exports: [
     MasonryComponent,
