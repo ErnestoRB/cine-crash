@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
   HomeComponent,
@@ -12,6 +12,7 @@ import {
 } from '@views';
 import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ChartsComponent } from './components/charts/charts.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: 'show-movies/:movieSearch',
     component: ShowMoviesComponent,
+  },
+  {
+    path: 'charts',
+    component: ChartsComponent,
   },
   {
     path: '**',
