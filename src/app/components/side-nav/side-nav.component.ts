@@ -37,6 +37,11 @@ export class SideNavComponent implements OnInit {
       routerLink: '/about',
       icon: 'pi pi-users',
     },
+    {
+      label: 'Gráficas',
+      routerLink: '/charts',
+      icon: 'pi pi-chart-bar',
+    },
   ];
   constructor(private _loginService: LoginOutService) {}
 
