@@ -22,8 +22,8 @@ export class ChartsComponent implements OnInit {
       this.nowMovies = movies;
       console.log(this.nowMovies);
       this.saveData();
+      this.createChart();
     });
-    this.createChart();
   }
 
   saveData(): void{
