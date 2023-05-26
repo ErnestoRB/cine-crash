@@ -24,8 +24,8 @@ export class ChartsComponent implements OnInit {
       this.nowMovies.sort(() => Math.random() - 0.5);
       console.log(this.nowMovies);
       this.saveData();
+      this.createChart();
     });
-    this.createChart();
   }
 
   saveData(): void{
