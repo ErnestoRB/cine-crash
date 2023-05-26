@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '@models';
 import { TMDBService } from '@services';
 import { Chart } from 'chart.js/auto';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-charts',
@@ -20,6 +21,7 @@ export class ChartsComponent implements OnInit {
   ngOnInit(): void {
     this.tmdbService.nowMovies().subscribe((movies) =>{
       this.nowMovies = movies;
+      this.nowMovies.sort(() => Math.random() - 0.5);
       console.log(this.nowMovies);
       this.saveData();
     });
