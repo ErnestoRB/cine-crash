@@ -25,6 +25,9 @@ import { MenuModule } from 'primeng/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
+import { AccessibilityComponent } from './accessibility/accessibility.component';
+import { ButtonModule } from 'primeng/button';
+import {PanelModule} from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
     ExpiryDateComponent,
     NextMoviesComponent,
     UnsafeUrlPipe,
+    AccessibilityComponent,
   ],
   exports: [
     MasonryComponent,
@@ -60,6 +64,7 @@ import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
     ExpiryDateComponent,
     NextMoviesComponent,
     UnsafeUrlPipe,
+    AccessibilityComponent
   ],
   imports: [
     CommonModule,
@@ -71,6 +76,8 @@ import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
     ReactiveFormsModule,
     FormsModule,
     ProgressSpinnerModule,
+    ButtonModule,
+    PanelModule
   ],
 })
 export class ComponentsModule {}
