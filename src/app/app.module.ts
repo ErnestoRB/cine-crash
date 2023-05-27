@@ -20,6 +20,8 @@ import { UnsafeUrlPipe } from './pipes/unsafe-url.pipe';
 import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { QRCodeModule } from 'angularx-qrcode';
+
 import {
   HomeComponent,
   AboutUsComponent,
@@ -29,6 +31,8 @@ import {
   MovieComponent,
   SignInComponent,
 } from '@views';
+import { QrcodeComponent } from './components/qrcode/qrcode.component';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import {
     BuyComponent,
     HistoryComponent,
     MovieComponent,
+    QrcodeComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +66,9 @@ import {
     ProgressSpinnerModule,
     TableModule,
     ComponentsModule,
+    QRCodeModule
+  
+    
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
