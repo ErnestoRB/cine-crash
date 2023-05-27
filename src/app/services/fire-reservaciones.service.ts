@@ -33,7 +33,27 @@ export class FireReservacionesService {
   }
 
   getAll(): Observable<Reservacion[]> {
-    return listVal<FireReservacionInput[]>(this.reservacionesRef).pipe(
+    return listVal<{ [key: string]: FireReservacionInput[] }>(
+      this.reservacionesRef
+    ).pipe(
+      tap(console.log),
+      map((array) =>
+        array.flatMap((object: any) =>
+          Object.entries(object).flatMap(
+            (pair) => pair[1] as FireReservacionInput[]
+          )
+        )
+      ),
+      tap(console.log),
+
+      map((reservaciones) => reservaciones.map(this.convertDates))
+    );
+  }
+
+  getAllFromUser(uid: string): Observable<Reservacion[]> {
+    return listVal<FireReservacionInput[]>(
+      child(this.reservacionesRef, uid)
+    ).pipe(
       tap(console.log),
       map((reservaciones) => reservaciones.map(this.convertDates))
     );
@@ -50,15 +70,15 @@ export class FireReservacionesService {
     return normalized;
   }
 
-  create(reservacion: FireReservacionInput): any {
-    return push(this.reservacionesRef, reservacion);
+  create(uid: string, reservacion: FireReservacionInput): any {
+    return push(child(this.reservacionesRef, uid), reservacion);
   }
 
-  update(key: string, value: any): Observable<void> {
-    return from(update(child(this.reservacionesRef, key), value));
+  update(uid: string, key: string, value: any): Observable<void> {
+    return from(update(child(this.reservacionesRef, uid + '/' + key), value));
   }
 
-  delete(key: string): Observable<void> {
-    return from(remove(child(this.reservacionesRef, key)));
+  delete(uid: string, key: string): Observable<void> {
+    return from(remove(child(this.reservacionesRef, uid + '/' + key)));
   }
 }

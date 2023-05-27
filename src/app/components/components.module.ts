@@ -27,6 +27,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
 import { LoginComponent } from './firebase/login/login.component';
 import { RegisterComponent } from './firebase/register/register.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { RegisterComponent } from './firebase/register/register.component';
     UnsafeUrlPipe,
     LoginComponent,
     RegisterComponent,
+    UserListComponent,
   ],
   exports: [
     MasonryComponent,
@@ -64,6 +66,7 @@ import { RegisterComponent } from './firebase/register/register.component';
     ExpiryDateComponent,
     NextMoviesComponent,
     UnsafeUrlPipe,
+    UserListComponent,
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ConfirmationResult, RecaptchaVerifier } from 'firebase/auth';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +42,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private users: UsersService
   ) {}
 
   @ViewChild('captchaContainer') captchaContainer?: ElementRef<HTMLDivElement>;
@@ -82,7 +84,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
     } else {
       this.auth
         .registerEmail(email!, password!)
-        .then((user) => {
+        .then(async (credentials) => {
+          await this.users.registerUserDetails(credentials.user.uid, {
+            provider: credentials.providerId,
+            email: credentials.user.email,
+            number: credentials.user.phoneNumber,
+          });
           this.messageService.add({
             summary: 'Éxito!',
             severity: 'success',
@@ -116,12 +123,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
     const { code } = this.otpForm.value;
     this.confirmationResult
       ?.confirm(code!)
-      .then(() => {
+      .then(async (credentials) => {
+        await this.users.registerUserDetails(credentials.user.uid, {
+          provider: credentials.providerId,
+          email: credentials.user.email,
+          number: credentials.user.phoneNumber,
+        });
         this.messageService.add({
           summary: 'Éxito!',
           severity: 'success',
           detail: 'Sesión iniciada correctamente',
         });
+
         this.router.navigateByUrl('/');
       })
       .catch((err) => {

@@ -6,6 +6,8 @@ import { MenuItem } from 'primeng/api';
 import { SweetAlertOptions } from 'sweetalert2';
 import { LoginOutService } from 'src/app/services/login-out.service';
 import { FireReservacionesService } from 'src/app/services/fire-reservaciones.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-buy',
@@ -18,8 +20,15 @@ export class BuyComponent implements OnInit {
     private tmdbService: TMDBService,
     private router: Router,
     private fireService: FireReservacionesService,
-    private loginService: LoginOutService
-  ) {}
+    private loginService: LoginOutService,
+    private auth: AuthService
+  ) {
+    this.auth.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  user: User | null = null;
 
   confirmDialogOptions: SweetAlertOptions = {
     title: 'Estás seguro?',
@@ -101,9 +110,12 @@ export class BuyComponent implements OnInit {
   }
 
   crearCompra() {
-    this.fireService.create({
+    if (!this.user) {
+      return;
+    }
+    this.fireService.create(this.user.uid, {
       idPelicula: this.movie!.id,
-      cliente: 'Aún no funciona',
+      cliente: this.user.uid,
       fechaGenerado: new Date().toISOString(),
       fechaReservacion: this.fecha!.toISOString(),
       titulo: this.movie!.title,

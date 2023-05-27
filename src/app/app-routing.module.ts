@@ -13,6 +13,7 @@ import {
 import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/firebase/login/login.component';
+import { AdministrationComponent } from './views/administration/administration.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     path: 'show-movies/:movieSearch',
     component: ShowMoviesComponent,
+  },
+  {
+    path: 'admin',
+    component: AdministrationComponent,
   },
   {
     path: '**',

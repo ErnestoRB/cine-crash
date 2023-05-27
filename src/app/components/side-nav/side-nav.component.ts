@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
-import {
-  AuthorizationService,
-  RolState,
-} from 'src/app/services/authorization.service';
-import { LoginOutService } from 'src/app/services/login-out.service';
+import { UsersService, RolState } from 'src/app/services/users.service';
 type SideNavMenuItem = MenuItem & { materialIcon?: string; needAuth?: boolean };
 
 @Component({
@@ -47,10 +43,7 @@ export class SideNavComponent implements OnInit {
   rol?: RolState | null;
   isLogged: boolean = false;
 
-  constructor(
-    private _auth: AuthService,
-    private _autho: AuthorizationService
-  ) {
+  constructor(private _auth: AuthService, private _autho: UsersService) {
     this._autho.status$.subscribe((status) => {
       this.rol = status;
     });
