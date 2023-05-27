@@ -11,7 +11,7 @@ export class AccessibilityComponent implements OnInit {
   buttons = [
     { label: 'Tamaño de Texto' },
     { label: 'Tipografía' },
-    { label: 'Botón 3' }
+    { label: 'Alinear Texto' }
   ];
 
   @Output() buttonClicked: EventEmitter<any> = new EventEmitter();

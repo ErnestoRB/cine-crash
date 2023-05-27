@@ -1,7 +1,19 @@
-<button pButton type="button" (click)="toggleDropdown()" class="access"><i class="pi pi-user"></i></button>
-<app-accessibility *ngIf="showDropdown" (buttonClicked)="onButtonClicked($event)"></app-accessibility>
-<br>
-<div [ngClass]="{ 'change-size': fontSize, 'change-font': changeFont}">
+<button pButton type="button" (click)="toggleDropdown()" class="access">
+  <i class="pi pi-user"></i>
+</button>
+<app-accessibility
+  *ngIf="showDropdown"
+  (buttonClicked)="onButtonClicked($event)"
+></app-accessibility>
+<br />
+<div
+  [ngClass]="{
+    'change-size': fontSize,
+    'change-font': changeFont,
+    'align-left' : align === 'left',
+    'align-right' : align === 'right'
+  }"
+>
   <div class="sync">
     <h3>CINECRASH</h3>
     <br />
@@ -73,16 +85,19 @@
       <span class="badge bg-secondary">ID: 297822</span>
     </p-fieldset>
   </div>
-  
+
   <div class="moreAbout">
     <h5>Acerca de esta idea</h5>
-    <p>Se optó por la propuesta de rentar salas de cine completas, a cada persona se le cobra un boleto sin la elección de su asiento, 
-      puesto que ya lo tiene asegurado. Esto facilita la idea de la reservacion sin entrar en demasiada complejidad y 
-      el usuario realiza su pedido de manera eficiente.</p>
+    <p>
+      Se optó por la propuesta de rentar salas de cine completas, a cada persona
+      se le cobra un boleto sin la elección de su asiento, puesto que ya lo
+      tiene asegurado. Esto facilita la idea de la reservacion sin entrar en
+      demasiada complejidad y el usuario realiza su pedido de manera eficiente.
+    </p>
   </div>
-  
+
   <div class="sync">
-    <br>
+    <br />
     <h4>UNIVERSIDAD AUTÓNOMA DE AGUASCALIENTES</h4>
     <h6>TECNOLOGÍAS WEB 6°B</h6>
     <p>PROYECTO CREADO CON FINES EDUCATIVOS</p>
