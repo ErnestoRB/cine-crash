@@ -20,6 +20,8 @@ import { UnsafeUrlPipe } from './pipes/unsafe-url.pipe';
 import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { QRCodeModule } from 'angularx-qrcode';
+
 import {
   HomeComponent,
   AboutUsComponent,
@@ -61,6 +63,8 @@ import {
     ProgressSpinnerModule,
     TableModule,
     ComponentsModule,
+    QRCodeModule
+    
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
