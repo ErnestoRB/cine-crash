@@ -42,6 +42,12 @@ export class SideNavComponent implements OnInit {
           routerLink: '/about',
           icon: 'pi pi-users',
         },
+        {
+          label: 'Administrar',
+          routerLink: '/admin',
+          icon: 'pi pi-info-circle',
+          visible: !!status && status.isAdmin,
+        },
       ];
     });
   }

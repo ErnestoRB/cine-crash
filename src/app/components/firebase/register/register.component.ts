@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
           provider: credentials.providerId,
           email: credentials.user.email,
           name: nombre!,
-          number: credentials.user.phoneNumber,
+          number: credentials.user.phoneNumber || phone!,
         });
         const user = this.auth.auth.currentUser!;
         await updateProfile(user, { displayName: nombre });

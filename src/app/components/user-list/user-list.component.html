@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>UID</th>
+      <th>Nombre</th>
       <th>Provider</th>
       <th>Teléfono</th>
       <th>Email</th>
@@ -10,8 +11,9 @@
 
   <tbody>
     <tr *ngFor="let user of users">
-      <th></th>
-      <th>{{ user.provider }}</th>
+      <th>{{ user.id }}</th>
+      <th>{{ user.name }}</th>
+      <th>{{ user.provider ?? "email" }}</th>
       <th>{{ user.number }}</th>
       <th>{{ user.email }}</th>
     </tr>

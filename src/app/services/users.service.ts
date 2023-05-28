@@ -77,7 +77,9 @@ export class UsersService {
   }
 
   getUsers() {
-    return listVal<UserDetails>(this.usersRef);
+    return listVal<UserDetails & { id: string }>(this.usersRef, {
+      keyField: 'id',
+    });
   }
 
   private async getState(id: string): Promise<RolState> {

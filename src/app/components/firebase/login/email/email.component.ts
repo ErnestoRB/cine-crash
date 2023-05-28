@@ -31,7 +31,13 @@ export class EmailComponent implements OnInit {
 
     this.auth
       .iniciarSesionEmail(email!, password!)
-      .then((user) => {
+      .then(async (credentials) => {
+        await this.users.registerUserDetails(credentials.user.uid, {
+          provider: credentials.providerId,
+          email: credentials.user.email,
+          name: credentials.user.displayName,
+          number: credentials.user.phoneNumber,
+        });
         this.messageService.add({
           summary: 'Éxito!',
           severity: 'success',

@@ -7,7 +7,7 @@ import { UserDetails, UsersService } from 'src/app/services/users.service';
   styleUrls: ['./user-list.component.sass'],
 })
 export class UserListComponent implements OnInit {
-  users: UserDetails[] | null = null;
+  users: (UserDetails & { id: string })[] | null = null;
   constructor(users: UsersService) {
     users.getUsers().subscribe((registeredUsers) => {
       this.users = registeredUsers;
