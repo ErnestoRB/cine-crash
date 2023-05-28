@@ -31,6 +31,8 @@ import {
   MovieComponent,
   SignInComponent,
 } from '@views';
+import { QrcodeComponent } from './components/qrcode/qrcode.component';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import {
     BuyComponent,
     HistoryComponent,
     MovieComponent,
+    QrcodeComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import {
     TableModule,
     ComponentsModule,
     QRCodeModule
+  
     
   ],
   providers: [MessageService],
