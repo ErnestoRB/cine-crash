@@ -8,7 +8,7 @@
   "start_url": "./",
   "icons": [
     {
-      "src": "assets/logo/CC_Logo_200x200_Black.png",
+      "src": "assets/logo/CC_Logo_72x72_Black.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "maskable any"
