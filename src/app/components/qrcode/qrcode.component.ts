@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 
 
 
@@ -7,37 +8,41 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-qrcode',
   templateUrl: './qrcode.component.html',
   styleUrls: ['./qrcode.component.sass'],
-
-
-
-
 })
+
 export class QrcodeComponent implements OnInit {
-  private integrants=[
-    {src:'/assets/avatar/ernestoAvatar.jpg'},
-    {src:'/assets/avatar/ikeravatar.jpg'},
-    {src:'/assets/avatar/itzavatar.jpg'},
-    {src:'/assets/avatar/pauvatar.jpg' }
-  ];
-  private currentImage: any;
+  public integrants=[
+    {URL:"https://youtu.be/DmCZoiCp5C0"},
+    {URL:"https://youtu.be/4TOpS3cdb3c"},
+    {URL:"https://youtu.be/CUfLSjxsKF4"},
+    {URL:"https://youtu.be/v0d0id78XdE"}
+ ];
+  public string: any;
+  
 
 
   constructor() {
-    this.currentImage=this.updateRandomImage();
+    this.string=this.updateRandomURL();
+    
   }
 
   ngOnInit(){
-    setInterval(() => { 
+    /*setInterval(() => { 
 
     //se actualiza cada 5 segundos
-    this.currentImage=this.updateRandomImage();
-  },5000);
+    this.string=this.updateRandomURL();
+  },5000);*/
 }
-updateRandomImage(){
+updateRandomURL(){
   const r=Math.floor(Math.random()*(this.integrants.length -1))+0;
   return this.integrants[r];
+  
+  
 }
+
 getIntegrants(){
-  return this.currentImage.src;
-}
+  return this.string.URL;
+
+ }
+
 }

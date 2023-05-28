@@ -1,2 +1,13 @@
-    <h1>Generacion de Qr</h1>
-    <qrcode [width]="400" qrdata="[src]=getIntegrants()" ></qrcode>
+<div class="sync">
+    <br>
+    
+  <h1>Generacion de Qr</h1>
+  <button type="button" class="btn btn-outline-dark" (onclick)="updateRandomURL()">
+    GENERA CODIGO
+  </button>
+  <qrcode
+    [width]="300"
+    [qrdata]="getIntegrants()"
+    errorCorrectionLevel="H"
+  ></qrcode>
+</div>
