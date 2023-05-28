@@ -17,7 +17,7 @@ import { UsersService } from 'src/app/services/users.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass'],
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
   emailForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
@@ -49,14 +49,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('captchaContainer') captchaContainer?: ElementRef<HTMLDivElement>;
 
   captchaVerifier?: RecaptchaVerifier;
-
-  ngAfterViewInit(): void {
-    this.captchaVerifier = new RecaptchaVerifier(
-      this.captchaContainer!.nativeElement,
-      {},
-      this.auth.auth
-    );
-  }
 
   ngOnInit(): void {}
 
@@ -112,10 +104,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
   async submitPhoneForm() {
     if (this.phoneForm.invalid) return;
     const { number } = this.phoneForm.value;
+    this.captchaVerifier = new RecaptchaVerifier(
+      this.captchaContainer!.nativeElement,
+      {},
+      this.auth.auth
+    );
+    this.captchaVerifier?.render();
+
     this.confirmationResult = await this.auth.iniciarSesion(
       `+52${number!}`,
       this.captchaVerifier!
     );
+    this.captchaVerifier?.clear();
   }
 
   async submitOTP() {
