@@ -15,11 +15,13 @@ import { Observable, from, map, mergeMap, of, tap } from 'rxjs';
 export interface RolState {
   rol: string | null;
   isAdmin: boolean;
+  logged: boolean;
 }
 
 export interface UserDetails {
   provider: string | null;
   email: string | null;
+  name: string | null;
   number: string | null;
 }
 
@@ -28,11 +30,15 @@ export interface UserDetails {
 })
 export class UsersService {
   usersRef: DatabaseReference;
+  rolesRef: DatabaseReference;
   status$: Observable<RolState | null>;
   details$: Observable<UserDetails | null>;
 
-  constructor(authService: AuthService, db: Database) {
+  isLogged$: Observable<boolean>;
+
+  constructor(private authService: AuthService, db: Database) {
     this.usersRef = ref(db, 'users');
+    this.rolesRef = ref(db, 'roles');
     this.status$ = authService.user$.pipe(
       mergeMap((user) => {
         if (!user) {
@@ -55,6 +61,11 @@ export class UsersService {
         console.log(rol);
       })
     );
+    this.isLogged$ = authService.user$.pipe(
+      map((user) => {
+        return !!user;
+      })
+    );
   }
 
   registerUserDetails(uid: string, user: UserDetails) {
@@ -73,11 +84,12 @@ export class UsersService {
     return {
       isAdmin: await this.isAdmin(id),
       rol: await this.getRol(id),
+      logged: !!this.authService.auth.currentUser,
     };
   }
 
   private async getRol(id: string): Promise<string | null> {
-    const snapshot = await get(child(this.usersRef, 'roles/' + id));
+    const snapshot = await get(child(this.rolesRef, id));
     if (!snapshot.exists()) {
       return null;
     }

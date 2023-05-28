@@ -25,14 +25,6 @@ const routes: Routes = [
     component: AboutUsComponent,
   },
   {
-    path: 'signup',
-    component: SignUpComponent,
-  },
-  {
-    path: 'signin',
-    component: SignInComponent,
-  },
-  {
     path: 'login',
     component: LoginComponent,
   },

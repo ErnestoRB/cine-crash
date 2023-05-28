@@ -1,14 +1,16 @@
 <aside class="sidebar">
   <div class="desktop-sidebar">
-    <a
-      class="link"
-      *ngFor="let i of pages"
-      [routerLink]="i.routerLink"
-      routerLinkActive="active-link"
-    >
-      <span [class]="i.icon"> </span>
-      <span class="label">{{ i.label }}</span>
-    </a>
+    <span *ngFor="let i of pages">
+      <a
+        class="link"
+        *ngIf="i.visible === undefined || i.visible === true"
+        [routerLink]="i.routerLink"
+        routerLinkActive="active-link"
+      >
+        <span [class]="i.icon"> </span>
+        <span class="label">{{ i.label }}</span>
+      </a>
+    </span>
   </div>
   <div class="mobile-sidebar">
     <p-menu #menu [model]="pages" [popup]="true"></p-menu>

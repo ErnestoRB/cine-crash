@@ -29,6 +29,8 @@ import { LoginComponent } from './firebase/login/login.component';
 import { RegisterComponent } from './firebase/register/register.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { DividerModule } from 'primeng/divider';
+import { PhoneComponent } from './firebase/login/phone/phone.component';
+import { EmailComponent } from './firebase/login/email/email.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { DividerModule } from 'primeng/divider';
     LoginComponent,
     RegisterComponent,
     UserListComponent,
+    PhoneComponent,
+    EmailComponent,
   ],
   exports: [
     MasonryComponent,

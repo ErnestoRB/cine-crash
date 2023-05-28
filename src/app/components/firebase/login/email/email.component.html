@@ -1,0 +1,58 @@
+<form [formGroup]="emailForm">
+  <p-message
+    severity="error"
+    text="Debes insertar una contraseña de minimo 8 caracteres! "
+    *ngIf="
+      emailForm.controls['password']?.touched &&
+      emailForm.controls['password']?.invalid
+    "
+  ></p-message>
+  <ng-template [ngIf]="emailForm.controls['email'].touched">
+    <p-message
+      severity="error"
+      text="Debes insertar un correo! "
+      *ngIf="emailForm.controls['email']?.errors?.['required']"
+    ></p-message>
+    <p-message
+      severity="error"
+      text="El correo no es válido! "
+      *ngIf="emailForm.controls['email']?.errors?.['email']"
+    ></p-message>
+  </ng-template>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="email"
+      placeholder="Email"
+      autocomplete="email"
+    />
+  </div>
+  <p-message
+    severity="error"
+    text="Debes insertar una contraseña de minimo 8 caracteres! "
+    *ngIf="
+      emailForm.controls['password']?.touched &&
+      emailForm.controls['password']?.invalid
+    "
+  ></p-message>
+  <div class="form-group">
+    <label for="email">Contraseña</label>
+    <input
+      type="password"
+      class="form-control"
+      formControlName="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    />
+  </div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="emailForm.invalid"
+    (click)="submit()"
+  >
+    {{ "Iniciar sesión" }}
+  </button>
+</form>
