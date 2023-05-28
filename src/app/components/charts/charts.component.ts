@@ -2,24 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '@models';
 import { TMDBService } from '@services';
 import { Chart } from 'chart.js/auto';
-import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
-  styleUrls: ['./charts.component.sass']
+  styleUrls: ['./charts.component.sass'],
 })
 export class ChartsComponent implements OnInit {
-
-  public chart: any;
+  public chart!: Chart;
   nowMovies: Movie[] = [];
   movieNames: string[] = [];
   moviePopularity: number[] = [];
 
-  constructor(private tmdbService: TMDBService) { }
+  constructor(private tmdbService: TMDBService) {}
 
   ngOnInit(): void {
-    this.tmdbService.nowMovies().subscribe((movies) =>{
+    this.loadData();
+  }
+
+  loadData(): void {
+    if (this.chart) {
+      this.clearData();
+    }
+    this.tmdbService.nowMovies().subscribe((movies) => {
       this.nowMovies = movies;
       this.nowMovies.sort(() => Math.random() - 0.5);
       console.log(this.nowMovies);
@@ -28,48 +33,54 @@ export class ChartsComponent implements OnInit {
     });
   }
 
-  saveData(): void{
-    for(const movie of this.nowMovies){
-      const name : string = movie.title;
+  clearData(): void {
+    this.chart.destroy();
+    this.nowMovies = [];
+    this.movieNames = [];
+    this.moviePopularity = [];
+  }
+
+  saveData(): void {
+    for (const movie of this.nowMovies) {
+      const name: string = movie.title;
       const popularity: number = movie.popularity;
       this.moviePopularity.push(popularity);
       this.movieNames.push(name);
     }
   }
 
-  createChart(){
-    this.chart = new Chart("PopChart", {
+  createChart() {
+    this.chart = new Chart('PopChart', {
       type: 'bar',
-      data:{
+      data: {
         labels: this.movieNames,
         datasets: [
           {
-            label: "Votos de la comunidad",
+            label: 'Votos de la comunidad',
             data: this.moviePopularity,
-            backgroundColor: 'red'
-          }
-        ]
+            backgroundColor: 'red',
+          },
+        ],
       },
-      options:{
+      options: {
         responsive: true,
-        scales:{
+        scales: {
           x: {
-            title:{
+            title: {
               display: true,
-              text: "Peliculas Actuales",
-              color: 'red'
-            }
+              text: 'Peliculas Actuales',
+              color: 'red',
+            },
           },
           y: {
-            title:{
+            title: {
               display: true,
-              text: "Popularidad",
+              text: 'Popularidad',
               color: 'red',
-            }
+            },
           },
-        }
+        },
       },
     });
   }
-
 }

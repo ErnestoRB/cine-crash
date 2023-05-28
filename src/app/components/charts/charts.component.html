@@ -1,7 +1,10 @@
+
 <h1>Películas en cartelera más populares</h1>
 <div class="chart-container">
     <canvas id="PopChart">{{chart}}</canvas>
 </div>
+<br>
+<p-button label="Aleatorizar Datos" (click)="loadData()" styleClass="p-button-danger"></p-button>
 <br>
 <div class="flex justify-content-center mb-3">
     <p-table [value]="nowMovies" [responsive]="true">
