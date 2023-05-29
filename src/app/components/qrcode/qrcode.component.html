@@ -1,13 +1,9 @@
 <div class="sync">
-    <br>
-    
-  <h1>Generacion de Qr</h1>
-  <button type="button" class="btn btn-outline-dark" (onclick)="updateRandomURL()">
-    GENERA CODIGO
-  </button>
-  <qrcode
-    [width]="300"
-    [qrdata]="getIntegrants()"
-    errorCorrectionLevel="H"
-  ></qrcode>
+  <div class="container-button">
+      <button (click)="boton()" class="btn">GENERA CODIGO</button>
 </div>
+</div>
+
+<div *ngIf="Qrdata" class="sync">
+    <qrcode [qrdata]="Qrdata" [width]="300" errorCorrectionLevel="H"></qrcode>
+ </div>

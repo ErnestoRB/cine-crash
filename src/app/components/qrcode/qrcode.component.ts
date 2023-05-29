@@ -4,6 +4,7 @@ import { SafeUrl } from '@angular/platform-browser';
 
 
 
+
 @Component({
   selector: 'app-qrcode',
   templateUrl: './qrcode.component.html',
@@ -11,38 +12,50 @@ import { SafeUrl } from '@angular/platform-browser';
 })
 
 export class QrcodeComponent implements OnInit {
-  public integrants=[
-    {URL:"https://youtu.be/DmCZoiCp5C0"},
-    {URL:"https://youtu.be/4TOpS3cdb3c"},
-    {URL:"https://youtu.be/CUfLSjxsKF4"},
-    {URL:"https://youtu.be/v0d0id78XdE"}
- ];
-  public string: any;
+  /*public integrants=[
+    "https://youtu.be/DmCZoiCp5C0",
+    "https://youtu.be/4TOpS3cdb3c",
+    "https://youtu.be/CUfLSjxsKF4",
+    "https://youtu.be/v0d0id78XdE"
+ ];*/
+
+  Qrdata:string="";
   
+  
+  constructor() {}
+
+  ngOnInit():void{}
 
 
-  constructor() {
-    this.string=this.updateRandomURL();
+ boton(){
+
+
+  
+    const url= ['https://youtu.be/v0d0id78XdE', 'https://youtu.be/CUfLSjxsKF4', 'https://youtu.be/4TOpS3cdb3c','https://youtu.be/DmCZoiCp5C0'];
+    const edades = [25, 30, 35];
+    const emails = ['johndoe@example.com', 'janesmith@example.com', 'michaeljohnson@example.com'];
+  
+    const index = Math.floor(Math.random() * url.length);
+  
+    /*console.log(
+       nombres[index]+
+      edades[index]+
+      emails[index])*/
+
+      this.Qrdata=`{nombre:${url[index]}}`;
+  
     
-  }
-
-  ngOnInit(){
-    /*setInterval(() => { 
-
-    //se actualiza cada 5 segundos
-    this.string=this.updateRandomURL();
-  },5000);*/
-}
-updateRandomURL(){
-  const r=Math.floor(Math.random()*(this.integrants.length -1))+0;
-  return this.integrants[r];
-  
-  
-}
-
-getIntegrants(){
-  return this.string.URL;
-
+  /*const index=Math.floor(Math.random()+this.integrants.length)
+  this.Qrdata=JSON.stringify(this.integrants[index]);
+  console.log(this.Qrdata);*/
+ 
  }
 
 }
+
+
+
+  
+
+
+
