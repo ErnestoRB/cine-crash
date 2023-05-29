@@ -12,6 +12,12 @@
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logo/CC_Logo_144x144_White.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
     }
   ]
 }
