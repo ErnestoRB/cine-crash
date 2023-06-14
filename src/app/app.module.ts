@@ -28,7 +28,9 @@ import {
   HistoryComponent,
   MovieComponent,
   SignInComponent,
+  ContactComponent
 } from '@views';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import {
     BuyComponent,
     HistoryComponent,
     MovieComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

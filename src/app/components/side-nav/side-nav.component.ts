@@ -37,6 +37,11 @@ export class SideNavComponent implements OnInit {
       routerLink: '/about',
       icon: 'pi pi-users',
     },
+    {
+      label: 'Contacto',
+      routerLink: '/contact',
+      icon: 'pi pi-at',
+    },
   ];
   constructor(private _loginService: LoginOutService) {}
 
