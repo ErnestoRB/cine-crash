@@ -1,0 +1,35 @@
+{
+  "name": "cine-crash",
+  "short_name": "cine-crash",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/logo/CC_Logo_72x72_White.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logo/CC_Logo_144x144_White.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logo/CC_Logo_196x196_White.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logo/CC_Logo_500x500_White.png",
+      "sizes": "500x500",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

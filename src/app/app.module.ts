@@ -33,6 +33,8 @@ import {
 } from '@views';
 import { QrcodeComponent } from './components/qrcode/qrcode.component';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -66,11 +68,13 @@ import { QrcodeComponent } from './components/qrcode/qrcode.component';
     ProgressSpinnerModule,
     TableModule,
     ComponentsModule,
-    QRCodeModule
-  
-    
+    QRCodeModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [MessageService],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
