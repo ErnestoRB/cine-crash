@@ -13,6 +13,8 @@ import {
 import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ChartsComponent } from './components/charts/charts.component';
+import { LoginComponent } from './components/firebase/login/login.component';
+import { AdministrationComponent } from './views/administration/administration.component';
 
 const routes: Routes = [
   {
@@ -24,12 +26,8 @@ const routes: Routes = [
     component: AboutUsComponent,
   },
   {
-    path: 'signup',
-    component: SignUpComponent,
-  },
-  {
-    path: 'signin',
-    component: SignInComponent,
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'movie/:id',
@@ -55,6 +53,10 @@ const routes: Routes = [
   {
     path: 'charts',
     component: ChartsComponent,
+  },
+  {
+    path: 'admin',
+    component: AdministrationComponent,
   },
   {
     path: '**',

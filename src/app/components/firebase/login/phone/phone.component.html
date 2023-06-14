@@ -1,0 +1,53 @@
+<form [formGroup]="phoneForm" *ngIf="!confirmationResult">
+  <p-message
+    severity="error"
+    text="El número telefónico debe ser de 10 dígitos (MX)"
+    *ngIf="phoneForm.touched && phoneForm.invalid"
+  ></p-message>
+  <div class="form-group">
+    <label for="Telefono">Número de teléfono</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="number"
+      autocomplete="tel"
+      maxlength="10"
+      placeholder="Teléfono"
+    />
+    <div #captchaContainer></div>
+  </div>
+
+  <button
+    type="button"
+    [disabled]="phoneForm.invalid"
+    class="btn btn-primary"
+    (click)="submit()"
+  >
+    Enviar
+  </button>
+</form>
+<form [formGroup]="otpForm" *ngIf="confirmationResult">
+  <p-message
+    severity="error"
+    text="El código debe ser de 6 dígitos"
+    *ngIf="otpForm.touched && otpForm.invalid"
+  ></p-message>
+  <div class="form-group">
+    <label for="code">OTP code</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="code"
+      maxlength="6"
+      placeholder="SMS code"
+    />
+  </div>
+  <button
+    type="button"
+    [disabled]="phoneForm.invalid"
+    class="btn btn-primary"
+    (click)="submitOTP()"
+  >
+    Confirmar
+  </button>
+</form>

@@ -1,0 +1,120 @@
+<form [formGroup]="form" *ngIf="!confirmationResult">
+  <ng-template [ngIf]="form.controls['nombre'].touched">
+    <p-message
+      severity="error"
+      text="Debes escribir tu nombre! "
+      *ngIf="form.controls['nombre']?.errors?.['required']"
+    ></p-message>
+    <p-message
+      severity="error"
+      text="No se aceptan nombres de menos de 2 letras! "
+      *ngIf="form.controls['nombre']?.errors?.['minLength']"
+    ></p-message>
+  </ng-template>
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="nombre"
+      placeholder="nombre"
+      autocomplete="name"
+    />
+  </div>
+  <p-message
+    severity="error"
+    text="Debes insertar una contraseña de minimo 8 caracteres! "
+    *ngIf="
+      form.controls['password']?.touched && form.controls['password']?.invalid
+    "
+  ></p-message>
+  <ng-template [ngIf]="form.controls['email'].touched">
+    <p-message
+      severity="error"
+      text="Debes insertar un correo! "
+      *ngIf="form.controls['email']?.errors?.['required']"
+    ></p-message>
+    <p-message
+      severity="error"
+      text="El correo no es válido! "
+      *ngIf="form.controls['email']?.errors?.['email']"
+    ></p-message>
+  </ng-template>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="email"
+      placeholder="Email"
+      autocomplete="email"
+    />
+  </div>
+  <p-message
+    severity="error"
+    text="Debes insertar una contraseña de minimo 8 caracteres! "
+    *ngIf="
+      form.controls['password']?.touched && form.controls['password']?.invalid
+    "
+  ></p-message>
+  <div class="form-group">
+    <label for="email">Contraseña</label>
+    <input
+      type="password"
+      class="form-control"
+      formControlName="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    />
+  </div>
+  <p-message
+    severity="error"
+    text="El número telefónico debe ser de 10 dígitos (MX)"
+    *ngIf="form.touched && form.invalid"
+  ></p-message>
+  <div class="form-group">
+    <label for="Telefono">Número de teléfono</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="phone"
+      autocomplete="tel"
+      maxlength="10"
+      placeholder="Teléfono"
+    />
+    <div #captchaContainer></div>
+  </div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="form.invalid"
+    (click)="submit()"
+  >
+    {{ "Registrarse" }}
+  </button>
+</form>
+<form [formGroup]="otpForm" *ngIf="confirmationResult">
+  <p-message
+    severity="error"
+    text="El código debe ser de 6 dígitos"
+    *ngIf="otpForm.touched && otpForm.invalid"
+  ></p-message>
+  <div class="form-group">
+    <label for="code">OTP code</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="code"
+      maxlength="6"
+      placeholder="SMS code"
+    />
+  </div>
+  <button
+    type="button"
+    [disabled]="otpForm.invalid"
+    class="btn btn-primary"
+    (click)="submitOTP()"
+  >
+    Confirmar
+  </button>
+</form>

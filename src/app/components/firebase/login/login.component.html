@@ -1,0 +1,42 @@
+<h2>Iniciar sesión</h2>
+<p-card>
+  <div class="row">
+    <div class="col-12 col-md-5">
+      <p *ngIf="!loginType">Selecciona un método de autenticación</p>
+      <div class="d-flex flex-column">
+        <button
+          pButton
+          type="button"
+          (click)="loginType = 'email'"
+          label="Iniciar sesión con email"
+          icon="pi pi-envelope"
+          iconPos="left"
+        ></button>
+        <button
+          pButton
+          type="button"
+          class="p-button-help"
+          (click)="loginType = 'phone'"
+          label="Iniciar sesión con teléfono"
+          icon="pi pi-phone"
+          iconPos="left"
+        ></button>
+        <button
+          pButton
+          type="button"
+          class="p-button-secondary"
+          (click)="loginType = 'register'"
+          label="Crear cuenta con email"
+          icon="pi pi-envelope"
+          iconPos="left"
+        ></button>
+      </div>
+    </div>
+    <p-divider layout="vertical" *ngIf="loginType" class="col-2"> </p-divider>
+    <div class="col-12 col-md-5">
+      <app-email *ngIf="loginType === 'email'"></app-email>
+      <app-phone *ngIf="loginType === 'phone'"></app-phone>
+      <app-register *ngIf="loginType === 'register'"></app-register>
+    </div>
+  </div>
+</p-card>

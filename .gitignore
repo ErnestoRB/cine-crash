@@ -43,3 +43,8 @@ Thumbs.db
 
 *.css
 *.css.map
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

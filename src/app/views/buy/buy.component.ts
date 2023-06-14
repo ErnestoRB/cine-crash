@@ -1,11 +1,13 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from '@models';
-import { ReservacionesService, TMDBService } from '@services';
+import { TMDBService } from '@services';
 import { MenuItem } from 'primeng/api';
 import { SweetAlertOptions } from 'sweetalert2';
 import { LoginOutService } from 'src/app/services/login-out.service';
+import { FireReservacionesService } from 'src/app/services/fire-reservaciones.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-buy',
@@ -17,9 +19,16 @@ export class BuyComponent implements OnInit {
     private route: ActivatedRoute,
     private tmdbService: TMDBService,
     private router: Router,
-    private reservarcionesService: ReservacionesService,
-    private loginService: LoginOutService
-  ) {}
+    private fireService: FireReservacionesService,
+    private loginService: LoginOutService,
+    private auth: AuthService
+  ) {
+    this.auth.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  user: User | null = null;
 
   confirmDialogOptions: SweetAlertOptions = {
     title: 'Estás seguro?',
@@ -101,11 +110,14 @@ export class BuyComponent implements OnInit {
   }
 
   crearCompra() {
-    this.reservarcionesService.reservar({
+    if (!this.user) {
+      return;
+    }
+    this.fireService.create(this.user.uid, {
       idPelicula: this.movie!.id,
-      cliente: this.loginService.getName(),
-      fechaGenerado: new Date(),
-      fechaReservacion: this.fecha!,
+      cliente: this.user.uid,
+      fechaGenerado: new Date().toISOString(),
+      fechaReservacion: this.fecha!.toISOString(),
       titulo: this.movie!.title,
       boletos: this.boletos ?? 1,
     });

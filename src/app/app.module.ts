@@ -16,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { StepsModule } from 'primeng/steps';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
-import { UnsafeUrlPipe } from './pipes/unsafe-url.pipe';
 import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,9 +31,12 @@ import {
   SignInComponent,
 } from '@views';
 import { QrcodeComponent } from './components/qrcode/qrcode.component';
-
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { AdministrationComponent } from './views/administration/administration.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { environment } from '../environments/environment';
     BuyComponent,
     HistoryComponent,
     MovieComponent,
-    QrcodeComponent
+    QrcodeComponent,
+    AdministrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,9 +75,13 @@ import { environment } from '../environments/environment';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
   ],
   providers: [MessageService],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

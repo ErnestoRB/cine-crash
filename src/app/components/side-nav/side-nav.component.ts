@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginOutService } from '@services';
 import { MenuItem } from 'primeng/api';
-import { LoginOutService } from 'src/app/services/login-out.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UsersService, RolState } from 'src/app/services/users.service';
 type SideNavMenuItem = MenuItem & { materialIcon?: string; needAuth?: boolean };
 
 @Component({
@@ -10,17 +12,6 @@ type SideNavMenuItem = MenuItem & { materialIcon?: string; needAuth?: boolean };
 })
 export class SideNavComponent implements OnInit {
   pages: SideNavMenuItem[] = [
-    {
-      label: 'Inicio',
-      routerLink: '/home',
-      icon: 'pi pi-home',
-    },
-    /*     {
-      label: 'Peliculas',
-      routerLink: '/home',
-      icon: 'pi pi-play',
-    }, */
-
     {
       label: 'Dulceria',
       routerLink: '/candy-store',
@@ -43,12 +34,46 @@ export class SideNavComponent implements OnInit {
       icon: 'pi pi-chart-bar',
     },
   ];
-  constructor(private _loginService: LoginOutService) {}
+  rol?: RolState | null;
+  isLogged: boolean = false;
 
-  ngOnInit() {
-    this._loginService.isLogged.subscribe(
-      (isLogged) => (this.logged = isLogged)
-    );
+  constructor(private _auth: AuthService, private _autho: UsersService, private _loginService: LoginOutService) {
+    this._autho.status$.subscribe((status) => {
+      this.rol = status;
+
+      this.pages = [
+        {
+          label: 'Inicio',
+          routerLink: '/home',
+          icon: 'pi pi-home',
+        },
+
+        {
+          label: 'Dulceria',
+          routerLink: '/candy-store',
+          icon: 'pi pi-shopping-cart',
+        },
+        {
+          label: 'Historial',
+          routerLink: '/history',
+          icon: 'pi pi-history',
+          visible: !!status && status.isAdmin,
+        },
+        {
+          label: 'Nosotros',
+          routerLink: '/about',
+          icon: 'pi pi-users',
+        },
+        {
+          label: 'Administrar',
+          routerLink: '/admin',
+          icon: 'pi pi-info-circle',
+          visible: !!status && status.isAdmin,
+        },
+      ];
+    });
   }
+
+  ngOnInit() {}
   logged: boolean = false;
 }

@@ -21,10 +21,10 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarItems">
       <ul class="navbar-nav d-flex gap-2">
-        <ng-template [ngIf]="isLogged">
+        <ng-template [ngIf]="user">
           <li class="nav-item nav-item-center">
             <span class="showName">
-              Hola, {{ printName() }}. ¿Qué vamos a ver hoy?
+              Hola, {{ user.displayName }}. ¿Qué vamos a ver hoy?
             </span>
           </li>
           <li class="nav-item">
@@ -33,17 +33,11 @@
             </button>
           </li>
         </ng-template>
-        <ng-template [ngIf]="!isLogged">
+        <ng-template [ngIf]="!user">
           <li class="nav-item">
-            <button routerLink="/signin">
+            <button routerLink="/login">
               <i class="pi pi-sign-in"></i>
               Iniciar sesión
-            </button>
-          </li>
-          <li class="nav-item">
-            <button routerLink="/signup">
-              <i class="pi pi-id-card"></i>
-              Registrarse
             </button>
           </li>
         </ng-template>
