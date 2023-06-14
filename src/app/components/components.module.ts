@@ -15,7 +15,6 @@ import {
   NextMoviesComponent,
   FooterComponent,
   MasonryComponent,
-  
 } from '@components';
 import { CandyStoreComponent } from '@views';
 import { CardModule } from 'primeng/card';
@@ -28,6 +27,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
 import { QrcodeComponent } from './qrcode/qrcode.component';
 import { QRCodeComponent, QRCodeModule } from 'angularx-qrcode';
+import { ChartsComponent } from './charts/charts.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +46,7 @@ import { QRCodeComponent, QRCodeModule } from 'angularx-qrcode';
     ExpiryDateComponent,
     NextMoviesComponent,
     UnsafeUrlPipe,
-   
-    
+    ChartsComponent,
   ],
   exports: [
     MasonryComponent,
@@ -65,9 +64,6 @@ import { QRCodeComponent, QRCodeModule } from 'angularx-qrcode';
     ExpiryDateComponent,
     NextMoviesComponent,
     UnsafeUrlPipe,
-    
-    
-   
   ],
   imports: [
     CommonModule,
@@ -78,8 +74,7 @@ import { QRCodeComponent, QRCodeModule } from 'angularx-qrcode';
     MenuModule,
     ReactiveFormsModule,
     FormsModule,
-    ProgressSpinnerModule
-    
+    ProgressSpinnerModule,
   ],
 })
 export class ComponentsModule {}
