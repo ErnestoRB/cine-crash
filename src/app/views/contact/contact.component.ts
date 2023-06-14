@@ -8,10 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
 
-  email!: string;
-  text!: string;
   success: boolean = false;
-
   form!: FormGroup;
 
   constructor() {
