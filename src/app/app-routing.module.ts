@@ -9,6 +9,7 @@ import {
   MovieComponent,
   SignInComponent,
   CandyStoreComponent,
+  ContactComponent,
 } from '@views';
 import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdministrationComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
   },
   {
     path: '**',

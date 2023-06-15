@@ -29,6 +29,7 @@ import {
   HistoryComponent,
   MovieComponent,
   SignInComponent,
+  ContactComponent,
 } from '@views';
 import { QrcodeComponent } from './components/qrcode/qrcode.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -50,6 +51,7 @@ import { AdministrationComponent } from './views/administration/administration.c
     MovieComponent,
     QrcodeComponent,
     AdministrationComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

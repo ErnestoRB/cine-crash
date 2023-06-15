@@ -11,33 +11,15 @@ type SideNavMenuItem = MenuItem & { materialIcon?: string; needAuth?: boolean };
   styleUrls: ['./side-nav.component.sass'],
 })
 export class SideNavComponent implements OnInit {
-  pages: SideNavMenuItem[] = [
-    {
-      label: 'Dulceria',
-      routerLink: '/candy-store',
-      icon: 'pi pi-shopping-cart',
-    },
-    {
-      label: 'Historial',
-      routerLink: '/history',
-      icon: 'pi pi-history',
-      needAuth: true,
-    },
-    {
-      label: 'Nosotros',
-      routerLink: '/about',
-      icon: 'pi pi-users',
-    },
-    {
-      label: 'Gráficas',
-      routerLink: '/charts',
-      icon: 'pi pi-chart-bar',
-    },
-  ];
+  pages: SideNavMenuItem[] = [];
   rol?: RolState | null;
   isLogged: boolean = false;
 
-  constructor(private _auth: AuthService, private _autho: UsersService, private _loginService: LoginOutService) {
+  constructor(
+    private _auth: AuthService,
+    private _autho: UsersService,
+    private _loginService: LoginOutService
+  ) {
     this._autho.status$.subscribe((status) => {
       this.rol = status;
 
@@ -69,6 +51,17 @@ export class SideNavComponent implements OnInit {
           routerLink: '/admin',
           icon: 'pi pi-info-circle',
           visible: !!status && status.isAdmin,
+        },
+        {
+          label: 'Gráficas',
+          routerLink: '/charts',
+          icon: 'pi pi-chart-bar',
+          visible: !!status && status.isAdmin,
+        },
+        {
+          label: 'Contacto',
+          routerLink: '/contact',
+          icon: 'pi pi-at',
         },
       ];
     });
