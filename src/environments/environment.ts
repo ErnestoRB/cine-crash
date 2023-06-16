@@ -12,6 +12,7 @@ export const environment = {
     messagingSenderId: '913693357228',
   },
   production: false,
+  apiUrl: 'http://localhost:4000',
 };
 
 /*

@@ -7,5 +7,6 @@ export const environment = {
     authDomain: 'proyectofinaltecweb.firebaseapp.com',
     messagingSenderId: '913693357228',
   },
-  production: true
+  production: true,
+  apiUrl: '',
 };
