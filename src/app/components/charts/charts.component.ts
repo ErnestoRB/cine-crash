@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '@models';
+import { Movie, Reservacion } from '@models';
 import { TMDBService } from '@services';
 import { Chart } from 'chart.js/auto';
+import { FireReservacionesService } from 'src/app/services/fire-reservaciones.service';
+
+interface MovieData {
+  movieName: string;
+  boughtTickets: number;
+}
 
 @Component({
   selector: 'app-charts',
@@ -10,11 +16,13 @@ import { Chart } from 'chart.js/auto';
 })
 export class ChartsComponent implements OnInit {
   public chart!: Chart;
-  nowMovies: Movie[] = [];
-  movieNames: string[] = [];
-  moviePopularity: number[] = [];
 
-  constructor(private tmdbService: TMDBService) {}
+  movieNames: string[] = [];
+  boughtTickets: number[] = [];
+  reservations: Reservacion[] = [];
+  movieData: MovieData[] = [];
+
+  constructor(private reservationsService: FireReservacionesService) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -24,29 +32,36 @@ export class ChartsComponent implements OnInit {
     if (this.chart) {
       this.clearData();
     }
-    this.tmdbService.nowMovies().subscribe((movies) => {
-      this.nowMovies = movies;
-      this.nowMovies.sort(() => Math.random() - 0.5);
-      console.log(this.nowMovies);
-      this.saveData();
+    this.reservationsService.getAll().subscribe((res: Reservacion[]) =>{
+      this.reservations = res;
+      this.reservations.sort(() => Math.random() - 0.5);
+      console.log(this.reservations);
+      
+      this.reduceArray(); 
       this.createChart();
+    })
+  }
+
+  reduceArray(): void{
+    this.reservations.forEach((item) => {
+      const index = this.movieData.findIndex((data) => data.movieName === item.titulo);
+      if (index === -1) {
+        this.movieData.push({ movieName: item.titulo, boughtTickets: item.boletos });
+      } else {
+        this.movieData[index].boughtTickets += item.boletos;
+      }
     });
+
+    this.movieNames = this.movieData.map((data) => data.movieName);
+    this.boughtTickets = this.movieData.map((data) => data.boughtTickets);
   }
 
   clearData(): void {
     this.chart.destroy();
-    this.nowMovies = [];
+    this.reservations = [];
     this.movieNames = [];
-    this.moviePopularity = [];
-  }
-
-  saveData(): void {
-    for (const movie of this.nowMovies) {
-      const name: string = movie.title;
-      const popularity: number = movie.popularity;
-      this.moviePopularity.push(popularity);
-      this.movieNames.push(name);
-    }
+    this.boughtTickets = [];
+    this.movieData = [];
   }
 
   createChart() {
@@ -56,8 +71,8 @@ export class ChartsComponent implements OnInit {
         labels: this.movieNames,
         datasets: [
           {
-            label: 'Votos de la comunidad',
-            data: this.moviePopularity,
+            label: 'Boletos comprados en total',
+            data: this.boughtTickets,
             backgroundColor: 'red',
           },
         ],
@@ -68,14 +83,14 @@ export class ChartsComponent implements OnInit {
           x: {
             title: {
               display: true,
-              text: 'Peliculas Actuales',
+              text: 'Peliculas',
               color: 'red',
             },
           },
           y: {
             title: {
               display: true,
-              text: 'Popularidad',
+              text: 'Cantidad de boletos',
               color: 'red',
             },
           },
