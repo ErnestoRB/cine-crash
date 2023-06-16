@@ -59,6 +59,12 @@ export class SideNavComponent implements OnInit {
           visible: !!status && status.isAdmin,
         },
         {
+          label: 'Panel',
+          routerLink: '/panel',
+          icon: 'pi pi-chart-bar',
+          visible: !!status && status.logged,
+        },
+        {
           label: 'Contacto',
           routerLink: '/contact',
           icon: 'pi pi-at',

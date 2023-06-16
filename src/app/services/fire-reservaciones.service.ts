@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import {
   Database,
   DatabaseReference,
-  list,
   ref,
   push,
   update,
   child,
   remove,
-  objectVal,
   listVal,
 } from '@angular/fire/database';
 
 import { Reservacion, ReservacionBase } from '@models';
-import { Observable, from, map, tap } from 'rxjs';
+import { Observable, from, map, mergeMap, tap } from 'rxjs';
+import { AuthService } from './auth.service';
 
 export interface FireReservacionInput extends ReservacionBase {
+  id?: string;
   fechaGenerado: string;
   fechaReservacion: string;
 }
@@ -28,24 +28,24 @@ export class FireReservacionesService {
 
   reservacionesRef: DatabaseReference;
 
-  constructor(db: Database) {
+  constructor(db: Database, private authService: AuthService) {
     this.reservacionesRef = ref(db, this.dbPath);
   }
 
   getAll(): Observable<Reservacion[]> {
-    return listVal<{ [key: string]: FireReservacionInput[] }>(
+    return listVal<Record<string, FireReservacionInput>>(
       this.reservacionesRef
     ).pipe(
-      tap(console.log),
-      map((array) =>
-        array.flatMap((object: any) =>
-          Object.entries(object).flatMap(
-            (pair) => pair[1] as FireReservacionInput[]
-          )
-        )
+      map((reservacionesRecord) =>
+        reservacionesRecord
+          ? reservacionesRecord.flatMap((record) =>
+              Object.keys(record).map((rsvId) => ({
+                id: rsvId,
+                ...record[rsvId],
+              }))
+            )
+          : []
       ),
-      tap(console.log),
-
       map((reservaciones) => reservaciones.map(this.convertDates))
     );
   }
@@ -59,7 +59,15 @@ export class FireReservacionesService {
     );
   }
 
-  get(key: string) {}
+  myReservaciones = this.authService.user$.pipe(
+    mergeMap((user) => (user ? this.getMyReservaciones(user.uid) : []))
+  );
+
+  getMyReservaciones(id: string) {
+    return listVal<Reservacion>(child(this.reservacionesRef, id), {
+      keyField: 'id',
+    });
+  }
 
   convertDates(rsv: FireReservacionInput): Reservacion {
     const normalized: Reservacion = {
@@ -70,7 +78,7 @@ export class FireReservacionesService {
     return normalized;
   }
 
-  create(uid: string, reservacion: FireReservacionInput): any {
+  create(uid: string, reservacion: FireReservacionInput) {
     return push(child(this.reservacionesRef, uid), reservacion);
   }
 
@@ -79,6 +87,8 @@ export class FireReservacionesService {
   }
 
   delete(uid: string, key: string): Observable<void> {
+    console.log({ uid, key });
+
     return from(remove(child(this.reservacionesRef, uid + '/' + key)));
   }
 }

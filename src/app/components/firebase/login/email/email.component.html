@@ -1,12 +1,4 @@
 <form [formGroup]="emailForm">
-  <p-message
-    severity="error"
-    text="Debes insertar una contraseña de minimo 8 caracteres! "
-    *ngIf="
-      emailForm.controls['password']?.touched &&
-      emailForm.controls['password']?.invalid
-    "
-  ></p-message>
   <ng-template [ngIf]="emailForm.controls['email'].touched">
     <p-message
       severity="error"

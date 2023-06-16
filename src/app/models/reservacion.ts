@@ -1,4 +1,5 @@
 export interface Reservacion extends ReservacionBase {
+  id?: string;
   fechaReservacion: Date;
   fechaGenerado: Date;
 }

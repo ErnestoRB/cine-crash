@@ -32,6 +32,7 @@ export class ChartsComponent implements OnInit {
     if (this.chart) {
       this.clearData();
     }
+
     this.reservationsService.getAll().subscribe((res: Reservacion[]) =>{
       this.reservations = res;
       this.reservations.sort(() => Math.random() - 0.5);

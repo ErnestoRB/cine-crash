@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { ConfirmationResult, RecaptchaVerifier } from 'firebase/auth';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
+import { BackendService } from 'src/app/services/backend.service';
 import { UsersService } from 'src/app/services/users.service';
+import { AvailablePhoneValidator } from 'src/app/validators/available-phone.validator';
 
 @Component({
   selector: 'app-phone',
@@ -20,6 +22,7 @@ export class PhoneComponent implements OnInit {
     number: [
       '',
       [Validators.required, Validators.minLength(10), Validators.maxLength(10)],
+      [AvailablePhoneValidator.createValidator(this.backendService)],
     ],
   });
 
@@ -43,6 +46,7 @@ export class PhoneComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private users: UsersService,
+    private backendService: BackendService,
     private messageService: MessageService,
     private router: Router
   ) {}
