@@ -35,8 +35,6 @@ export class ChartsComponent implements OnInit {
     this.reservationsService.getAll().subscribe((res: Reservacion[]) =>{
       this.reservations = res;
       this.reservations.sort(() => Math.random() - 0.5);
-      console.log(this.reservations);
-      
       this.reduceArray(); 
       this.createChart();
     })

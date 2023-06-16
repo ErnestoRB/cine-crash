@@ -11,6 +11,8 @@ export class ContactComponent implements OnInit {
 
   success: boolean = false;
   form!: FormGroup;
+  showLoading: boolean = false;
+  emailError: boolean = false;
 
   constructor(private http: HttpClient) {
     this.form = new FormGroup({
@@ -23,15 +25,20 @@ export class ContactComponent implements OnInit {
   }
 
   sendEmail(): void{
+    this.showLoading = true;
     const body = {
       email: this.form.value.email,
       message: this.form.value.textarea
     };
     this.http.post('http://localhost:4000/api/contact', body).subscribe(res => {
       console.log(res);
+      this.success = true;
+      this.showLoading = false;
     },
-    (error) =>{
+    (error) => {
       console.log(error);
+      this.emailError = true;
+      this.showLoading = false;
     })
   }
 
