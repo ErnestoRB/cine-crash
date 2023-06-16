@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ReservacionesService } from '@services';
+import { Reservacion } from '@models';
+import { mergeMap } from 'rxjs';
+import { BackendService } from 'src/app/services/backend.service';
 
 interface Funcion {
   fecha: Date;
@@ -23,34 +25,30 @@ export class SelectDateComponent implements OnInit {
 
   funciones: Funcion[] = [];
   selected: Date | null = null;
+  reservacionesHechas: Reservacion[] = [];
 
-  constructor(private reservacionesService: ReservacionesService) {}
+  constructor(private backendService: BackendService) {}
 
   calMaxHours(): void {
-    console.log(this.reservacionesService.reservaciones);
+    this.funciones.splice(0);
 
-    this.fecha.valueChanges.subscribe((fecha) => {
-      if (fecha) {
-        this.funciones.splice(0);
-
-        const minimal = this.nextAvailableDate(fecha);
-        let lastFecha = minimal;
-        const maximal = this.getMaxHour(minimal);
-        // funciones entre hora minima y hora máxima
-        while (
-          lastFecha.getTime() >= minimal.getTime() &&
-          lastFecha.getTime() <= maximal.getTime()
-        ) {
-          this.funciones.push({ fecha: lastFecha });
-          const fechaFuncion = new Date(lastFecha.getTime() + 30 * 60 * 1000);
-          lastFecha = fechaFuncion;
-        }
-      }
-      this.funciones.forEach((funcion) => {
-        funcion.reservada = this.reservacionesService.reservaciones.some(
-          (rsv) => rsv.fechaReservacion.getTime() == funcion.fecha.getTime()
-        );
-      });
+    const minimal = this.nextAvailableDate(this.fecha.value!);
+    let lastFecha = minimal;
+    const maximal = this.getMaxHour(minimal);
+    // funciones entre hora minima y hora máxima
+    while (
+      lastFecha.getTime() >= minimal.getTime() &&
+      lastFecha.getTime() <= maximal.getTime()
+    ) {
+      this.funciones.push({ fecha: lastFecha });
+      const fechaFuncion = new Date(lastFecha.getTime() + 30 * 60 * 1000);
+      lastFecha = fechaFuncion;
+    }
+    this.funciones.forEach((funcion) => {
+      funcion.reservada = this.reservacionesHechas.some(
+        (rsv) => rsv.fechaReservacion.getTime() == funcion.fecha.getTime()
+      );
+      console.log({ funcion, rsvs: this.reservacionesHechas });
     });
     this.hora.valueChanges.subscribe(console.log);
   }
@@ -98,6 +96,15 @@ export class SelectDateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.calMaxHours();
+    this.fecha.valueChanges
+      .pipe(
+        mergeMap((date) =>
+          this.backendService.getReservacionesHechas(date || this.hoy)
+        )
+      )
+      .subscribe((rsvs) => {
+        this.reservacionesHechas = rsvs;
+        this.calMaxHours();
+      });
   }
 }

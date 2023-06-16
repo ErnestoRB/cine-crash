@@ -19,10 +19,6 @@ export class BoletosComponent implements OnInit {
 
   ngOnInit(): void {
     this._boletos.valueChanges.subscribe((value) => {
-      console.log(value);
-
-      console.log(this._boletos.errors);
-
       if (this._boletos.valid) {
         this.boletos.emit(value!);
         return;

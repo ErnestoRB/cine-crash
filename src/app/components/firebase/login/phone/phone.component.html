@@ -2,7 +2,12 @@
   <p-message
     severity="error"
     text="El número telefónico debe ser de 10 dígitos (MX)"
-    *ngIf="phoneForm.touched && phoneForm.invalid"
+    *ngIf="phoneForm.touched && (phoneForm.controls?.['number']?.errors?.['required'])"
+  ></p-message>
+  <p-message
+    severity="error"
+    text="El número no está registrado. Primero registrate con correo!"
+    *ngIf="phoneForm.controls?.['number']?.errors?.['isPhoneAvailable']"
   ></p-message>
   <div class="form-group">
     <label for="Telefono">Número de teléfono</label>
