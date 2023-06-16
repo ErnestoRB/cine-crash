@@ -19,6 +19,7 @@
           <th scope="col">Fecha de reservacion</th>
           <th scope="col">Fecha de compra</th>
           <th scope="col"># Boletos</th>
+          <th scope="col">QR Code</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,9 @@
           <td>{{ reservacion.fechaReservacion | date : "medium" }}</td>
           <td>{{ reservacion.fechaGenerado | date : "medium" }}</td>
           <td>{{ reservacion.boletos }}</td>
+          <td>
+            <app-qr-info [id]="reservacion.id!"></app-qr-info>
+          </td>
         </tr>
       </tbody>
     </table>

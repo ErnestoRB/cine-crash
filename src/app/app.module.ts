@@ -19,7 +19,7 @@ import { TableModule } from 'primeng/table';
 import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { QRCodeModule } from 'angularx-qrcode';
+import { QRCodeComponent, QRCodeModule } from 'angularx-qrcode';
 
 import {
   HomeComponent,
@@ -74,6 +74,7 @@ import { AdministrationComponent } from './views/administration/administration.c
     TableModule,
     ComponentsModule,
     QRCodeModule,
+
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // or after 30 seconds (whichever comes first).

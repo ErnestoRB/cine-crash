@@ -64,7 +64,9 @@ export class FireReservacionesService {
   );
 
   getMyReservaciones(id: string) {
-    return listVal<Reservacion>(child(this.reservacionesRef, id));
+    return listVal<Reservacion>(child(this.reservacionesRef, id), {
+      keyField: 'id',
+    });
   }
 
   convertDates(rsv: FireReservacionInput): Reservacion {

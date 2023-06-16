@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Reservacion } from '@models';
+import { BackendService } from 'src/app/services/backend.service';
 import { FireReservacionesService } from 'src/app/services/fire-reservaciones.service';
 import { UserDetails, UsersService } from 'src/app/services/users.service';
 
@@ -14,6 +15,7 @@ export class PanelComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
+    public backendService: BackendService,
     private reservacionesService: FireReservacionesService
   ) {}
 

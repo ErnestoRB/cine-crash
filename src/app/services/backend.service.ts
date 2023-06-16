@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Reservacion } from '../models/reservacion';
 import { map, tap } from 'rxjs';
+import { FireReservacionInput } from './fire-reservaciones.service';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +39,12 @@ export class BackendService {
   sendNotification(id: string) {
     return this._http.get<{ msg: string }>(
       `${this.url}/api/reservacion/notification/${id}`
+    );
+  }
+
+  getReservacionInfo(id: string) {
+    return this._http.get<FireReservacionInput>(
+      `${this.url}/api/reservacion/${id}`
     );
   }
 }

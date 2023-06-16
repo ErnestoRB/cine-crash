@@ -25,7 +25,6 @@ import { MenuModule } from 'primeng/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { UnsafeUrlPipe } from '../pipes/unsafe-url.pipe';
-import { QrcodeComponent } from './qrcode/qrcode.component';
 import { QRCodeComponent, QRCodeModule } from 'angularx-qrcode';
 import { ChartsComponent } from './charts/charts.component';
 import { LoginComponent } from './firebase/login/login.component';
@@ -35,6 +34,7 @@ import { DividerModule } from 'primeng/divider';
 import { PhoneComponent } from './firebase/login/phone/phone.component';
 import { EmailComponent } from './firebase/login/email/email.component';
 import { PanelComponent } from './panel/panel.component';
+import { QrInfoComponent } from './qr-info/qr-info.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +60,7 @@ import { PanelComponent } from './panel/panel.component';
     PhoneComponent,
     EmailComponent,
     PanelComponent,
+    QrInfoComponent,
   ],
   exports: [
     MasonryComponent,
@@ -90,6 +91,7 @@ import { PanelComponent } from './panel/panel.component';
     ReactiveFormsModule,
     FormsModule,
     ProgressSpinnerModule,
+    QRCodeModule,
   ],
 })
 export class ComponentsModule {}
