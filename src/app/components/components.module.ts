@@ -34,6 +34,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { DividerModule } from 'primeng/divider';
 import { PhoneComponent } from './firebase/login/phone/phone.component';
 import { EmailComponent } from './firebase/login/email/email.component';
+import { PanelComponent } from './panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { EmailComponent } from './firebase/login/email/email.component';
     UserListComponent,
     PhoneComponent,
     EmailComponent,
+    PanelComponent,
   ],
   exports: [
     MasonryComponent,

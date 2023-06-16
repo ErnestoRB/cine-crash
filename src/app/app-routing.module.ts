@@ -16,6 +16,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ChartsComponent } from './components/charts/charts.component';
 import { LoginComponent } from './components/firebase/login/login.component';
 import { AdministrationComponent } from './views/administration/administration.component';
+import { PanelComponent } from './components/panel/panel.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent,
+  },
+  {
+    path: 'panel',
+    component: PanelComponent,
   },
   {
     path: '**',

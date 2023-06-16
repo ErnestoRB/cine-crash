@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from '@models';
 import { TMDBService } from '@services';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { SweetAlertOptions } from 'sweetalert2';
 import { LoginOutService } from 'src/app/services/login-out.service';
 import { FireReservacionesService } from 'src/app/services/fire-reservaciones.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from '@angular/fire/auth';
+import { get } from 'firebase/database';
+import { BackendService } from 'src/app/services/backend.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-buy',
@@ -21,7 +24,9 @@ export class BuyComponent implements OnInit {
     private router: Router,
     private fireService: FireReservacionesService,
     private loginService: LoginOutService,
-    private auth: AuthService
+    private auth: AuthService,
+    private backendService: BackendService,
+    private messageService: MessageService
   ) {
     this.auth.user$.subscribe((user) => {
       this.user = user;
@@ -113,13 +118,33 @@ export class BuyComponent implements OnInit {
     if (!this.user) {
       return;
     }
-    this.fireService.create(this.user.uid, {
-      idPelicula: this.movie!.id,
-      cliente: this.user.uid,
-      fechaGenerado: new Date().toISOString(),
-      fechaReservacion: this.fecha!.toISOString(),
-      titulo: this.movie!.title,
-      boletos: this.boletos ?? 1,
-    });
+    this.fireService
+      .create(this.user.uid, {
+        idPelicula: this.movie!.id,
+        cliente: this.user.uid,
+        fechaGenerado: new Date().toISOString(),
+        fechaReservacion: this.fecha!.toISOString(),
+        titulo: this.movie!.title,
+        boletos: this.boletos ?? 1,
+      })
+      .then(async (ref) => {
+        const snap = await get(ref);
+        const key = snap.key!;
+        console.log({ key });
+        lastValueFrom(this.backendService.sendNotification(key))
+          .then((res) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'El detalle de reservación ha sido enviado a tu correo',
+            });
+          })
+          .catch((err) => {
+            this.messageService.add({
+              severity: 'error',
+              summary:
+                'No se pudo enviar el correo a tu cuenta. Intenta más tarde',
+            });
+          });
+      });
   }
 }

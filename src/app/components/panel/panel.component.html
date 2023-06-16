@@ -1,6 +1,13 @@
+<h1>Panel</h1>
+<p-divider></p-divider>
+<p-card *ngIf="details">
+  <h2>Nombre: {{ details.name }}</h2>
+  <h3>Email: {{ details.name }}</h3>
+  <h4>Teléfono: {{ details.number }}</h4>
+</p-card>
 <div class="container">
   <div class="row"></div>
-  <h1>Todas las reservaciones</h1>
+  <h1>Mis reservaciones</h1>
   <div class="row" *ngIf="reservaciones.length === 0; else tabla">
     <p-message severity="info" text=" No hay reservaciones aún "></p-message>
   </div>
@@ -8,30 +15,18 @@
     <table class="table table-striped-columns">
       <thead>
         <tr class="table-dark">
-          <th scope="col">id</th>
-          <th scope="col">Usuario</th>
           <th scope="col">Película</th>
           <th scope="col">Fecha de reservacion</th>
           <th scope="col">Fecha de compra</th>
           <th scope="col"># Boletos</th>
-          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let reservacion of reservaciones">
-          <th scope="row">{{ reservacion.id }}</th>
-          <th scope="row">{{ reservacion.cliente }}</th>
           <td>{{ reservacion.titulo }}</td>
           <td>{{ reservacion.fechaReservacion | date : "medium" }}</td>
           <td>{{ reservacion.fechaGenerado | date : "medium" }}</td>
           <td>{{ reservacion.boletos }}</td>
-          <td>
-            <p-button
-              (click)="deleteRecord(reservacion.cliente, reservacion.id!)"
-              icon="pi pi-trash"
-              styleClass="p-button-danger"
-            ></p-button>
-          </td>
         </tr>
       </tbody>
     </table>

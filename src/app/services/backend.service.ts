@@ -34,4 +34,10 @@ export class BackendService {
       .get<{ taken: boolean }>(`${this.url}/api/user/phone/${phone}`)
       .pipe(map((r) => r.taken));
   }
+
+  sendNotification(id: string) {
+    return this._http.get<{ msg: string }>(
+      `${this.url}/api/reservacion/notification/${id}`
+    );
+  }
 }
