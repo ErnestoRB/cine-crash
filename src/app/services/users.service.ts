@@ -102,6 +102,10 @@ export class UsersService {
     return rol as string;
   }
 
+  getRoles() {
+    return objectVal<Record<string, { rol: string }>>(this.rolesRef); //.pipe(map(record => Object.keys()));
+  }
+
   private async isAdmin(id: string): Promise<boolean> {
     const rol = await this.getRol(id);
     if (!rol) return false;

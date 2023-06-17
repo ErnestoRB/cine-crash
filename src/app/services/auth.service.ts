@@ -18,7 +18,6 @@ export class AuthService {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
-        JSON.parse(localStorage.getItem('user')!);
       } else {
         localStorage.removeItem('user');
       }
@@ -29,7 +28,7 @@ export class AuthService {
 
   isLoggedInLS() {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== 'null' ? true : false;
+    return user != null;
   }
 
   iniciarSesion(telefono: string, recaptcha: RecaptchaVerifier) {

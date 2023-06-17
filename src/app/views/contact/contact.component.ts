@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +15,7 @@ export class ContactComponent implements OnInit {
   showLoading: boolean = false;
   emailError: boolean = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private backendService: BackendService) {
     this.form = new FormGroup({
       'email': new FormControl('', [Validators.required, Validators.email]),
       'textarea': new FormControl('', Validators.required)
@@ -30,7 +31,7 @@ export class ContactComponent implements OnInit {
       email: this.form.value.email,
       message: this.form.value.textarea
     };
-    this.http.post('http://localhost:4000/api/contact', body).subscribe(res => {
+    this.backendService.sendContactEmail(body).subscribe(res => {
       console.log(res);
       this.success = true;
       this.showLoading = false;

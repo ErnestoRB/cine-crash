@@ -1,0 +1,44 @@
+<h2>Compras por cliente</h2>
+<p-table
+  [value]="reservaciones"
+  rowGroupMode="rowspan"
+  groupRowsBy="cliente"
+  sortField="cliente"
+  sortMode="single"
+  [tableStyle]="{ 'min-width': '75rem' }"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 3rem">#</th>
+      <th>ID cliente</th>
+      <th>Título</th>
+      <th>Fecha</th>
+      <th>Boletos</th>
+    </tr>
+  </ng-template>
+  <ng-template
+    pTemplate="body"
+    let-reservacion
+    let-rowIndex="rowIndex"
+    let-rowgroup="rowgroup"
+    let-rowspan="rowspan"
+  >
+    <tr>
+      <td>{{ rowIndex }}</td>
+      <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
+        <span class="font-bold ml-2">{{ reservacion.cliente }}</span>
+      </td>
+      <td>
+        {{ reservacion.titulo }}
+      </td>
+      <td>
+        <span class="ml-1 vertical-align-middle">{{
+          reservacion.fechaReservacion | date
+        }}</span>
+      </td>
+      <td>
+        {{ reservacion.boletos }}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

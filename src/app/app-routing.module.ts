@@ -1,22 +1,21 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
   HomeComponent,
   AboutUsComponent,
-  SignUpComponent,
   BuyComponent,
   HistoryComponent,
   MovieComponent,
-  SignInComponent,
   CandyStoreComponent,
   ContactComponent,
 } from '@views';
 import { ShowMoviesComponent } from './components/show-movies/show-movies.component';
 import { AuthGuard } from './guards/auth.guard';
-import { ChartsComponent } from './components/charts/charts.component';
+import { ChartsComponent } from './views/charts/charts.component';
 import { LoginComponent } from './components/firebase/login/login.component';
 import { AdministrationComponent } from './views/administration/administration.component';
 import { PanelComponent } from './components/panel/panel.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -41,10 +40,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'history',
-    component: HistoryComponent,
-  },
-  {
     path: 'candy-store',
     component: CandyStoreComponent,
   },
@@ -55,10 +50,12 @@ const routes: Routes = [
   {
     path: 'charts',
     component: ChartsComponent,
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin',
     component: AdministrationComponent,
+    canActivate: [AdminGuard],
   },
   {
     path: 'contact',
@@ -67,6 +64,7 @@ const routes: Routes = [
   {
     path: 'panel',
     component: PanelComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

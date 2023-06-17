@@ -1,0 +1,18 @@
+<h2>Horas más populares</h2>
+<div class="card flex justify-content-center">
+  <p-chart
+    type="pie"
+    [data]="byHourData"
+    [options]="byHourOptions"
+    height="300"
+  ></p-chart>
+</div>
+<h2>Ventas por mes</h2>
+<div class="card flex justify-content-center">
+  <p-chart
+    type="pie"
+    [data]="byMesData"
+    [options]="byMesOptions"
+    height="300"
+  ></p-chart>
+</div>

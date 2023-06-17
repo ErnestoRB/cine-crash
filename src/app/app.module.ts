@@ -38,6 +38,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { AdministrationComponent } from './views/administration/administration.component';
+import { ChartsComponent } from './views/charts/charts.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AdministrationComponent } from './views/administration/administration.c
     QrcodeComponent,
     AdministrationComponent,
     ContactComponent,
+    ChartsComponent,
   ],
   imports: [
     BrowserModule,

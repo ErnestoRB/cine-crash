@@ -50,6 +50,87 @@ export class FireReservacionesService {
     );
   }
 
+  getAllByHour() {
+    return this.getAll().pipe(
+      map((rsvs) =>
+        rsvs.reduce((acc: Record<string, Reservacion[]>, rsv: Reservacion) => {
+          const { fechaReservacion: fecha } = rsv;
+
+          console.log({ acc, rsv });
+
+          // Obtener las horas y minutos
+          const horas = fecha.getHours();
+          const minutos = fecha.getMinutes();
+
+          // Formatear las horas y minutos con ceros a la izquierda si es necesario
+          const horasFormateadas = horas < 10 ? `0${horas}` : horas;
+          const minutosFormateados = minutos < 10 ? `0${minutos}` : minutos;
+
+          // Crear el string con el formato hh:mm
+          const formatoHora = `${horasFormateadas}:${minutosFormateados}`;
+          if (!acc[formatoHora]) {
+            acc[formatoHora] = [];
+          }
+          acc[formatoHora].push(rsv);
+          return acc;
+        }, {})
+      )
+    );
+  }
+
+  getAllByMonth() {
+    return this.getAll().pipe(
+      map((rsvs) =>
+        rsvs.reduce((acc: Record<string, Reservacion[]>, rsv: Reservacion) => {
+          const { fechaReservacion: fecha } = rsv;
+
+          console.log({ acc, rsv });
+
+          // Obtener las horas y minutos
+          const month = fecha.getMonth();
+          const year = fecha.getFullYear();
+
+          // Formatear las horas y minutos con ceros a la izquierda si es necesario
+          const mesFormateado = month < 10 ? `0${month}` : month;
+
+          // Crear el string con el formato hh:mm
+          const formatoHora = `${year}-${mesFormateado}`;
+          if (!acc[formatoHora]) {
+            acc[formatoHora] = [];
+          }
+          acc[formatoHora].push(rsv);
+          return acc;
+        }, {})
+      )
+    );
+  }
+
+  getAllCountByHour() {
+    return this.getAllByHour().pipe(
+      map((record) => {
+        const obj: Record<string, number> = {};
+        Object.keys(record).forEach((key) => {
+          obj[key] = record[key].length;
+          return obj;
+        });
+        return obj;
+      })
+    );
+  }
+
+  getAllCountByMonth() {
+    return this.getAllByMonth().pipe(
+      map((record) => {
+        const obj: Record<string, number> = {};
+        Object.keys(record).forEach((key) => {
+          obj[key] = record[key].length;
+          return obj;
+        });
+        return obj;
+      })
+    );
+  }
+
   getAllFromUser(uid: string): Observable<Reservacion[]> {
     return listVal<FireReservacionInput[]>(
       child(this.reservacionesRef, uid)

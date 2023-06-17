@@ -7,18 +7,22 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, map } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { UsersService } from '../services/users.service';
 import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
+  /**
+   *
+   */
   constructor(
-    private _auth: AuthService,
-    private _router: Router,
+    private userService: UsersService,
+    private router: Router,
     private messageService: MessageService
   ) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -27,14 +31,14 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this._auth.user$.pipe(
-      map((user) => {
-        if (!user) {
+    return this.userService.status$.pipe(
+      map((status) => {
+        if (!status || !status.isAdmin) {
           this.messageService.add({
-            summary: 'No puedes acceder esta ruta porque no estás logueado!',
+            summary: 'No puedes acceder esta ruta porque no eres admin!',
             severity: 'error',
           });
-          return this._router.createUrlTree(['/home']);
+          return this.router.createUrlTree(['/home']);
         }
         return true;
       })

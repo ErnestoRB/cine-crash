@@ -35,6 +35,9 @@ import { PhoneComponent } from './firebase/login/phone/phone.component';
 import { EmailComponent } from './firebase/login/email/email.component';
 import { PanelComponent } from './panel/panel.component';
 import { QrInfoComponent } from './qr-info/qr-info.component';
+import { PopularHoursComponent } from './purchases-charts/popular-hours.component';
+import { ChartModule } from 'primeng/chart';
+import { PurchasesClientComponent } from './purchases-client/purchases-client.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,8 @@ import { QrInfoComponent } from './qr-info/qr-info.component';
     EmailComponent,
     PanelComponent,
     QrInfoComponent,
+    PopularHoursComponent,
+    PurchasesClientComponent,
   ],
   exports: [
     MasonryComponent,
@@ -79,6 +84,9 @@ import { QrInfoComponent } from './qr-info/qr-info.component';
     NextMoviesComponent,
     UnsafeUrlPipe,
     UserListComponent,
+    PopularHoursComponent,
+    ChartsComponent,
+    PurchasesClientComponent,
   ],
   imports: [
     CommonModule,
@@ -92,6 +100,7 @@ import { QrInfoComponent } from './qr-info/qr-info.component';
     FormsModule,
     ProgressSpinnerModule,
     QRCodeModule,
+    ChartModule,
   ],
 })
 export class ComponentsModule {}

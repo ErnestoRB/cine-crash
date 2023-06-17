@@ -36,6 +36,10 @@ export class BackendService {
       .pipe(map((r) => r.taken));
   }
 
+  sendContactEmail(body: { email: string; message: string }) {
+    return this._http.post(`${this.url}/api/contact`, body);
+  }
+
   sendNotification(id: string) {
     return this._http.get<{ msg: string }>(
       `${this.url}/api/reservacion/notification/${id}`

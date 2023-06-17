@@ -47,7 +47,7 @@ export class SideNavComponent implements OnInit {
           icon: 'pi pi-users',
         },
         {
-          label: 'Administrar',
+          label: 'Administración',
           routerLink: '/admin',
           icon: 'pi pi-info-circle',
           visible: !!status && status.isAdmin,
@@ -61,7 +61,7 @@ export class SideNavComponent implements OnInit {
         {
           label: 'Panel',
           routerLink: '/panel',
-          icon: 'pi pi-chart-bar',
+          icon: 'pi pi-user',
           visible: !!status && status.logged,
         },
         {

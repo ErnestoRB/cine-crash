@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie, Reservacion } from '@models';
-import { TMDBService } from '@services';
 import { Chart } from 'chart.js/auto';
 import { FireReservacionesService } from 'src/app/services/fire-reservaciones.service';
 
@@ -33,19 +32,24 @@ export class ChartsComponent implements OnInit {
       this.clearData();
     }
 
-    this.reservationsService.getAll().subscribe((res: Reservacion[]) =>{
+    this.reservationsService.getAll().subscribe((res: Reservacion[]) => {
       this.reservations = res;
       this.reservations.sort(() => Math.random() - 0.5);
-      this.reduceArray(); 
+      this.reduceArray();
       this.createChart();
-    })
+    });
   }
 
-  reduceArray(): void{
+  reduceArray(): void {
     this.reservations.forEach((item) => {
-      const index = this.movieData.findIndex((data) => data.movieName === item.titulo);
+      const index = this.movieData.findIndex(
+        (data) => data.movieName === item.titulo
+      );
       if (index === -1) {
-        this.movieData.push({ movieName: item.titulo, boughtTickets: item.boletos });
+        this.movieData.push({
+          movieName: item.titulo,
+          boughtTickets: item.boletos,
+        });
       } else {
         this.movieData[index].boughtTickets += item.boletos;
       }
