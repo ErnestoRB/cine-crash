@@ -5,7 +5,7 @@ import {
   linkWithPhoneNumber,
   updateProfile,
 } from '@angular/fire/auth';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
     nombre: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
+    password2: ['', [Validators.required, Validators.minLength(8), this.validatePass]],
   });
 
   otpForm = this.fb.group({
@@ -57,6 +58,14 @@ export class RegisterComponent implements OnInit {
       this.auth.auth
     );
     this.captchaVerifier?.render();
+  }
+
+  validatePass(control: FormControl): {[s: string]: boolean} | null{
+    const form = control.parent;
+    if (form && control.value !== form.get('password')?.value) {
+      return { 'passwordMismatch': true };
+    }
+    return null;
   }
 
   submit() {

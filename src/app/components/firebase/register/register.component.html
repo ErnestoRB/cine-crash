@@ -62,6 +62,23 @@
   </div>
   <p-message
     severity="error"
+    text="Las contrsaseñas no coinciden "
+    *ngIf="
+      form.controls['password2']?.touched && form.controls['password2'].errors?.['passwordMismatch']
+    "
+  ></p-message>
+  <div class="form-group">
+    <label for="email">Confirmar contraseña</label>
+    <input
+      type="password"
+      class="form-control"
+      formControlName="password2"
+      placeholder="Password"
+      autocomplete="current-password"
+    />
+  </div>
+  <p-message
+    severity="error"
     text="El número telefónico debe ser de 10 dígitos (MX)"
     *ngIf="form.controls['phone']?.touched && (form.controls['phone']?.errors?.['minLength'] || form.controls['phone']?.errors?.['maxLength']) || form.controls['phone']?.errors?.['required'] "
   ></p-message>

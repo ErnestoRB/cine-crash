@@ -31,12 +31,6 @@ export class SideNavComponent implements OnInit {
           icon: 'pi pi-shopping-cart',
         },
         {
-          label: 'Historial',
-          routerLink: '/history',
-          icon: 'pi pi-history',
-          visible: !!status && status.isAdmin,
-        },
-        {
           label: 'Nosotros',
           routerLink: '/about',
           icon: 'pi pi-users',
