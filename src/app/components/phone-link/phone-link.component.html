@@ -35,6 +35,12 @@
   </form>
   <form [formGroup]="otpForm" *ngIf="confirmationResult">
     <p-message
+      severity="info"
+      text="Por favor, verifica tu teléfono. Te hemos enviado un código por SMS a tu
+  teléfono."
+    >
+    </p-message>
+    <p-message
       severity="error"
       text="El código debe ser de 6 dígitos"
       *ngIf="otpForm.touched && otpForm.invalid"

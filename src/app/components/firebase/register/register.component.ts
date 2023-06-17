@@ -32,7 +32,10 @@ export class RegisterComponent implements OnInit {
     nombre: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
-    password2: ['', [Validators.required, Validators.minLength(8), this.validatePass]],
+    password2: [
+      '',
+      [Validators.required, Validators.minLength(8), this.validatePass],
+    ],
   });
 
   otpForm = this.fb.group({
@@ -60,10 +63,10 @@ export class RegisterComponent implements OnInit {
     this.captchaVerifier?.render();
   }
 
-  validatePass(control: FormControl): {[s: string]: boolean} | null{
+  validatePass(control: FormControl): { [s: string]: boolean } | null {
     const form = control.parent;
     if (form && control.value !== form.get('password')?.value) {
-      return { 'passwordMismatch': true };
+      return { passwordMismatch: true };
     }
     return null;
   }
@@ -74,6 +77,11 @@ export class RegisterComponent implements OnInit {
     this.auth
       .registerEmail(email!, password!)
       .then(async (credentials) => {
+        this.messageService.add({
+          summary: 'Éxito!',
+          severity: 'success',
+          detail: 'Correo y contraseña registrados correctamente',
+        });
         const user = this.auth.auth.currentUser!;
         await updateProfile(user, { displayName: nombre });
         try {
@@ -89,11 +97,11 @@ export class RegisterComponent implements OnInit {
             detail: 'No pudo vincularse tu numero de teléfono!',
           });
         }
-        await this.users.registerUserDetails(credentials.user.uid, {
+        await this.users.registerPartiaUserDetailsOpt(credentials.user.uid, {
           provider: credentials.providerId,
           email: credentials.user.email,
           name: nombre!,
-          number: credentials.user.phoneNumber ?? `+52${phone}`!,
+          // number: credentials.user.phoneNumber ?? `+52${phone}`!,
         });
       })
       .catch((err) => {
@@ -108,11 +116,17 @@ export class RegisterComponent implements OnInit {
 
   async submitOTP() {
     const { code } = this.otpForm.value;
-    await this.confirmationResult?.confirm(code!);
+    const { phone } = this.form.value;
+
+    const credentials = await this.confirmationResult!.confirm(code!);
+    await this.users.registerPhoneOnDetails(
+      credentials.user.uid,
+      credentials.user.phoneNumber ?? `+52${phone}`
+    );
     this.messageService.add({
       summary: 'Éxito!',
       severity: 'success',
-      detail: 'Sesión iniciada correctamente',
+      detail: 'Teléfono vinculado correctamente',
     });
     this.router.navigateByUrl('/');
   }
