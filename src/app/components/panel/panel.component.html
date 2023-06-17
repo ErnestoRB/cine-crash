@@ -1,38 +1,45 @@
-<h1>Panel</h1>
-<p-divider></p-divider>
-<p-card *ngIf="details">
-  <h2>Nombre: {{ details.name }}</h2>
-  <h3>Email: {{ details.name }}</h3>
-  <h4>Teléfono: {{ details.number }}</h4>
-</p-card>
 <div class="container">
-  <div class="row"></div>
-  <h1>Mis reservaciones</h1>
-  <div class="row" *ngIf="reservaciones.length === 0; else tabla">
-    <p-message severity="info" text=" No hay reservaciones aún "></p-message>
+  <h1>Panel</h1>
+  <p-divider></p-divider>
+  <p-card *ngIf="details">
+    <h2>Nombre: {{ details.name }}</h2>
+    <h3>Email: {{ details.email }}</h3>
+    <h4>Teléfono: {{ details.number ?? "No vinculado" }}</h4>
+  </p-card>
+  <p-divider></p-divider>
+
+  <div class="container">
+    <div class="row"></div>
+    <h1>Mis reservaciones</h1>
+    <div class="row" *ngIf="reservaciones.length === 0; else tabla">
+      <p-message severity="info" text=" No hay reservaciones aún "></p-message>
+    </div>
+    <ng-template #tabla>
+      <table class="table table-striped-columns">
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">Película</th>
+            <th scope="col">Fecha de reservacion</th>
+            <th scope="col">Fecha de compra</th>
+            <th scope="col"># Boletos</th>
+            <th scope="col">QR Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservacion of reservaciones">
+            <td>{{ reservacion.titulo }}</td>
+            <td>{{ reservacion.fechaReservacion | date : "medium" }}</td>
+            <td>{{ reservacion.fechaGenerado | date : "medium" }}</td>
+            <td>{{ reservacion.boletos }}</td>
+            <td>
+              <app-qr-info [id]="reservacion.id!"></app-qr-info>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+    <p-divider></p-divider>
+
+    <app-phone-link *ngIf="details && !details.number"></app-phone-link>
   </div>
-  <ng-template #tabla>
-    <table class="table table-striped-columns">
-      <thead>
-        <tr class="table-dark">
-          <th scope="col">Película</th>
-          <th scope="col">Fecha de reservacion</th>
-          <th scope="col">Fecha de compra</th>
-          <th scope="col"># Boletos</th>
-          <th scope="col">QR Code</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let reservacion of reservaciones">
-          <td>{{ reservacion.titulo }}</td>
-          <td>{{ reservacion.fechaReservacion | date : "medium" }}</td>
-          <td>{{ reservacion.fechaGenerado | date : "medium" }}</td>
-          <td>{{ reservacion.boletos }}</td>
-          <td>
-            <app-qr-info [id]="reservacion.id!"></app-qr-info>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </ng-template>
 </div>

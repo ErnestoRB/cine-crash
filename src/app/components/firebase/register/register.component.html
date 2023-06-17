@@ -21,13 +21,6 @@
       autocomplete="name"
     />
   </div>
-  <p-message
-    severity="error"
-    text="Debes insertar una contraseña de minimo 8 caracteres! "
-    *ngIf="
-      form.controls['password']?.touched && form.controls['password']?.invalid
-    "
-  ></p-message>
   <ng-template [ngIf]="form.controls['email'].touched">
     <p-message
       severity="error"
@@ -70,7 +63,12 @@
   <p-message
     severity="error"
     text="El número telefónico debe ser de 10 dígitos (MX)"
-    *ngIf="form.touched && form.invalid"
+    *ngIf="form.controls['phone']?.touched && (form.controls['phone']?.errors?.['minLength'] || form.controls['phone']?.errors?.['maxLength']) || form.controls['phone']?.errors?.['required'] "
+  ></p-message>
+  <p-message
+    severity="error"
+    text="El número telefónico ya está registrado"
+    *ngIf="form.controls['phone']?.errors?.['isPhoneTaken']"
   ></p-message>
   <div class="form-group">
     <label for="Telefono">Número de teléfono</label>
