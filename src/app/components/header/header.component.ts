@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'firebase/auth';
 import { AuthService } from 'src/app/services/auth.service';
-import { LoginOutService } from 'src/app/services/login-out.service';
 
 @Component({
   selector: 'app-header',

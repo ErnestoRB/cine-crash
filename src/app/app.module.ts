@@ -24,11 +24,9 @@ import { QRCodeComponent, QRCodeModule } from 'angularx-qrcode';
 import {
   HomeComponent,
   AboutUsComponent,
-  SignUpComponent,
   BuyComponent,
   HistoryComponent,
   MovieComponent,
-  SignInComponent,
   ContactComponent,
 } from '@views';
 import { QrcodeComponent } from './components/qrcode/qrcode.component';
@@ -45,8 +43,6 @@ import { ChartsComponent } from './views/charts/charts.component';
     AppComponent,
     HomeComponent,
     AboutUsComponent,
-    SignInComponent,
-    SignUpComponent,
     BuyComponent,
     HistoryComponent,
     MovieComponent,

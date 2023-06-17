@@ -7,7 +7,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Movie } from '../../models';
-import { LoginOutService } from 'src/app/services/login-out.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 declare var Masonry: any;

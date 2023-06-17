@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginOutService } from '@services';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService, RolState } from 'src/app/services/users.service';
@@ -15,11 +14,7 @@ export class SideNavComponent implements OnInit {
   rol?: RolState | null;
   isLogged: boolean = false;
 
-  constructor(
-    private _auth: AuthService,
-    private _autho: UsersService,
-    private _loginService: LoginOutService
-  ) {
+  constructor(private _auth: AuthService, private _autho: UsersService) {
     this._autho.status$.subscribe((status) => {
       this.rol = status;
 
