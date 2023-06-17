@@ -12,12 +12,6 @@ import { SafeUrl } from '@angular/platform-browser';
 })
 
 export class QrcodeComponent implements OnInit {
-  /*public integrants=[
-    "https://youtu.be/DmCZoiCp5C0",
-    "https://youtu.be/4TOpS3cdb3c",
-    "https://youtu.be/CUfLSjxsKF4",
-    "https://youtu.be/v0d0id78XdE"
- ];*/
 
   Qrdata:string="";
   
@@ -32,8 +26,6 @@ export class QrcodeComponent implements OnInit {
     const url= ['https://youtu.be/v0d0id78XdE', 'https://youtu.be/CUfLSjxsKF4', 'https://youtu.be/4TOpS3cdb3c','https://youtu.be/DmCZoiCp5C0'];
     
     const index = Math.floor(Math.random() * url.length);
-  
-   
 
       this.Qrdata=`{nombre:${url[index]}}`;
   
