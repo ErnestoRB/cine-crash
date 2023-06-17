@@ -8,6 +8,7 @@ import {
   objectVal,
   ref,
   set,
+  update,
 } from '@angular/fire/database';
 import { AuthService } from './auth.service';
 import { Observable, from, map, mergeMap, of, tap } from 'rxjs';
@@ -70,6 +71,10 @@ export class UsersService {
 
   registerUserDetails(uid: string, user: UserDetails) {
     return set(child(this.usersRef, uid), { ...user });
+  }
+
+  registerPartiaUserDetailsOpt(uid: string, user: Partial<UserDetails>) {
+    return update(child(this.usersRef, uid), { ...user });
   }
 
   registerPhoneOnDetails(uid: string, phone: string) {
