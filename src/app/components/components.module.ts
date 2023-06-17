@@ -38,6 +38,9 @@ import { QrInfoComponent } from './qr-info/qr-info.component';
 import { PopularHoursComponent } from './purchases-charts/popular-hours.component';
 import { ChartModule } from 'primeng/chart';
 import { PurchasesClientComponent } from './purchases-client/purchases-client.component';
+import { AccessibilityComponent } from './accessibility/accessibility.component';
+import { ButtonModule } from 'primeng/button';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,7 @@ import { PurchasesClientComponent } from './purchases-client/purchases-client.co
     QrInfoComponent,
     PopularHoursComponent,
     PurchasesClientComponent,
+    AccessibilityComponent,
   ],
   exports: [
     MasonryComponent,
@@ -87,6 +91,7 @@ import { PurchasesClientComponent } from './purchases-client/purchases-client.co
     PopularHoursComponent,
     ChartsComponent,
     PurchasesClientComponent,
+    AccessibilityComponent,
   ],
   imports: [
     CommonModule,
@@ -101,6 +106,8 @@ import { PurchasesClientComponent } from './purchases-client/purchases-client.co
     ProgressSpinnerModule,
     QRCodeModule,
     ChartModule,
+    ButtonModule,
+    PanelModule,
   ],
 })
 export class ComponentsModule {}

@@ -1,0 +1,5 @@
+<p-panel [header]="title">
+    <button *ngFor="let button of buttons" pButton type="button" (click)="onClick(button)" class="button">
+      {{ button.label }}
+    </button>
+  </p-panel>
