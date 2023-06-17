@@ -41,6 +41,7 @@ import { PurchasesClientComponent } from './purchases-client/purchases-client.co
 import { AccessibilityComponent } from './accessibility/accessibility.component';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
+import { PhoneLinkComponent } from './phone-link/phone-link.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { PanelModule } from 'primeng/panel';
     PopularHoursComponent,
     PurchasesClientComponent,
     AccessibilityComponent,
+    PhoneLinkComponent,
   ],
   exports: [
     MasonryComponent,

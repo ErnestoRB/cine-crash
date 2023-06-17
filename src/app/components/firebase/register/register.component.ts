@@ -9,7 +9,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
+import { BackendService } from 'src/app/services/backend.service';
 import { UsersService } from 'src/app/services/users.service';
+import { TakenPhoneValidator } from 'src/app/validators/taken-phone.validator';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +27,7 @@ export class RegisterComponent implements OnInit {
     phone: [
       '',
       [Validators.required, Validators.minLength(10), Validators.maxLength(10)],
+      [TakenPhoneValidator.createValidator(this.backendService)],
     ],
     nombre: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
@@ -43,7 +46,8 @@ export class RegisterComponent implements OnInit {
     private auth: AuthService,
     private users: UsersService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private backendService: BackendService
   ) {}
 
   ngAfterViewInit() {
@@ -61,23 +65,30 @@ export class RegisterComponent implements OnInit {
     this.auth
       .registerEmail(email!, password!)
       .then(async (credentials) => {
+        const user = this.auth.auth.currentUser!;
+        await updateProfile(user, { displayName: nombre });
+        try {
+          this.confirmationResult = await linkWithPhoneNumber(
+            user,
+            `+52${phone}`!,
+            this.captchaVerifier!
+          );
+        } catch (error: any) {
+          this.messageService.add({
+            summary: 'Error!',
+            severity: 'error',
+            detail: 'No pudo vincularse tu numero de teléfono!',
+          });
+        }
         await this.users.registerUserDetails(credentials.user.uid, {
           provider: credentials.providerId,
           email: credentials.user.email,
           name: nombre!,
-          number: credentials.user.phoneNumber || phone!,
+          number: credentials.user.phoneNumber ?? `+52${phone}`!,
         });
-        const user = this.auth.auth.currentUser!;
-        await updateProfile(user, { displayName: nombre });
-        this.confirmationResult = await linkWithPhoneNumber(
-          user,
-          `+52${phone}`!,
-          this.captchaVerifier!
-        );
       })
       .catch((err) => {
         console.log({ err });
-
         this.messageService.add({
           summary: 'Error!',
           severity: 'error',
@@ -86,9 +97,9 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  submitOTP() {
+  async submitOTP() {
     const { code } = this.otpForm.value;
-    this.confirmationResult?.confirm(code!);
+    await this.confirmationResult?.confirm(code!);
     this.messageService.add({
       summary: 'Éxito!',
       severity: 'success',

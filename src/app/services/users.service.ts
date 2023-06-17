@@ -72,6 +72,10 @@ export class UsersService {
     return set(child(this.usersRef, uid), { ...user });
   }
 
+  registerPhoneOnDetails(uid: string, phone: string) {
+    return set(child(this.usersRef, uid + '/number'), phone);
+  }
+
   getUserDetails(uid: string) {
     return objectVal<UserDetails>(child(this.usersRef, uid));
   }
