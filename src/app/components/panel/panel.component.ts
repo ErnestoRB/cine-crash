@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Reservacion } from '@models';
+import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/services/auth.service';
 import { BackendService } from 'src/app/services/backend.service';
 import { FireReservacionesService } from 'src/app/services/fire-reservaciones.service';
 import { UserDetails, UsersService } from 'src/app/services/users.service';
@@ -16,7 +18,8 @@ export class PanelComponent implements OnInit {
   constructor(
     private userService: UsersService,
     public backendService: BackendService,
-    private reservacionesService: FireReservacionesService
+    private reservacionesService: FireReservacionesService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +30,23 @@ export class PanelComponent implements OnInit {
         return;
       }
       this.reservaciones = reservaciones;
+    });
+  }
+
+  deleteRecord(idCliente: string, id: string) {
+    this.reservacionesService.delete(idCliente, id).subscribe({
+      next: () => {
+        this.messageService.add({
+          summary: 'Reservación eliminada!',
+          severity: 'success',
+        });
+      },
+      error: (err) => {
+        this.messageService.add({
+          summary: 'Error al eliminar la reservación!',
+          severity: 'danger',
+        });
+      },
     });
   }
 }

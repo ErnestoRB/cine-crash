@@ -23,6 +23,7 @@
             <th scope="col">Fecha de compra</th>
             <th scope="col"># Boletos</th>
             <th scope="col">QR Code</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +34,13 @@
             <td>{{ reservacion.boletos }}</td>
             <td>
               <app-qr-info [id]="reservacion.id!"></app-qr-info>
+            </td>
+            <td>
+              <p-button
+                (click)="deleteRecord(reservacion.cliente, reservacion.id!)"
+                icon="pi pi-trash"
+                styleClass="p-button-danger"
+              ></p-button>
             </td>
           </tr>
         </tbody>
